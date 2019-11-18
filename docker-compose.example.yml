@@ -2,9 +2,9 @@ services:
     db:
         image: postgres:10-alpine
         environment:
-            - POSTGRES_DB=app
+            - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=supersecretpassword
+            - POSTGRES_PASSWORD=postgres
 
         ports:
             - '5432:5432'
