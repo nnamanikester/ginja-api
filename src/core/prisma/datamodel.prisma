@@ -1,0 +1,34 @@
+type User {
+    id: ID! @id
+    firstName: String!
+    lastName: String!
+    type: Role!
+    email: String!
+    phoneNumber: String!
+    dob: String!
+    bank: Bank!
+}
+
+type Auth {
+    id:  ID! @id
+    user: User!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+    email: String!
+    type: Role!
+    phoneNumber: String!
+    pin: String!
+}
+
+type Role {
+    id: ID! @id
+    name: String!
+}
+
+type Bank {
+    id:  ID! @id
+    bankName: String!
+    accountName: String!
+    bankCode: String!
+    accountNumber: String!
+}

@@ -1,7 +1,7 @@
-import HttpClient from '../../utils/client';
-import serviceConfig from '../../config/services';
-import * as utilityService from '../../helpers/utilities';
-import logger from '../../utils/logger';
+import HttpClient from '../../../core/utils/client';
+import serviceConfig from '../../../core/config/services';
+import * as utilityService from '../../../core/helpers/utilities';
+import logger from '../../../core/utils/logger';
 
 const authServiceConfig = serviceConfig.auth;
 

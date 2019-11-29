@@ -44,3 +44,5 @@ yarn.lock
 .editorconfig
 
 .queues
+
+src/graphql/prisma/docker-compose.yml

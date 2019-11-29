@@ -1,0 +1,63 @@
+type Query {
+    info: String
+    users: [User!]!
+    banks: [Bank!]!
+    auths: [Auth!]!
+    roles: [Role!]!
+}
+
+type Mutation {
+    createUser(
+        firstName: String!
+        lastName: String!
+        type: String!
+        email: String!
+        phoneNumber: String!
+        dob: String
+        pin: String!
+        accountNumber: String!
+        accountName: String!
+        bankName: String!
+        bankCode: String!
+    ): AuthPayload!
+    login(email: String!, password: String!): AuthPayload
+    createRole(name: String!): Role!
+}
+
+type User {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    type: Role!
+    email: String!
+    phoneNumber: String!
+    dob: String!
+    bank: Bank!
+}
+
+type Auth {
+    id: ID!
+    email: String!
+    phoneNumber: String!
+    pin: String!
+    type: Role!
+    user: User!
+}
+
+type Role {
+    id: ID!
+    name: String!
+}
+
+type Bank {
+    id: ID!
+    accountNumber: String!
+    accountName: String!
+    bankName: String!
+    bankCode: String!
+}
+
+type AuthPayload {
+    token: String
+    user: User
+}
