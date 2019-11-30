@@ -18,8 +18,13 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   auth: (where?: AuthWhereInput) => Promise<boolean>;
   bank: (where?: BankWhereInput) => Promise<boolean>;
+  organization: (where?: OrganizationWhereInput) => Promise<boolean>;
+  organizationType: (where?: OrganizationTypeWhereInput) => Promise<boolean>;
   role: (where?: RoleWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  userOrganizationRole: (
+    where?: UserOrganizationRoleWhereInput
+  ) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -79,6 +84,48 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => BankConnectionPromise;
+  organization: (
+    where: OrganizationWhereUniqueInput
+  ) => OrganizationNullablePromise;
+  organizations: (args?: {
+    where?: OrganizationWhereInput;
+    orderBy?: OrganizationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Organization>;
+  organizationsConnection: (args?: {
+    where?: OrganizationWhereInput;
+    orderBy?: OrganizationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => OrganizationConnectionPromise;
+  organizationType: (
+    where: OrganizationTypeWhereUniqueInput
+  ) => OrganizationTypeNullablePromise;
+  organizationTypes: (args?: {
+    where?: OrganizationTypeWhereInput;
+    orderBy?: OrganizationTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<OrganizationType>;
+  organizationTypesConnection: (args?: {
+    where?: OrganizationTypeWhereInput;
+    orderBy?: OrganizationTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => OrganizationTypeConnectionPromise;
   role: (where: RoleWhereUniqueInput) => RoleNullablePromise;
   roles: (args?: {
     where?: RoleWhereInput;
@@ -117,6 +164,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => UserConnectionPromise;
+  userOrganizationRole: (
+    where: UserOrganizationRoleWhereUniqueInput
+  ) => UserOrganizationRoleNullablePromise;
+  userOrganizationRoles: (args?: {
+    where?: UserOrganizationRoleWhereInput;
+    orderBy?: UserOrganizationRoleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<UserOrganizationRole>;
+  userOrganizationRolesConnection: (args?: {
+    where?: UserOrganizationRoleWhereInput;
+    orderBy?: UserOrganizationRoleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => UserOrganizationRoleConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -155,6 +223,48 @@ export interface Prisma {
   }) => BankPromise;
   deleteBank: (where: BankWhereUniqueInput) => BankPromise;
   deleteManyBanks: (where?: BankWhereInput) => BatchPayloadPromise;
+  createOrganization: (data: OrganizationCreateInput) => OrganizationPromise;
+  updateOrganization: (args: {
+    data: OrganizationUpdateInput;
+    where: OrganizationWhereUniqueInput;
+  }) => OrganizationPromise;
+  updateManyOrganizations: (args: {
+    data: OrganizationUpdateManyMutationInput;
+    where?: OrganizationWhereInput;
+  }) => BatchPayloadPromise;
+  upsertOrganization: (args: {
+    where: OrganizationWhereUniqueInput;
+    create: OrganizationCreateInput;
+    update: OrganizationUpdateInput;
+  }) => OrganizationPromise;
+  deleteOrganization: (
+    where: OrganizationWhereUniqueInput
+  ) => OrganizationPromise;
+  deleteManyOrganizations: (
+    where?: OrganizationWhereInput
+  ) => BatchPayloadPromise;
+  createOrganizationType: (
+    data: OrganizationTypeCreateInput
+  ) => OrganizationTypePromise;
+  updateOrganizationType: (args: {
+    data: OrganizationTypeUpdateInput;
+    where: OrganizationTypeWhereUniqueInput;
+  }) => OrganizationTypePromise;
+  updateManyOrganizationTypes: (args: {
+    data: OrganizationTypeUpdateManyMutationInput;
+    where?: OrganizationTypeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertOrganizationType: (args: {
+    where: OrganizationTypeWhereUniqueInput;
+    create: OrganizationTypeCreateInput;
+    update: OrganizationTypeUpdateInput;
+  }) => OrganizationTypePromise;
+  deleteOrganizationType: (
+    where: OrganizationTypeWhereUniqueInput
+  ) => OrganizationTypePromise;
+  deleteManyOrganizationTypes: (
+    where?: OrganizationTypeWhereInput
+  ) => BatchPayloadPromise;
   createRole: (data: RoleCreateInput) => RolePromise;
   updateRole: (args: {
     data: RoleUpdateInput;
@@ -187,6 +297,24 @@ export interface Prisma {
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createUserOrganizationRole: (
+    data: UserOrganizationRoleCreateInput
+  ) => UserOrganizationRolePromise;
+  updateUserOrganizationRole: (args: {
+    data: UserOrganizationRoleUpdateInput;
+    where: UserOrganizationRoleWhereUniqueInput;
+  }) => UserOrganizationRolePromise;
+  upsertUserOrganizationRole: (args: {
+    where: UserOrganizationRoleWhereUniqueInput;
+    create: UserOrganizationRoleCreateInput;
+    update: UserOrganizationRoleUpdateInput;
+  }) => UserOrganizationRolePromise;
+  deleteUserOrganizationRole: (
+    where: UserOrganizationRoleWhereUniqueInput
+  ) => UserOrganizationRolePromise;
+  deleteManyUserOrganizationRoles: (
+    where?: UserOrganizationRoleWhereInput
+  ) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -202,12 +330,21 @@ export interface Subscription {
   bank: (
     where?: BankSubscriptionWhereInput
   ) => BankSubscriptionPayloadSubscription;
+  organization: (
+    where?: OrganizationSubscriptionWhereInput
+  ) => OrganizationSubscriptionPayloadSubscription;
+  organizationType: (
+    where?: OrganizationTypeSubscriptionWhereInput
+  ) => OrganizationTypeSubscriptionPayloadSubscription;
   role: (
     where?: RoleSubscriptionWhereInput
   ) => RoleSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  userOrganizationRole: (
+    where?: UserOrganizationRoleSubscriptionWhereInput
+  ) => UserOrganizationRoleSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -221,28 +358,50 @@ export interface ClientConstructor<T> {
 export type AuthOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC"
-  | "email_ASC"
-  | "email_DESC"
   | "phoneNumber_ASC"
   | "phoneNumber_DESC"
   | "pin_ASC"
-  | "pin_DESC";
+  | "pin_DESC"
+  | "userId_ASC"
+  | "userId_DESC";
 
 export type BankOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "bankName_ASC"
-  | "bankName_DESC"
+  | "accountNumber_ASC"
+  | "accountNumber_DESC"
   | "accountName_ASC"
   | "accountName_DESC"
+  | "bankName_ASC"
+  | "bankName_DESC"
   | "bankCode_ASC"
-  | "bankCode_DESC"
-  | "accountNumber_ASC"
-  | "accountNumber_DESC";
+  | "bankCode_DESC";
+
+export type OrganizationOrderByInput =
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC";
+
+export type OrganizationTypeOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC";
 
 export type RoleOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
@@ -260,10 +419,14 @@ export type UserOrderByInput =
   | "dob_ASC"
   | "dob_DESC";
 
+export type UserOrganizationRoleOrderByInput = "id_ASC" | "id_DESC";
+
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type AuthWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
 }>;
 
 export interface AuthWhereInput {
@@ -281,7 +444,20 @@ export interface AuthWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -298,21 +474,6 @@ export interface AuthWhereInput {
   updatedAt_lte?: Maybe<DateTimeInput>;
   updatedAt_gt?: Maybe<DateTimeInput>;
   updatedAt_gte?: Maybe<DateTimeInput>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  type?: Maybe<RoleWhereInput>;
   phoneNumber?: Maybe<String>;
   phoneNumber_not?: Maybe<String>;
   phoneNumber_in?: Maybe<String[] | String>;
@@ -341,6 +502,21 @@ export interface AuthWhereInput {
   pin_not_starts_with?: Maybe<String>;
   pin_ends_with?: Maybe<String>;
   pin_not_ends_with?: Maybe<String>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
+  user?: Maybe<UserWhereInput>;
   AND?: Maybe<AuthWhereInput[] | AuthWhereInput>;
   OR?: Maybe<AuthWhereInput[] | AuthWhereInput>;
   NOT?: Maybe<AuthWhereInput[] | AuthWhereInput>;
@@ -389,7 +565,6 @@ export interface UserWhereInput {
   lastName_not_starts_with?: Maybe<String>;
   lastName_ends_with?: Maybe<String>;
   lastName_not_ends_with?: Maybe<String>;
-  type?: Maybe<RoleWhereInput>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -432,11 +607,218 @@ export interface UserWhereInput {
   dob_not_starts_with?: Maybe<String>;
   dob_ends_with?: Maybe<String>;
   dob_not_ends_with?: Maybe<String>;
-  bank?: Maybe<BankWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
+
+export type BankWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface BankWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  accountNumber?: Maybe<String>;
+  accountNumber_not?: Maybe<String>;
+  accountNumber_in?: Maybe<String[] | String>;
+  accountNumber_not_in?: Maybe<String[] | String>;
+  accountNumber_lt?: Maybe<String>;
+  accountNumber_lte?: Maybe<String>;
+  accountNumber_gt?: Maybe<String>;
+  accountNumber_gte?: Maybe<String>;
+  accountNumber_contains?: Maybe<String>;
+  accountNumber_not_contains?: Maybe<String>;
+  accountNumber_starts_with?: Maybe<String>;
+  accountNumber_not_starts_with?: Maybe<String>;
+  accountNumber_ends_with?: Maybe<String>;
+  accountNumber_not_ends_with?: Maybe<String>;
+  accountName?: Maybe<String>;
+  accountName_not?: Maybe<String>;
+  accountName_in?: Maybe<String[] | String>;
+  accountName_not_in?: Maybe<String[] | String>;
+  accountName_lt?: Maybe<String>;
+  accountName_lte?: Maybe<String>;
+  accountName_gt?: Maybe<String>;
+  accountName_gte?: Maybe<String>;
+  accountName_contains?: Maybe<String>;
+  accountName_not_contains?: Maybe<String>;
+  accountName_starts_with?: Maybe<String>;
+  accountName_not_starts_with?: Maybe<String>;
+  accountName_ends_with?: Maybe<String>;
+  accountName_not_ends_with?: Maybe<String>;
+  bankName?: Maybe<String>;
+  bankName_not?: Maybe<String>;
+  bankName_in?: Maybe<String[] | String>;
+  bankName_not_in?: Maybe<String[] | String>;
+  bankName_lt?: Maybe<String>;
+  bankName_lte?: Maybe<String>;
+  bankName_gt?: Maybe<String>;
+  bankName_gte?: Maybe<String>;
+  bankName_contains?: Maybe<String>;
+  bankName_not_contains?: Maybe<String>;
+  bankName_starts_with?: Maybe<String>;
+  bankName_not_starts_with?: Maybe<String>;
+  bankName_ends_with?: Maybe<String>;
+  bankName_not_ends_with?: Maybe<String>;
+  bankCode?: Maybe<String>;
+  bankCode_not?: Maybe<String>;
+  bankCode_in?: Maybe<String[] | String>;
+  bankCode_not_in?: Maybe<String[] | String>;
+  bankCode_lt?: Maybe<String>;
+  bankCode_lte?: Maybe<String>;
+  bankCode_gt?: Maybe<String>;
+  bankCode_gte?: Maybe<String>;
+  bankCode_contains?: Maybe<String>;
+  bankCode_not_contains?: Maybe<String>;
+  bankCode_starts_with?: Maybe<String>;
+  bankCode_not_starts_with?: Maybe<String>;
+  bankCode_ends_with?: Maybe<String>;
+  bankCode_not_ends_with?: Maybe<String>;
+  AND?: Maybe<BankWhereInput[] | BankWhereInput>;
+  OR?: Maybe<BankWhereInput[] | BankWhereInput>;
+  NOT?: Maybe<BankWhereInput[] | BankWhereInput>;
+}
+
+export type OrganizationWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface OrganizationWhereInput {
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  type?: Maybe<OrganizationTypeWhereInput>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  bank?: Maybe<BankWhereInput>;
+  AND?: Maybe<OrganizationWhereInput[] | OrganizationWhereInput>;
+  OR?: Maybe<OrganizationWhereInput[] | OrganizationWhereInput>;
+  NOT?: Maybe<OrganizationWhereInput[] | OrganizationWhereInput>;
+}
+
+export interface OrganizationTypeWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<OrganizationTypeWhereInput[] | OrganizationTypeWhereInput>;
+  OR?: Maybe<OrganizationTypeWhereInput[] | OrganizationTypeWhereInput>;
+  NOT?: Maybe<OrganizationTypeWhereInput[] | OrganizationTypeWhereInput>;
+}
+
+export type OrganizationTypeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}>;
+
+export type RoleWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}>;
 
 export interface RoleWhereInput {
   id?: Maybe<ID_Input>;
@@ -472,7 +854,15 @@ export interface RoleWhereInput {
   NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
 }
 
-export interface BankWhereInput {
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UserOrganizationRoleWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface UserOrganizationRoleWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -487,86 +877,25 @@ export interface BankWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  bankName?: Maybe<String>;
-  bankName_not?: Maybe<String>;
-  bankName_in?: Maybe<String[] | String>;
-  bankName_not_in?: Maybe<String[] | String>;
-  bankName_lt?: Maybe<String>;
-  bankName_lte?: Maybe<String>;
-  bankName_gt?: Maybe<String>;
-  bankName_gte?: Maybe<String>;
-  bankName_contains?: Maybe<String>;
-  bankName_not_contains?: Maybe<String>;
-  bankName_starts_with?: Maybe<String>;
-  bankName_not_starts_with?: Maybe<String>;
-  bankName_ends_with?: Maybe<String>;
-  bankName_not_ends_with?: Maybe<String>;
-  accountName?: Maybe<String>;
-  accountName_not?: Maybe<String>;
-  accountName_in?: Maybe<String[] | String>;
-  accountName_not_in?: Maybe<String[] | String>;
-  accountName_lt?: Maybe<String>;
-  accountName_lte?: Maybe<String>;
-  accountName_gt?: Maybe<String>;
-  accountName_gte?: Maybe<String>;
-  accountName_contains?: Maybe<String>;
-  accountName_not_contains?: Maybe<String>;
-  accountName_starts_with?: Maybe<String>;
-  accountName_not_starts_with?: Maybe<String>;
-  accountName_ends_with?: Maybe<String>;
-  accountName_not_ends_with?: Maybe<String>;
-  bankCode?: Maybe<String>;
-  bankCode_not?: Maybe<String>;
-  bankCode_in?: Maybe<String[] | String>;
-  bankCode_not_in?: Maybe<String[] | String>;
-  bankCode_lt?: Maybe<String>;
-  bankCode_lte?: Maybe<String>;
-  bankCode_gt?: Maybe<String>;
-  bankCode_gte?: Maybe<String>;
-  bankCode_contains?: Maybe<String>;
-  bankCode_not_contains?: Maybe<String>;
-  bankCode_starts_with?: Maybe<String>;
-  bankCode_not_starts_with?: Maybe<String>;
-  bankCode_ends_with?: Maybe<String>;
-  bankCode_not_ends_with?: Maybe<String>;
-  accountNumber?: Maybe<String>;
-  accountNumber_not?: Maybe<String>;
-  accountNumber_in?: Maybe<String[] | String>;
-  accountNumber_not_in?: Maybe<String[] | String>;
-  accountNumber_lt?: Maybe<String>;
-  accountNumber_lte?: Maybe<String>;
-  accountNumber_gt?: Maybe<String>;
-  accountNumber_gte?: Maybe<String>;
-  accountNumber_contains?: Maybe<String>;
-  accountNumber_not_contains?: Maybe<String>;
-  accountNumber_starts_with?: Maybe<String>;
-  accountNumber_not_starts_with?: Maybe<String>;
-  accountNumber_ends_with?: Maybe<String>;
-  accountNumber_not_ends_with?: Maybe<String>;
-  AND?: Maybe<BankWhereInput[] | BankWhereInput>;
-  OR?: Maybe<BankWhereInput[] | BankWhereInput>;
-  NOT?: Maybe<BankWhereInput[] | BankWhereInput>;
+  user?: Maybe<UserWhereInput>;
+  role?: Maybe<RoleWhereInput>;
+  organization?: Maybe<OrganizationWhereInput>;
+  AND?: Maybe<
+    UserOrganizationRoleWhereInput[] | UserOrganizationRoleWhereInput
+  >;
+  OR?: Maybe<UserOrganizationRoleWhereInput[] | UserOrganizationRoleWhereInput>;
+  NOT?: Maybe<
+    UserOrganizationRoleWhereInput[] | UserOrganizationRoleWhereInput
+  >;
 }
-
-export type BankWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export type RoleWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface AuthCreateInput {
   id?: Maybe<ID_Input>;
-  user: UserCreateOneInput;
   email: String;
-  type: RoleCreateOneInput;
   phoneNumber: String;
   pin: String;
+  userId: String;
+  user: UserCreateOneInput;
 }
 
 export interface UserCreateOneInput {
@@ -578,42 +907,17 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   firstName: String;
   lastName: String;
-  type: RoleCreateOneInput;
   email: String;
   phoneNumber: String;
   dob: String;
-  bank: BankCreateOneInput;
-}
-
-export interface RoleCreateOneInput {
-  create?: Maybe<RoleCreateInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
-export interface RoleCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-}
-
-export interface BankCreateOneInput {
-  create?: Maybe<BankCreateInput>;
-  connect?: Maybe<BankWhereUniqueInput>;
-}
-
-export interface BankCreateInput {
-  id?: Maybe<ID_Input>;
-  bankName: String;
-  accountName: String;
-  bankCode: String;
-  accountNumber: String;
 }
 
 export interface AuthUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
   email?: Maybe<String>;
-  type?: Maybe<RoleUpdateOneRequiredInput>;
   phoneNumber?: Maybe<String>;
   pin?: Maybe<String>;
+  userId?: Maybe<String>;
+  user?: Maybe<UserUpdateOneRequiredInput>;
 }
 
 export interface UserUpdateOneRequiredInput {
@@ -626,11 +930,176 @@ export interface UserUpdateOneRequiredInput {
 export interface UserUpdateDataInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
-  type?: Maybe<RoleUpdateOneRequiredInput>;
   email?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   dob?: Maybe<String>;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface AuthUpdateManyMutationInput {
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  pin?: Maybe<String>;
+  userId?: Maybe<String>;
+}
+
+export interface BankCreateInput {
+  id?: Maybe<ID_Input>;
+  accountNumber: String;
+  accountName: String;
+  bankName: String;
+  bankCode: String;
+}
+
+export interface BankUpdateInput {
+  accountNumber?: Maybe<String>;
+  accountName?: Maybe<String>;
+  bankName?: Maybe<String>;
+  bankCode?: Maybe<String>;
+}
+
+export interface BankUpdateManyMutationInput {
+  accountNumber?: Maybe<String>;
+  accountName?: Maybe<String>;
+  bankName?: Maybe<String>;
+  bankCode?: Maybe<String>;
+}
+
+export interface OrganizationCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  type: OrganizationTypeCreateOneInput;
+  phoneNumber: String;
+  bank: BankCreateOneInput;
+}
+
+export interface OrganizationTypeCreateOneInput {
+  create?: Maybe<OrganizationTypeCreateInput>;
+  connect?: Maybe<OrganizationTypeWhereUniqueInput>;
+}
+
+export interface OrganizationTypeCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface BankCreateOneInput {
+  create?: Maybe<BankCreateInput>;
+  connect?: Maybe<BankWhereUniqueInput>;
+}
+
+export interface OrganizationUpdateInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  type?: Maybe<OrganizationTypeUpdateOneRequiredInput>;
+  phoneNumber?: Maybe<String>;
   bank?: Maybe<BankUpdateOneRequiredInput>;
+}
+
+export interface OrganizationTypeUpdateOneRequiredInput {
+  create?: Maybe<OrganizationTypeCreateInput>;
+  update?: Maybe<OrganizationTypeUpdateDataInput>;
+  upsert?: Maybe<OrganizationTypeUpsertNestedInput>;
+  connect?: Maybe<OrganizationTypeWhereUniqueInput>;
+}
+
+export interface OrganizationTypeUpdateDataInput {
+  name?: Maybe<String>;
+}
+
+export interface OrganizationTypeUpsertNestedInput {
+  update: OrganizationTypeUpdateDataInput;
+  create: OrganizationTypeCreateInput;
+}
+
+export interface BankUpdateOneRequiredInput {
+  create?: Maybe<BankCreateInput>;
+  update?: Maybe<BankUpdateDataInput>;
+  upsert?: Maybe<BankUpsertNestedInput>;
+  connect?: Maybe<BankWhereUniqueInput>;
+}
+
+export interface BankUpdateDataInput {
+  accountNumber?: Maybe<String>;
+  accountName?: Maybe<String>;
+  bankName?: Maybe<String>;
+  bankCode?: Maybe<String>;
+}
+
+export interface BankUpsertNestedInput {
+  update: BankUpdateDataInput;
+  create: BankCreateInput;
+}
+
+export interface OrganizationUpdateManyMutationInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+}
+
+export interface OrganizationTypeUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface OrganizationTypeUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface RoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface RoleUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface RoleUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface UserUpdateInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  dob?: Maybe<String>;
+}
+
+export interface UserUpdateManyMutationInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  dob?: Maybe<String>;
+}
+
+export interface UserOrganizationRoleCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+  role: RoleCreateOneInput;
+  organization: OrganizationCreateOneInput;
+}
+
+export interface RoleCreateOneInput {
+  create?: Maybe<RoleCreateInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
+export interface OrganizationCreateOneInput {
+  create?: Maybe<OrganizationCreateInput>;
+  connect?: Maybe<OrganizationWhereUniqueInput>;
+}
+
+export interface UserOrganizationRoleUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  role?: Maybe<RoleUpdateOneRequiredInput>;
+  organization?: Maybe<OrganizationUpdateOneRequiredInput>;
 }
 
 export interface RoleUpdateOneRequiredInput {
@@ -649,74 +1118,24 @@ export interface RoleUpsertNestedInput {
   create: RoleCreateInput;
 }
 
-export interface BankUpdateOneRequiredInput {
-  create?: Maybe<BankCreateInput>;
-  update?: Maybe<BankUpdateDataInput>;
-  upsert?: Maybe<BankUpsertNestedInput>;
-  connect?: Maybe<BankWhereUniqueInput>;
+export interface OrganizationUpdateOneRequiredInput {
+  create?: Maybe<OrganizationCreateInput>;
+  update?: Maybe<OrganizationUpdateDataInput>;
+  upsert?: Maybe<OrganizationUpsertNestedInput>;
+  connect?: Maybe<OrganizationWhereUniqueInput>;
 }
 
-export interface BankUpdateDataInput {
-  bankName?: Maybe<String>;
-  accountName?: Maybe<String>;
-  bankCode?: Maybe<String>;
-  accountNumber?: Maybe<String>;
-}
-
-export interface BankUpsertNestedInput {
-  update: BankUpdateDataInput;
-  create: BankCreateInput;
-}
-
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface AuthUpdateManyMutationInput {
-  email?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  pin?: Maybe<String>;
-}
-
-export interface BankUpdateInput {
-  bankName?: Maybe<String>;
-  accountName?: Maybe<String>;
-  bankCode?: Maybe<String>;
-  accountNumber?: Maybe<String>;
-}
-
-export interface BankUpdateManyMutationInput {
-  bankName?: Maybe<String>;
-  accountName?: Maybe<String>;
-  bankCode?: Maybe<String>;
-  accountNumber?: Maybe<String>;
-}
-
-export interface RoleUpdateInput {
+export interface OrganizationUpdateDataInput {
   name?: Maybe<String>;
-}
-
-export interface RoleUpdateManyMutationInput {
-  name?: Maybe<String>;
-}
-
-export interface UserUpdateInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  type?: Maybe<RoleUpdateOneRequiredInput>;
   email?: Maybe<String>;
+  type?: Maybe<OrganizationTypeUpdateOneRequiredInput>;
   phoneNumber?: Maybe<String>;
-  dob?: Maybe<String>;
   bank?: Maybe<BankUpdateOneRequiredInput>;
 }
 
-export interface UserUpdateManyMutationInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  email?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  dob?: Maybe<String>;
+export interface OrganizationUpsertNestedInput {
+  update: OrganizationUpdateDataInput;
+  create: OrganizationCreateInput;
 }
 
 export interface AuthSubscriptionWhereInput {
@@ -741,6 +1160,43 @@ export interface BankSubscriptionWhereInput {
   NOT?: Maybe<BankSubscriptionWhereInput[] | BankSubscriptionWhereInput>;
 }
 
+export interface OrganizationSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<OrganizationWhereInput>;
+  AND?: Maybe<
+    OrganizationSubscriptionWhereInput[] | OrganizationSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    OrganizationSubscriptionWhereInput[] | OrganizationSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    OrganizationSubscriptionWhereInput[] | OrganizationSubscriptionWhereInput
+  >;
+}
+
+export interface OrganizationTypeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<OrganizationTypeWhereInput>;
+  AND?: Maybe<
+    | OrganizationTypeSubscriptionWhereInput[]
+    | OrganizationTypeSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | OrganizationTypeSubscriptionWhereInput[]
+    | OrganizationTypeSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | OrganizationTypeSubscriptionWhereInput[]
+    | OrganizationTypeSubscriptionWhereInput
+  >;
+}
+
 export interface RoleSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -763,54 +1219,75 @@ export interface UserSubscriptionWhereInput {
   NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
+export interface UserOrganizationRoleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserOrganizationRoleWhereInput>;
+  AND?: Maybe<
+    | UserOrganizationRoleSubscriptionWhereInput[]
+    | UserOrganizationRoleSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | UserOrganizationRoleSubscriptionWhereInput[]
+    | UserOrganizationRoleSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | UserOrganizationRoleSubscriptionWhereInput[]
+    | UserOrganizationRoleSubscriptionWhereInput
+  >;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
 
 export interface Auth {
   id: ID_Output;
+  email: String;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
-  email: String;
   phoneNumber: String;
   pin: String;
+  userId: String;
 }
 
 export interface AuthPromise extends Promise<Auth>, Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
+  email: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  email: () => Promise<String>;
-  type: <T = RolePromise>() => T;
   phoneNumber: () => Promise<String>;
   pin: () => Promise<String>;
+  userId: () => Promise<String>;
+  user: <T = UserPromise>() => T;
 }
 
 export interface AuthSubscription
   extends Promise<AsyncIterator<Auth>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
+  email: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  email: () => Promise<AsyncIterator<String>>;
-  type: <T = RoleSubscription>() => T;
   phoneNumber: () => Promise<AsyncIterator<String>>;
   pin: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
 }
 
 export interface AuthNullablePromise
   extends Promise<Auth | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
+  email: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  email: () => Promise<String>;
-  type: <T = RolePromise>() => T;
   phoneNumber: () => Promise<String>;
   pin: () => Promise<String>;
+  userId: () => Promise<String>;
+  user: <T = UserPromise>() => T;
 }
 
 export interface User {
@@ -826,11 +1303,9 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
-  type: <T = RolePromise>() => T;
   email: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   dob: () => Promise<String>;
-  bank: <T = BankPromise>() => T;
 }
 
 export interface UserSubscription
@@ -839,11 +1314,9 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
-  type: <T = RoleSubscription>() => T;
   email: () => Promise<AsyncIterator<String>>;
   phoneNumber: () => Promise<AsyncIterator<String>>;
   dob: () => Promise<AsyncIterator<String>>;
-  bank: <T = BankSubscription>() => T;
 }
 
 export interface UserNullablePromise
@@ -852,71 +1325,9 @@ export interface UserNullablePromise
   id: () => Promise<ID_Output>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
-  type: <T = RolePromise>() => T;
   email: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   dob: () => Promise<String>;
-  bank: <T = BankPromise>() => T;
-}
-
-export interface Role {
-  id: ID_Output;
-  name: String;
-}
-
-export interface RolePromise extends Promise<Role>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface RoleSubscription
-  extends Promise<AsyncIterator<Role>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface RoleNullablePromise
-  extends Promise<Role | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface Bank {
-  id: ID_Output;
-  bankName: String;
-  accountName: String;
-  bankCode: String;
-  accountNumber: String;
-}
-
-export interface BankPromise extends Promise<Bank>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  bankName: () => Promise<String>;
-  accountName: () => Promise<String>;
-  bankCode: () => Promise<String>;
-  accountNumber: () => Promise<String>;
-}
-
-export interface BankSubscription
-  extends Promise<AsyncIterator<Bank>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  bankName: () => Promise<AsyncIterator<String>>;
-  accountName: () => Promise<AsyncIterator<String>>;
-  bankCode: () => Promise<AsyncIterator<String>>;
-  accountNumber: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BankNullablePromise
-  extends Promise<Bank | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  bankName: () => Promise<String>;
-  accountName: () => Promise<String>;
-  bankCode: () => Promise<String>;
-  accountNumber: () => Promise<String>;
 }
 
 export interface AuthConnection {
@@ -996,6 +1407,42 @@ export interface AggregateAuthSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface Bank {
+  id: ID_Output;
+  accountNumber: String;
+  accountName: String;
+  bankName: String;
+  bankCode: String;
+}
+
+export interface BankPromise extends Promise<Bank>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  accountNumber: () => Promise<String>;
+  accountName: () => Promise<String>;
+  bankName: () => Promise<String>;
+  bankCode: () => Promise<String>;
+}
+
+export interface BankSubscription
+  extends Promise<AsyncIterator<Bank>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  accountNumber: () => Promise<AsyncIterator<String>>;
+  accountName: () => Promise<AsyncIterator<String>>;
+  bankName: () => Promise<AsyncIterator<String>>;
+  bankCode: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BankNullablePromise
+  extends Promise<Bank | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  accountNumber: () => Promise<String>;
+  accountName: () => Promise<String>;
+  bankName: () => Promise<String>;
+  bankCode: () => Promise<String>;
+}
+
 export interface BankConnection {
   pageInfo: PageInfo;
   edges: BankEdge[];
@@ -1048,6 +1495,216 @@ export interface AggregateBankSubscription
   extends Promise<AsyncIterator<AggregateBank>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Organization {
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+  id: ID_Output;
+  name: String;
+  email: String;
+  phoneNumber: String;
+}
+
+export interface OrganizationPromise
+  extends Promise<Organization>,
+    Fragmentable {
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  type: <T = OrganizationTypePromise>() => T;
+  phoneNumber: () => Promise<String>;
+  bank: <T = BankPromise>() => T;
+}
+
+export interface OrganizationSubscription
+  extends Promise<AsyncIterator<Organization>>,
+    Fragmentable {
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  type: <T = OrganizationTypeSubscription>() => T;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  bank: <T = BankSubscription>() => T;
+}
+
+export interface OrganizationNullablePromise
+  extends Promise<Organization | null>,
+    Fragmentable {
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  type: <T = OrganizationTypePromise>() => T;
+  phoneNumber: () => Promise<String>;
+  bank: <T = BankPromise>() => T;
+}
+
+export interface OrganizationType {
+  id: ID_Output;
+  name: String;
+}
+
+export interface OrganizationTypePromise
+  extends Promise<OrganizationType>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface OrganizationTypeSubscription
+  extends Promise<AsyncIterator<OrganizationType>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface OrganizationTypeNullablePromise
+  extends Promise<OrganizationType | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface OrganizationConnection {
+  pageInfo: PageInfo;
+  edges: OrganizationEdge[];
+}
+
+export interface OrganizationConnectionPromise
+  extends Promise<OrganizationConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OrganizationEdge>>() => T;
+  aggregate: <T = AggregateOrganizationPromise>() => T;
+}
+
+export interface OrganizationConnectionSubscription
+  extends Promise<AsyncIterator<OrganizationConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OrganizationEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOrganizationSubscription>() => T;
+}
+
+export interface OrganizationEdge {
+  node: Organization;
+  cursor: String;
+}
+
+export interface OrganizationEdgePromise
+  extends Promise<OrganizationEdge>,
+    Fragmentable {
+  node: <T = OrganizationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OrganizationEdgeSubscription
+  extends Promise<AsyncIterator<OrganizationEdge>>,
+    Fragmentable {
+  node: <T = OrganizationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOrganization {
+  count: Int;
+}
+
+export interface AggregateOrganizationPromise
+  extends Promise<AggregateOrganization>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateOrganizationSubscription
+  extends Promise<AsyncIterator<AggregateOrganization>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface OrganizationTypeConnection {
+  pageInfo: PageInfo;
+  edges: OrganizationTypeEdge[];
+}
+
+export interface OrganizationTypeConnectionPromise
+  extends Promise<OrganizationTypeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OrganizationTypeEdge>>() => T;
+  aggregate: <T = AggregateOrganizationTypePromise>() => T;
+}
+
+export interface OrganizationTypeConnectionSubscription
+  extends Promise<AsyncIterator<OrganizationTypeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OrganizationTypeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOrganizationTypeSubscription>() => T;
+}
+
+export interface OrganizationTypeEdge {
+  node: OrganizationType;
+  cursor: String;
+}
+
+export interface OrganizationTypeEdgePromise
+  extends Promise<OrganizationTypeEdge>,
+    Fragmentable {
+  node: <T = OrganizationTypePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OrganizationTypeEdgeSubscription
+  extends Promise<AsyncIterator<OrganizationTypeEdge>>,
+    Fragmentable {
+  node: <T = OrganizationTypeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOrganizationType {
+  count: Int;
+}
+
+export interface AggregateOrganizationTypePromise
+  extends Promise<AggregateOrganizationType>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateOrganizationTypeSubscription
+  extends Promise<AsyncIterator<AggregateOrganizationType>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Role {
+  id: ID_Output;
+  name: String;
+}
+
+export interface RolePromise extends Promise<Role>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface RoleSubscription
+  extends Promise<AsyncIterator<Role>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface RoleNullablePromise
+  extends Promise<Role | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
 }
 
 export interface RoleConnection {
@@ -1158,6 +1815,95 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface UserOrganizationRole {
+  id: ID_Output;
+}
+
+export interface UserOrganizationRolePromise
+  extends Promise<UserOrganizationRole>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  role: <T = RolePromise>() => T;
+  organization: <T = OrganizationPromise>() => T;
+}
+
+export interface UserOrganizationRoleSubscription
+  extends Promise<AsyncIterator<UserOrganizationRole>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  role: <T = RoleSubscription>() => T;
+  organization: <T = OrganizationSubscription>() => T;
+}
+
+export interface UserOrganizationRoleNullablePromise
+  extends Promise<UserOrganizationRole | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  role: <T = RolePromise>() => T;
+  organization: <T = OrganizationPromise>() => T;
+}
+
+export interface UserOrganizationRoleConnection {
+  pageInfo: PageInfo;
+  edges: UserOrganizationRoleEdge[];
+}
+
+export interface UserOrganizationRoleConnectionPromise
+  extends Promise<UserOrganizationRoleConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserOrganizationRoleEdge>>() => T;
+  aggregate: <T = AggregateUserOrganizationRolePromise>() => T;
+}
+
+export interface UserOrganizationRoleConnectionSubscription
+  extends Promise<AsyncIterator<UserOrganizationRoleConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<UserOrganizationRoleEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateUserOrganizationRoleSubscription>() => T;
+}
+
+export interface UserOrganizationRoleEdge {
+  node: UserOrganizationRole;
+  cursor: String;
+}
+
+export interface UserOrganizationRoleEdgePromise
+  extends Promise<UserOrganizationRoleEdge>,
+    Fragmentable {
+  node: <T = UserOrganizationRolePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserOrganizationRoleEdgeSubscription
+  extends Promise<AsyncIterator<UserOrganizationRoleEdge>>,
+    Fragmentable {
+  node: <T = UserOrganizationRoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUserOrganizationRole {
+  count: Int;
+}
+
+export interface AggregateUserOrganizationRolePromise
+  extends Promise<AggregateUserOrganizationRole>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserOrganizationRoleSubscription
+  extends Promise<AsyncIterator<AggregateUserOrganizationRole>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface BatchPayload {
   count: Long;
 }
@@ -1201,33 +1947,36 @@ export interface AuthSubscriptionPayloadSubscription
 
 export interface AuthPreviousValues {
   id: ID_Output;
+  email: String;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
-  email: String;
   phoneNumber: String;
   pin: String;
+  userId: String;
 }
 
 export interface AuthPreviousValuesPromise
   extends Promise<AuthPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  email: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   pin: () => Promise<String>;
+  userId: () => Promise<String>;
 }
 
 export interface AuthPreviousValuesSubscription
   extends Promise<AsyncIterator<AuthPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  email: () => Promise<AsyncIterator<String>>;
   phoneNumber: () => Promise<AsyncIterator<String>>;
   pin: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface BankSubscriptionPayload {
@@ -1257,30 +2006,130 @@ export interface BankSubscriptionPayloadSubscription
 
 export interface BankPreviousValues {
   id: ID_Output;
-  bankName: String;
-  accountName: String;
-  bankCode: String;
   accountNumber: String;
+  accountName: String;
+  bankName: String;
+  bankCode: String;
 }
 
 export interface BankPreviousValuesPromise
   extends Promise<BankPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  bankName: () => Promise<String>;
-  accountName: () => Promise<String>;
-  bankCode: () => Promise<String>;
   accountNumber: () => Promise<String>;
+  accountName: () => Promise<String>;
+  bankName: () => Promise<String>;
+  bankCode: () => Promise<String>;
 }
 
 export interface BankPreviousValuesSubscription
   extends Promise<AsyncIterator<BankPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  bankName: () => Promise<AsyncIterator<String>>;
-  accountName: () => Promise<AsyncIterator<String>>;
-  bankCode: () => Promise<AsyncIterator<String>>;
   accountNumber: () => Promise<AsyncIterator<String>>;
+  accountName: () => Promise<AsyncIterator<String>>;
+  bankName: () => Promise<AsyncIterator<String>>;
+  bankCode: () => Promise<AsyncIterator<String>>;
+}
+
+export interface OrganizationSubscriptionPayload {
+  mutation: MutationType;
+  node: Organization;
+  updatedFields: String[];
+  previousValues: OrganizationPreviousValues;
+}
+
+export interface OrganizationSubscriptionPayloadPromise
+  extends Promise<OrganizationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OrganizationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OrganizationPreviousValuesPromise>() => T;
+}
+
+export interface OrganizationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OrganizationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OrganizationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OrganizationPreviousValuesSubscription>() => T;
+}
+
+export interface OrganizationPreviousValues {
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+  id: ID_Output;
+  name: String;
+  email: String;
+  phoneNumber: String;
+}
+
+export interface OrganizationPreviousValuesPromise
+  extends Promise<OrganizationPreviousValues>,
+    Fragmentable {
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+}
+
+export interface OrganizationPreviousValuesSubscription
+  extends Promise<AsyncIterator<OrganizationPreviousValues>>,
+    Fragmentable {
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+}
+
+export interface OrganizationTypeSubscriptionPayload {
+  mutation: MutationType;
+  node: OrganizationType;
+  updatedFields: String[];
+  previousValues: OrganizationTypePreviousValues;
+}
+
+export interface OrganizationTypeSubscriptionPayloadPromise
+  extends Promise<OrganizationTypeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OrganizationTypePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OrganizationTypePreviousValuesPromise>() => T;
+}
+
+export interface OrganizationTypeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OrganizationTypeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OrganizationTypeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OrganizationTypePreviousValuesSubscription>() => T;
+}
+
+export interface OrganizationTypePreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface OrganizationTypePreviousValuesPromise
+  extends Promise<OrganizationTypePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface OrganizationTypePreviousValuesSubscription
+  extends Promise<AsyncIterator<OrganizationTypePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface RoleSubscriptionPayload {
@@ -1383,6 +2232,47 @@ export interface UserPreviousValuesSubscription
   dob: () => Promise<AsyncIterator<String>>;
 }
 
+export interface UserOrganizationRoleSubscriptionPayload {
+  mutation: MutationType;
+  node: UserOrganizationRole;
+  updatedFields: String[];
+  previousValues: UserOrganizationRolePreviousValues;
+}
+
+export interface UserOrganizationRoleSubscriptionPayloadPromise
+  extends Promise<UserOrganizationRoleSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserOrganizationRolePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserOrganizationRolePreviousValuesPromise>() => T;
+}
+
+export interface UserOrganizationRoleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserOrganizationRoleSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserOrganizationRoleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserOrganizationRolePreviousValuesSubscription>() => T;
+}
+
+export interface UserOrganizationRolePreviousValues {
+  id: ID_Output;
+}
+
+export interface UserOrganizationRolePreviousValuesPromise
+  extends Promise<UserOrganizationRolePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface UserOrganizationRolePreviousValuesSubscription
+  extends Promise<AsyncIterator<UserOrganizationRolePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
@@ -1426,7 +2316,19 @@ export const models: Model[] = [
     embedded: false
   },
   {
+    name: "Organization",
+    embedded: false
+  },
+  {
+    name: "OrganizationType",
+    embedded: false
+  },
+  {
     name: "Auth",
+    embedded: false
+  },
+  {
+    name: "UserOrganizationRole",
     embedded: false
   },
   {

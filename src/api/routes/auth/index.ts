@@ -1,7 +1,7 @@
 import express from 'express';
 import authController from '../../controllers/auth';
 
-import logRequests from '../../middlewares/logrequests';
+import logRequests from '../../../core/middlewares/logrequests';
 
 const router = express.Router();
 

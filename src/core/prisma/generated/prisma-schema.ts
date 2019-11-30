@@ -10,6 +10,14 @@ type AggregateBank {
   count: Int!
 }
 
+type AggregateOrganization {
+  count: Int!
+}
+
+type AggregateOrganizationType {
+  count: Int!
+}
+
 type AggregateRole {
   count: Int!
 }
@@ -18,15 +26,19 @@ type AggregateUser {
   count: Int!
 }
 
+type AggregateUserOrganizationRole {
+  count: Int!
+}
+
 type Auth {
   id: ID!
-  user: User!
+  email: String!
   createdAt: DateTime!
   updatedAt: DateTime
-  email: String!
-  type: Role!
   phoneNumber: String!
   pin: String!
+  userId: String!
+  user: User!
 }
 
 type AuthConnection {
@@ -37,11 +49,11 @@ type AuthConnection {
 
 input AuthCreateInput {
   id: ID
-  user: UserCreateOneInput!
   email: String!
-  type: RoleCreateOneInput!
   phoneNumber: String!
   pin: String!
+  userId: String!
+  user: UserCreateOneInput!
 }
 
 type AuthEdge {
@@ -52,25 +64,28 @@ type AuthEdge {
 enum AuthOrderByInput {
   id_ASC
   id_DESC
+  email_ASC
+  email_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
-  email_ASC
-  email_DESC
   phoneNumber_ASC
   phoneNumber_DESC
   pin_ASC
   pin_DESC
+  userId_ASC
+  userId_DESC
 }
 
 type AuthPreviousValues {
   id: ID!
+  email: String!
   createdAt: DateTime!
   updatedAt: DateTime
-  email: String!
   phoneNumber: String!
   pin: String!
+  userId: String!
 }
 
 type AuthSubscriptionPayload {
@@ -92,17 +107,18 @@ input AuthSubscriptionWhereInput {
 }
 
 input AuthUpdateInput {
-  user: UserUpdateOneRequiredInput
   email: String
-  type: RoleUpdateOneRequiredInput
   phoneNumber: String
   pin: String
+  userId: String
+  user: UserUpdateOneRequiredInput
 }
 
 input AuthUpdateManyMutationInput {
   email: String
   phoneNumber: String
   pin: String
+  userId: String
 }
 
 input AuthWhereInput {
@@ -120,7 +136,20 @@ input AuthWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  user: UserWhereInput
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -137,21 +166,6 @@ input AuthWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
-  type: RoleWhereInput
   phoneNumber: String
   phoneNumber_not: String
   phoneNumber_in: [String!]
@@ -180,6 +194,21 @@ input AuthWhereInput {
   pin_not_starts_with: String
   pin_ends_with: String
   pin_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  user: UserWhereInput
   AND: [AuthWhereInput!]
   OR: [AuthWhereInput!]
   NOT: [AuthWhereInput!]
@@ -187,14 +216,16 @@ input AuthWhereInput {
 
 input AuthWhereUniqueInput {
   id: ID
+  email: String
+  phoneNumber: String
 }
 
 type Bank {
   id: ID!
-  bankName: String!
-  accountName: String!
-  bankCode: String!
   accountNumber: String!
+  accountName: String!
+  bankName: String!
+  bankCode: String!
 }
 
 type BankConnection {
@@ -205,10 +236,10 @@ type BankConnection {
 
 input BankCreateInput {
   id: ID
-  bankName: String!
-  accountName: String!
-  bankCode: String!
   accountNumber: String!
+  accountName: String!
+  bankName: String!
+  bankCode: String!
 }
 
 input BankCreateOneInput {
@@ -224,22 +255,22 @@ type BankEdge {
 enum BankOrderByInput {
   id_ASC
   id_DESC
-  bankName_ASC
-  bankName_DESC
-  accountName_ASC
-  accountName_DESC
-  bankCode_ASC
-  bankCode_DESC
   accountNumber_ASC
   accountNumber_DESC
+  accountName_ASC
+  accountName_DESC
+  bankName_ASC
+  bankName_DESC
+  bankCode_ASC
+  bankCode_DESC
 }
 
 type BankPreviousValues {
   id: ID!
-  bankName: String!
-  accountName: String!
-  bankCode: String!
   accountNumber: String!
+  accountName: String!
+  bankName: String!
+  bankCode: String!
 }
 
 type BankSubscriptionPayload {
@@ -261,24 +292,24 @@ input BankSubscriptionWhereInput {
 }
 
 input BankUpdateDataInput {
-  bankName: String
-  accountName: String
-  bankCode: String
   accountNumber: String
+  accountName: String
+  bankName: String
+  bankCode: String
 }
 
 input BankUpdateInput {
-  bankName: String
-  accountName: String
-  bankCode: String
   accountNumber: String
+  accountName: String
+  bankName: String
+  bankCode: String
 }
 
 input BankUpdateManyMutationInput {
-  bankName: String
-  accountName: String
-  bankCode: String
   accountNumber: String
+  accountName: String
+  bankName: String
+  bankCode: String
 }
 
 input BankUpdateOneRequiredInput {
@@ -308,48 +339,6 @@ input BankWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  bankName: String
-  bankName_not: String
-  bankName_in: [String!]
-  bankName_not_in: [String!]
-  bankName_lt: String
-  bankName_lte: String
-  bankName_gt: String
-  bankName_gte: String
-  bankName_contains: String
-  bankName_not_contains: String
-  bankName_starts_with: String
-  bankName_not_starts_with: String
-  bankName_ends_with: String
-  bankName_not_ends_with: String
-  accountName: String
-  accountName_not: String
-  accountName_in: [String!]
-  accountName_not_in: [String!]
-  accountName_lt: String
-  accountName_lte: String
-  accountName_gt: String
-  accountName_gte: String
-  accountName_contains: String
-  accountName_not_contains: String
-  accountName_starts_with: String
-  accountName_not_starts_with: String
-  accountName_ends_with: String
-  accountName_not_ends_with: String
-  bankCode: String
-  bankCode_not: String
-  bankCode_in: [String!]
-  bankCode_not_in: [String!]
-  bankCode_lt: String
-  bankCode_lte: String
-  bankCode_gt: String
-  bankCode_gte: String
-  bankCode_contains: String
-  bankCode_not_contains: String
-  bankCode_starts_with: String
-  bankCode_not_starts_with: String
-  bankCode_ends_with: String
-  bankCode_not_ends_with: String
   accountNumber: String
   accountNumber_not: String
   accountNumber_in: [String!]
@@ -364,6 +353,48 @@ input BankWhereInput {
   accountNumber_not_starts_with: String
   accountNumber_ends_with: String
   accountNumber_not_ends_with: String
+  accountName: String
+  accountName_not: String
+  accountName_in: [String!]
+  accountName_not_in: [String!]
+  accountName_lt: String
+  accountName_lte: String
+  accountName_gt: String
+  accountName_gte: String
+  accountName_contains: String
+  accountName_not_contains: String
+  accountName_starts_with: String
+  accountName_not_starts_with: String
+  accountName_ends_with: String
+  accountName_not_ends_with: String
+  bankName: String
+  bankName_not: String
+  bankName_in: [String!]
+  bankName_not_in: [String!]
+  bankName_lt: String
+  bankName_lte: String
+  bankName_gt: String
+  bankName_gte: String
+  bankName_contains: String
+  bankName_not_contains: String
+  bankName_starts_with: String
+  bankName_not_starts_with: String
+  bankName_ends_with: String
+  bankName_not_ends_with: String
+  bankCode: String
+  bankCode_not: String
+  bankCode_in: [String!]
+  bankCode_not_in: [String!]
+  bankCode_lt: String
+  bankCode_lte: String
+  bankCode_gt: String
+  bankCode_gte: String
+  bankCode_contains: String
+  bankCode_not_contains: String
+  bankCode_starts_with: String
+  bankCode_not_starts_with: String
+  bankCode_ends_with: String
+  bankCode_not_ends_with: String
   AND: [BankWhereInput!]
   OR: [BankWhereInput!]
   NOT: [BankWhereInput!]
@@ -394,6 +425,18 @@ type Mutation {
   upsertBank(where: BankWhereUniqueInput!, create: BankCreateInput!, update: BankUpdateInput!): Bank!
   deleteBank(where: BankWhereUniqueInput!): Bank
   deleteManyBanks(where: BankWhereInput): BatchPayload!
+  createOrganization(data: OrganizationCreateInput!): Organization!
+  updateOrganization(data: OrganizationUpdateInput!, where: OrganizationWhereUniqueInput!): Organization
+  updateManyOrganizations(data: OrganizationUpdateManyMutationInput!, where: OrganizationWhereInput): BatchPayload!
+  upsertOrganization(where: OrganizationWhereUniqueInput!, create: OrganizationCreateInput!, update: OrganizationUpdateInput!): Organization!
+  deleteOrganization(where: OrganizationWhereUniqueInput!): Organization
+  deleteManyOrganizations(where: OrganizationWhereInput): BatchPayload!
+  createOrganizationType(data: OrganizationTypeCreateInput!): OrganizationType!
+  updateOrganizationType(data: OrganizationTypeUpdateInput!, where: OrganizationTypeWhereUniqueInput!): OrganizationType
+  updateManyOrganizationTypes(data: OrganizationTypeUpdateManyMutationInput!, where: OrganizationTypeWhereInput): BatchPayload!
+  upsertOrganizationType(where: OrganizationTypeWhereUniqueInput!, create: OrganizationTypeCreateInput!, update: OrganizationTypeUpdateInput!): OrganizationType!
+  deleteOrganizationType(where: OrganizationTypeWhereUniqueInput!): OrganizationType
+  deleteManyOrganizationTypes(where: OrganizationTypeWhereInput): BatchPayload!
   createRole(data: RoleCreateInput!): Role!
   updateRole(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role
   updateManyRoles(data: RoleUpdateManyMutationInput!, where: RoleWhereInput): BatchPayload!
@@ -406,6 +449,11 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createUserOrganizationRole(data: UserOrganizationRoleCreateInput!): UserOrganizationRole!
+  updateUserOrganizationRole(data: UserOrganizationRoleUpdateInput!, where: UserOrganizationRoleWhereUniqueInput!): UserOrganizationRole
+  upsertUserOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!, create: UserOrganizationRoleCreateInput!, update: UserOrganizationRoleUpdateInput!): UserOrganizationRole!
+  deleteUserOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!): UserOrganizationRole
+  deleteManyUserOrganizationRoles(where: UserOrganizationRoleWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -416,6 +464,321 @@ enum MutationType {
 
 interface Node {
   id: ID!
+}
+
+type Organization {
+  createdAt: DateTime!
+  updatedAt: DateTime
+  id: ID!
+  name: String!
+  email: String!
+  type: OrganizationType!
+  phoneNumber: String!
+  bank: Bank!
+}
+
+type OrganizationConnection {
+  pageInfo: PageInfo!
+  edges: [OrganizationEdge]!
+  aggregate: AggregateOrganization!
+}
+
+input OrganizationCreateInput {
+  id: ID
+  name: String!
+  email: String!
+  type: OrganizationTypeCreateOneInput!
+  phoneNumber: String!
+  bank: BankCreateOneInput!
+}
+
+input OrganizationCreateOneInput {
+  create: OrganizationCreateInput
+  connect: OrganizationWhereUniqueInput
+}
+
+type OrganizationEdge {
+  node: Organization!
+  cursor: String!
+}
+
+enum OrganizationOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+}
+
+type OrganizationPreviousValues {
+  createdAt: DateTime!
+  updatedAt: DateTime
+  id: ID!
+  name: String!
+  email: String!
+  phoneNumber: String!
+}
+
+type OrganizationSubscriptionPayload {
+  mutation: MutationType!
+  node: Organization
+  updatedFields: [String!]
+  previousValues: OrganizationPreviousValues
+}
+
+input OrganizationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OrganizationWhereInput
+  AND: [OrganizationSubscriptionWhereInput!]
+  OR: [OrganizationSubscriptionWhereInput!]
+  NOT: [OrganizationSubscriptionWhereInput!]
+}
+
+type OrganizationType {
+  id: ID!
+  name: String!
+}
+
+type OrganizationTypeConnection {
+  pageInfo: PageInfo!
+  edges: [OrganizationTypeEdge]!
+  aggregate: AggregateOrganizationType!
+}
+
+input OrganizationTypeCreateInput {
+  id: ID
+  name: String!
+}
+
+input OrganizationTypeCreateOneInput {
+  create: OrganizationTypeCreateInput
+  connect: OrganizationTypeWhereUniqueInput
+}
+
+type OrganizationTypeEdge {
+  node: OrganizationType!
+  cursor: String!
+}
+
+enum OrganizationTypeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type OrganizationTypePreviousValues {
+  id: ID!
+  name: String!
+}
+
+type OrganizationTypeSubscriptionPayload {
+  mutation: MutationType!
+  node: OrganizationType
+  updatedFields: [String!]
+  previousValues: OrganizationTypePreviousValues
+}
+
+input OrganizationTypeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OrganizationTypeWhereInput
+  AND: [OrganizationTypeSubscriptionWhereInput!]
+  OR: [OrganizationTypeSubscriptionWhereInput!]
+  NOT: [OrganizationTypeSubscriptionWhereInput!]
+}
+
+input OrganizationTypeUpdateDataInput {
+  name: String
+}
+
+input OrganizationTypeUpdateInput {
+  name: String
+}
+
+input OrganizationTypeUpdateManyMutationInput {
+  name: String
+}
+
+input OrganizationTypeUpdateOneRequiredInput {
+  create: OrganizationTypeCreateInput
+  update: OrganizationTypeUpdateDataInput
+  upsert: OrganizationTypeUpsertNestedInput
+  connect: OrganizationTypeWhereUniqueInput
+}
+
+input OrganizationTypeUpsertNestedInput {
+  update: OrganizationTypeUpdateDataInput!
+  create: OrganizationTypeCreateInput!
+}
+
+input OrganizationTypeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [OrganizationTypeWhereInput!]
+  OR: [OrganizationTypeWhereInput!]
+  NOT: [OrganizationTypeWhereInput!]
+}
+
+input OrganizationTypeWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+input OrganizationUpdateDataInput {
+  name: String
+  email: String
+  type: OrganizationTypeUpdateOneRequiredInput
+  phoneNumber: String
+  bank: BankUpdateOneRequiredInput
+}
+
+input OrganizationUpdateInput {
+  name: String
+  email: String
+  type: OrganizationTypeUpdateOneRequiredInput
+  phoneNumber: String
+  bank: BankUpdateOneRequiredInput
+}
+
+input OrganizationUpdateManyMutationInput {
+  name: String
+  email: String
+  phoneNumber: String
+}
+
+input OrganizationUpdateOneRequiredInput {
+  create: OrganizationCreateInput
+  update: OrganizationUpdateDataInput
+  upsert: OrganizationUpsertNestedInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationUpsertNestedInput {
+  update: OrganizationUpdateDataInput!
+  create: OrganizationCreateInput!
+}
+
+input OrganizationWhereInput {
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  type: OrganizationTypeWhereInput
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
+  bank: BankWhereInput
+  AND: [OrganizationWhereInput!]
+  OR: [OrganizationWhereInput!]
+  NOT: [OrganizationWhereInput!]
+}
+
+input OrganizationWhereUniqueInput {
+  id: ID
 }
 
 type PageInfo {
@@ -432,12 +795,21 @@ type Query {
   bank(where: BankWhereUniqueInput!): Bank
   banks(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bank]!
   banksConnection(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BankConnection!
+  organization(where: OrganizationWhereUniqueInput!): Organization
+  organizations(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Organization]!
+  organizationsConnection(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationConnection!
+  organizationType(where: OrganizationTypeWhereUniqueInput!): OrganizationType
+  organizationTypes(where: OrganizationTypeWhereInput, orderBy: OrganizationTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [OrganizationType]!
+  organizationTypesConnection(where: OrganizationTypeWhereInput, orderBy: OrganizationTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationTypeConnection!
   role(where: RoleWhereUniqueInput!): Role
   roles(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Role]!
   rolesConnection(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoleConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!): UserOrganizationRole
+  userOrganizationRoles(where: UserOrganizationRoleWhereInput, orderBy: UserOrganizationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserOrganizationRole]!
+  userOrganizationRolesConnection(where: UserOrganizationRoleWhereInput, orderBy: UserOrganizationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserOrganizationRoleConnection!
   node(id: ID!): Node
 }
 
@@ -557,24 +929,26 @@ input RoleWhereInput {
 
 input RoleWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Subscription {
   auth(where: AuthSubscriptionWhereInput): AuthSubscriptionPayload
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
+  organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
+  organizationType(where: OrganizationTypeSubscriptionWhereInput): OrganizationTypeSubscriptionPayload
   role(where: RoleSubscriptionWhereInput): RoleSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userOrganizationRole(where: UserOrganizationRoleSubscriptionWhereInput): UserOrganizationRoleSubscriptionPayload
 }
 
 type User {
   id: ID!
   firstName: String!
   lastName: String!
-  type: Role!
   email: String!
   phoneNumber: String!
   dob: String!
-  bank: Bank!
 }
 
 type UserConnection {
@@ -587,11 +961,9 @@ input UserCreateInput {
   id: ID
   firstName: String!
   lastName: String!
-  type: RoleCreateOneInput!
   email: String!
   phoneNumber: String!
   dob: String!
-  bank: BankCreateOneInput!
 }
 
 input UserCreateOneInput {
@@ -617,6 +989,91 @@ enum UserOrderByInput {
   phoneNumber_DESC
   dob_ASC
   dob_DESC
+}
+
+type UserOrganizationRole {
+  id: ID!
+  user: User!
+  role: Role!
+  organization: Organization!
+}
+
+type UserOrganizationRoleConnection {
+  pageInfo: PageInfo!
+  edges: [UserOrganizationRoleEdge]!
+  aggregate: AggregateUserOrganizationRole!
+}
+
+input UserOrganizationRoleCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+  role: RoleCreateOneInput!
+  organization: OrganizationCreateOneInput!
+}
+
+type UserOrganizationRoleEdge {
+  node: UserOrganizationRole!
+  cursor: String!
+}
+
+enum UserOrganizationRoleOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type UserOrganizationRolePreviousValues {
+  id: ID!
+}
+
+type UserOrganizationRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: UserOrganizationRole
+  updatedFields: [String!]
+  previousValues: UserOrganizationRolePreviousValues
+}
+
+input UserOrganizationRoleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserOrganizationRoleWhereInput
+  AND: [UserOrganizationRoleSubscriptionWhereInput!]
+  OR: [UserOrganizationRoleSubscriptionWhereInput!]
+  NOT: [UserOrganizationRoleSubscriptionWhereInput!]
+}
+
+input UserOrganizationRoleUpdateInput {
+  user: UserUpdateOneRequiredInput
+  role: RoleUpdateOneRequiredInput
+  organization: OrganizationUpdateOneRequiredInput
+}
+
+input UserOrganizationRoleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  role: RoleWhereInput
+  organization: OrganizationWhereInput
+  AND: [UserOrganizationRoleWhereInput!]
+  OR: [UserOrganizationRoleWhereInput!]
+  NOT: [UserOrganizationRoleWhereInput!]
+}
+
+input UserOrganizationRoleWhereUniqueInput {
+  id: ID
 }
 
 type UserPreviousValues {
@@ -649,21 +1106,17 @@ input UserSubscriptionWhereInput {
 input UserUpdateDataInput {
   firstName: String
   lastName: String
-  type: RoleUpdateOneRequiredInput
   email: String
   phoneNumber: String
   dob: String
-  bank: BankUpdateOneRequiredInput
 }
 
 input UserUpdateInput {
   firstName: String
   lastName: String
-  type: RoleUpdateOneRequiredInput
   email: String
   phoneNumber: String
   dob: String
-  bank: BankUpdateOneRequiredInput
 }
 
 input UserUpdateManyMutationInput {
@@ -729,7 +1182,6 @@ input UserWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
-  type: RoleWhereInput
   email: String
   email_not: String
   email_in: [String!]
@@ -772,7 +1224,6 @@ input UserWhereInput {
   dob_not_starts_with: String
   dob_ends_with: String
   dob_not_ends_with: String
-  bank: BankWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

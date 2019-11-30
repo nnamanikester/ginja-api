@@ -1,34 +1,68 @@
 type User {
-    id: ID! @id
+    id: ID!  @id @unique
     firstName: String!
     lastName: String!
-    type: Role!
     email: String!
     phoneNumber: String!
     dob: String!
+}
+
+
+type Organization {
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+    id: ID! @id @unique
+    name: String!
+    email: String!
+    type: OrganizationType!
+    phoneNumber: String!
     bank: Bank!
 }
 
+type OrganizationType {
+    id: ID! @id @unique
+    name: String!  @unique
+}
+
+
 type Auth {
-    id:  ID! @id
-    user: User!
+    id: ID!  @id @unique
+    email: String!  @unique
     createdAt: DateTime! @createdAt
     updatedAt: DateTime @updatedAt
-    email: String!
-    type: Role!
-    phoneNumber: String!
+    phoneNumber: String!  @unique
     pin: String!
+    userId: String!
+}
+
+type UserOrganizationRole {
+    id: ID!  @id @unique
+    user: User!
+    role: Role!
+    organization: Organization!
 }
 
 type Role {
-    id: ID! @id
-    name: String!
+    id: ID! @id @unique
+    name: String!  @unique
 }
 
 type Bank {
-    id:  ID! @id
-    bankName: String!
-    accountName: String!
-    bankCode: String!
+    id: ID! @id @unique
     accountNumber: String!
+    accountName: String!
+    bankName: String!
+    bankCode: String!
+}
+
+input AuthWhereUniqueInput {
+  id: ID
+  email: String
+  phoneNumber: String
+}
+
+
+input RoleWhereUniqueInput {
+  id: ID
+  name: String
 }

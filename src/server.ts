@@ -1,87 +1,85 @@
 /**
  * Module dependencies.
  */
-import Debug from 'debug';
-import http from 'http';
-import app from './app';
-import logger from './core/utils/logger';
+
+/* eslint-disable import/first */
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+import cors from 'cors';
+
+import compression from 'compression';
 import graphServer from './graphql';
+// Middlewares
+import handleErrors from './core/middlewares/handleErrors';
 
-const debug = Debug('ginjabox-engine:server');
+const app = express();
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// Resolve CORS
+app.use(cors());
+app.options('*', cors()); // TODO: sort out CORS issues Fidelis mentioned
 
-function normalizePort(val: any): any {
-    const port = parseInt(val, 10);
+// view engine setup
+app.set('views', path.join('./', './views'));
+app.engine('html', require('ejs').renderFile);
 
-    if (Number.isNaN(port)) {
-        // named pipe
-        return val;
-    }
+app.use(compression());
+app.set('view engine', 'html');
 
-    if (port >= 0) {
-        // port number
-        return port;
-    }
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join('./', './public')));
 
-    return false;
-}
+// Get Request URL
+app.use((req: express.Request, res: express.Response, next: express.NextFunction): void => {
+    res.locals.getFullUrl = (): string => `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    return next();
+});
 
-/**
- * Get port from environment and store in Express.
- */
+// v1 API Routes
+app.get('/health', (req: express.Request, res: express.Response): void => {
+    res.sendStatus(200);
+});
 
-const port = normalizePort(process.env.SERVER_PORT || '3000');
-app.set('port', port);
+// error handler
+app.use(handleErrors);
 
-/**
- * Create HTTP server.
- */
+// handle 404 errors
+app.use((req, res, _next): void => {
+    res.status(404).send({
+        status: false,
+        message: 'resource not found',
+        data: null,
+        path: req.url
+    });
+});
 
-// const server = http.createServer(app);
+// handle unexpected errors
+app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction): void => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
 
-// /**
-//  * Event listener for HTTP server "error" event.
-//  */
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+});
 
-// function onError(error: any): any {
-//     if (error.syscall !== 'listen') {
-//         throw error;
-//     }
+const options = {
+    port: 8000,
+    endpoint: '/api',
+    subscriptions: '/subscriptions',
+    playground: '/playground'
+};
 
-//     const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
-
-//     // handle specific listen errors with friendly messages
-//     switch (error.code) {
-//         case 'EACCES':
-//             logger.error(`${bind} requires elevated privileges`);
-//             process.exit(1);
-//             break;
-//         case 'EADDRINUSE':
-//             logger.error(`${bind} is already in use`);
-//             process.exit(1);
-//             break;
-//         default:
-//             throw error;
-//     }
-// }
-
-// /**
-//  * Event listener for HTTP server "listening" event.
-//  */
-
-// function onListening(): void {
-//     const addr = server.address();
-//     const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-//     debug(`Listening on ${bind}`);
-// }
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-graphServer.start(() => console.log(`Server is running on http://localhost:4000`));
-// server.listen(port);
-// server.on('error', onError);
-// server.on('listening', onListening);
+graphServer.start(options, (param: any) => {
+    const { port } = param;
+    console.log(`Server started, listening on port ${port} for incoming requests.`);
+});

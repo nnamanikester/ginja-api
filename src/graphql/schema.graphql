@@ -4,10 +4,14 @@ type Query {
     banks: [Bank!]!
     auths: [Auth!]!
     roles: [Role!]!
+    role(id: ID, name: String): Role!
+    organizations: [Organization!]!
+    organizationTypes: [OrganizationType!]!
+    userOrganizationRoles: [UserOrganizationRole!]!
 }
 
 type Mutation {
-    createUser(
+    signUp(
         firstName: String!
         lastName: String!
         type: String!
@@ -20,19 +24,32 @@ type Mutation {
         bankName: String!
         bankCode: String!
     ): AuthPayload!
-    login(email: String!, password: String!): AuthPayload
+    login(pin: String!, phoneNumber: String!): AuthPayload!
     createRole(name: String!): Role!
+    createOrganizationType(name: String!): OrganizationType!
 }
 
 type User {
     id: ID!
     firstName: String!
     lastName: String!
-    type: Role!
     email: String!
     phoneNumber: String!
     dob: String!
+}
+
+type Organization {
+    id: ID!
+    name: String!
+    email: String!
+    phoneNumber: String!
     bank: Bank!
+    type: OrganizationType!
+}
+
+type OrganizationType {
+    id: ID!
+    name: String!
 }
 
 type Auth {
@@ -40,8 +57,15 @@ type Auth {
     email: String!
     phoneNumber: String!
     pin: String!
-    type: Role!
+    userId: String!
     user: User!
+}
+
+type UserOrganizationRole {
+    id: ID!
+    user: User!
+    role: Role!
+    organization: Organization!
 }
 
 type Role {
@@ -58,6 +82,6 @@ type Bank {
 }
 
 type AuthPayload {
-    token: String
-    user: User
+    token: String!
+    user: User!
 }

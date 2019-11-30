@@ -1,14 +1,6 @@
-import { createUser, createRole } from '../controllers/auth';
+const otpQueries = {};
 
-const otpQueries = {
-    otp: (root: any, args: any, context: any, info: any) => {
-        return context.prisma.users();
-    }
-};
-
-const otpMutations = {
-    createOtp: (root: any, args: any, context: any) => createUser(root, args, context)
-};
+const otpMutations = {};
 
 const otpTypes = {
     Otp: {

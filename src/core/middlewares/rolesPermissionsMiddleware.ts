@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { AccessControl } from 'accesscontrol';
-import * as grantService from '../../core/services/grants';
 import { NotAuthenticatedError } from '../../core/errors';
 import models from '../../core/models';
 
@@ -52,7 +51,7 @@ const checkPermissions = (req: GrantRequest) => {
     let permission;
     const { baseUrl, acl, role, method } = req;
     const entity = baseUrl.split('/')[3];
-  
+
     switch (method) {
         case 'GET':
             permission = acl.can(role).read(entity);
@@ -90,33 +89,32 @@ const handle = (): any => (req: GrantRequest, res: Response, next: NextFunction)
                     roles_id = role_id;
                 }
 
-                const grants = await grantService.get('roles_permissions', {
-                    where: { id: roles_id },
-                    attributes: ['merchant_id', 'user_id'],
-                    include: [
-                        {
-                            model: models.merchants_roles,
-                            attributes: ['name', 'resources'],
-                            as: 'role',
-                            include: [
-                                {
-                                    model: models.merchants_permissions,
-                                    attributes: ['permissions'],
-                                    as: 'actions'
-                                }
-                            ]
-                        }
-                    ]
-                });
+                // const grants = await grantService.get('roles_permissions', {
+                //     where: { id: roles_id },
+                //     attributes: ['merchant_id', 'user_id'],
+                //     include: [
+                //         {
+                //             model: models.merchants_roles,
+                //             attributes: ['name', 'resources'],
+                //             as: 'role',
+                //             include: [
+                //                 {
+                //                     model: models.merchants_permissions,
+                //                     attributes: ['permissions'],
+                //                     as: 'actions'
+                //                 }
+                //             ]
+                //         }
+                //     ]
+                // });
 
-                try {
-                    const acl = setGrants(grants);
-                  
-                    req.role = grants.role.name.includes('admin') ? 'admin' : 'merchant';
-                    req.acl = acl;
-                } catch (err) {
-                    throw new NotAuthenticatedError('roles associated with user is invalid', err);
-                }
+                // try {
+                //     const acl = setGrants(grants);
+                //     req.role = grants.role.name.includes('admin') ? 'admin' : 'merchant';
+                //     req.acl = acl;
+                // } catch (err) {
+                //     throw new NotAuthenticatedError('roles associated with user is invalid', err);
+                // }
                 const permission = checkPermissions(req);
 
                 if (permission) {

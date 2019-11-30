@@ -26,7 +26,6 @@ package-lock.json
 coverage
 
 config
-oauth-public.key
 
 # Benchmarking
 benchmarks/graphs
@@ -45,4 +44,12 @@ yarn.lock
 
 .queues
 
-src/graphql/prisma/docker-compose.yml
+docker-compose.yml
+
+#secrets
+oauth-public.key
+oauth-private.key
+src/core/middlewares/oauth-private.key
+src/core/middlewares/oauth-public.key
+src/core/utils/oauth-private.key
+src/core/utils/oauth-public.key

@@ -1,6 +1,6 @@
 export interface userModel {
     dob: string;
-    pin: number;
+    pin: string;
     phoneNumber: string;
     email: string;
     lastName: string;
