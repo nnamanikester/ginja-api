@@ -35,6 +35,15 @@ type Auth {
     userId: String!
 }
 
+type Otp {
+    id: ID!  @id @unique
+    phoneNumber: String! @unique
+    code: String!
+    validated: Boolean!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+}
+
 type UserOrganizationRole {
     id: ID!  @id @unique
     user: User!
@@ -61,6 +70,10 @@ input AuthWhereUniqueInput {
   phoneNumber: String
 }
 
+input OtpWhereUniqueInput {
+  id: ID
+  phoneNumber: String
+}
 
 input RoleWhereUniqueInput {
   id: ID

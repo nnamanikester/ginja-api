@@ -3,6 +3,7 @@ import { roleMutations, roleQueries, roleTypes } from './roles';
 import { bankMutations, bankQueries, bankTypes } from './bank';
 import { userMutations, userQueries, userTypes } from './users';
 import { organizationTypes, organizationQueries, organizationMutations } from './organization';
+import { otpTypes, otpMutations } from './otp';
 
 const resolvers = {
     Query: {
@@ -18,13 +19,15 @@ const resolvers = {
         ...roleMutations,
         ...bankMutations,
         ...organizationMutations,
-        ...userMutations
+        ...userMutations,
+        ...otpMutations
     },
     ...authTypes,
     ...bankTypes,
     ...organizationTypes,
     ...roleTypes,
-    ...userTypes
+    ...userTypes,
+    ...otpTypes
 };
 
 export default resolvers;

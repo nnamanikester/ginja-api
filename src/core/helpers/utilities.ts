@@ -278,3 +278,13 @@ export const computeNumbers = (operand1: any, operand2: any = 0, operator: any =
 export const checkUserExist = (payload: any, type: string, value: string): any => {
     return payload[type][value];
 };
+
+export const formatPhoneNumberToInternational = (phone: string, suffix: string) => {
+    if (phone.startsWith(suffix)) {
+        return phone;
+    }
+    if (phone.startsWith(suffix.replace(/\+/g, ''))) {
+        return phone.replace(/ |\+|\-|\(|\)/g, '').replace(`/^${suffix}/`, suffix);
+    }
+    return phone.replace(/ |\+|\-|\(|\)/g, '').replace(/^0/, suffix);
+};

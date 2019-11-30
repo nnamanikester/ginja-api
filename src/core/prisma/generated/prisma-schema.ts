@@ -18,6 +18,10 @@ type AggregateOrganizationType {
   count: Int!
 }
 
+type AggregateOtp {
+  count: Int!
+}
+
 type AggregateRole {
   count: Int!
 }
@@ -38,7 +42,6 @@ type Auth {
   phoneNumber: String!
   pin: String!
   userId: String!
-  user: User!
 }
 
 type AuthConnection {
@@ -53,7 +56,6 @@ input AuthCreateInput {
   phoneNumber: String!
   pin: String!
   userId: String!
-  user: UserCreateOneInput!
 }
 
 type AuthEdge {
@@ -111,7 +113,6 @@ input AuthUpdateInput {
   phoneNumber: String
   pin: String
   userId: String
-  user: UserUpdateOneRequiredInput
 }
 
 input AuthUpdateManyMutationInput {
@@ -208,7 +209,6 @@ input AuthWhereInput {
   userId_not_starts_with: String
   userId_ends_with: String
   userId_not_ends_with: String
-  user: UserWhereInput
   AND: [AuthWhereInput!]
   OR: [AuthWhereInput!]
   NOT: [AuthWhereInput!]
@@ -437,6 +437,12 @@ type Mutation {
   upsertOrganizationType(where: OrganizationTypeWhereUniqueInput!, create: OrganizationTypeCreateInput!, update: OrganizationTypeUpdateInput!): OrganizationType!
   deleteOrganizationType(where: OrganizationTypeWhereUniqueInput!): OrganizationType
   deleteManyOrganizationTypes(where: OrganizationTypeWhereInput): BatchPayload!
+  createOtp(data: OtpCreateInput!): Otp!
+  updateOtp(data: OtpUpdateInput!, where: OtpWhereUniqueInput!): Otp
+  updateManyOtps(data: OtpUpdateManyMutationInput!, where: OtpWhereInput): BatchPayload!
+  upsertOtp(where: OtpWhereUniqueInput!, create: OtpCreateInput!, update: OtpUpdateInput!): Otp!
+  deleteOtp(where: OtpWhereUniqueInput!): Otp
+  deleteManyOtps(where: OtpWhereInput): BatchPayload!
   createRole(data: RoleCreateInput!): Role!
   updateRole(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role
   updateManyRoles(data: RoleUpdateManyMutationInput!, where: RoleWhereInput): BatchPayload!
@@ -781,6 +787,158 @@ input OrganizationWhereUniqueInput {
   id: ID
 }
 
+type Otp {
+  id: ID!
+  phoneNumber: String!
+  code: String!
+  validated: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type OtpConnection {
+  pageInfo: PageInfo!
+  edges: [OtpEdge]!
+  aggregate: AggregateOtp!
+}
+
+input OtpCreateInput {
+  id: ID
+  phoneNumber: String!
+  code: String!
+  validated: Boolean!
+}
+
+type OtpEdge {
+  node: Otp!
+  cursor: String!
+}
+
+enum OtpOrderByInput {
+  id_ASC
+  id_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  code_ASC
+  code_DESC
+  validated_ASC
+  validated_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type OtpPreviousValues {
+  id: ID!
+  phoneNumber: String!
+  code: String!
+  validated: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type OtpSubscriptionPayload {
+  mutation: MutationType!
+  node: Otp
+  updatedFields: [String!]
+  previousValues: OtpPreviousValues
+}
+
+input OtpSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OtpWhereInput
+  AND: [OtpSubscriptionWhereInput!]
+  OR: [OtpSubscriptionWhereInput!]
+  NOT: [OtpSubscriptionWhereInput!]
+}
+
+input OtpUpdateInput {
+  phoneNumber: String
+  code: String
+  validated: Boolean
+}
+
+input OtpUpdateManyMutationInput {
+  phoneNumber: String
+  code: String
+  validated: Boolean
+}
+
+input OtpWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
+  code: String
+  code_not: String
+  code_in: [String!]
+  code_not_in: [String!]
+  code_lt: String
+  code_lte: String
+  code_gt: String
+  code_gte: String
+  code_contains: String
+  code_not_contains: String
+  code_starts_with: String
+  code_not_starts_with: String
+  code_ends_with: String
+  code_not_ends_with: String
+  validated: Boolean
+  validated_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [OtpWhereInput!]
+  OR: [OtpWhereInput!]
+  NOT: [OtpWhereInput!]
+}
+
+input OtpWhereUniqueInput {
+  id: ID
+  phoneNumber: String
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -801,6 +959,9 @@ type Query {
   organizationType(where: OrganizationTypeWhereUniqueInput!): OrganizationType
   organizationTypes(where: OrganizationTypeWhereInput, orderBy: OrganizationTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [OrganizationType]!
   organizationTypesConnection(where: OrganizationTypeWhereInput, orderBy: OrganizationTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationTypeConnection!
+  otp(where: OtpWhereUniqueInput!): Otp
+  otps(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Otp]!
+  otpsConnection(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OtpConnection!
   role(where: RoleWhereUniqueInput!): Role
   roles(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Role]!
   rolesConnection(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoleConnection!
@@ -937,6 +1098,7 @@ type Subscription {
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
   organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
   organizationType(where: OrganizationTypeSubscriptionWhereInput): OrganizationTypeSubscriptionPayload
+  otp(where: OtpSubscriptionWhereInput): OtpSubscriptionPayload
   role(where: RoleSubscriptionWhereInput): RoleSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   userOrganizationRole(where: UserOrganizationRoleSubscriptionWhereInput): UserOrganizationRoleSubscriptionPayload

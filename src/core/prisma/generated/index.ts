@@ -20,6 +20,7 @@ export interface Exists {
   bank: (where?: BankWhereInput) => Promise<boolean>;
   organization: (where?: OrganizationWhereInput) => Promise<boolean>;
   organizationType: (where?: OrganizationTypeWhereInput) => Promise<boolean>;
+  otp: (where?: OtpWhereInput) => Promise<boolean>;
   role: (where?: RoleWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
   userOrganizationRole: (
@@ -126,6 +127,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => OrganizationTypeConnectionPromise;
+  otp: (where: OtpWhereUniqueInput) => OtpNullablePromise;
+  otps: (args?: {
+    where?: OtpWhereInput;
+    orderBy?: OtpOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Otp>;
+  otpsConnection: (args?: {
+    where?: OtpWhereInput;
+    orderBy?: OtpOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => OtpConnectionPromise;
   role: (where: RoleWhereUniqueInput) => RoleNullablePromise;
   roles: (args?: {
     where?: RoleWhereInput;
@@ -265,6 +285,22 @@ export interface Prisma {
   deleteManyOrganizationTypes: (
     where?: OrganizationTypeWhereInput
   ) => BatchPayloadPromise;
+  createOtp: (data: OtpCreateInput) => OtpPromise;
+  updateOtp: (args: {
+    data: OtpUpdateInput;
+    where: OtpWhereUniqueInput;
+  }) => OtpPromise;
+  updateManyOtps: (args: {
+    data: OtpUpdateManyMutationInput;
+    where?: OtpWhereInput;
+  }) => BatchPayloadPromise;
+  upsertOtp: (args: {
+    where: OtpWhereUniqueInput;
+    create: OtpCreateInput;
+    update: OtpUpdateInput;
+  }) => OtpPromise;
+  deleteOtp: (where: OtpWhereUniqueInput) => OtpPromise;
+  deleteManyOtps: (where?: OtpWhereInput) => BatchPayloadPromise;
   createRole: (data: RoleCreateInput) => RolePromise;
   updateRole: (args: {
     data: RoleUpdateInput;
@@ -336,6 +372,9 @@ export interface Subscription {
   organizationType: (
     where?: OrganizationTypeSubscriptionWhereInput
   ) => OrganizationTypeSubscriptionPayloadSubscription;
+  otp: (
+    where?: OtpSubscriptionWhereInput
+  ) => OtpSubscriptionPayloadSubscription;
   role: (
     where?: RoleSubscriptionWhereInput
   ) => RoleSubscriptionPayloadSubscription;
@@ -402,6 +441,20 @@ export type OrganizationTypeOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC";
+
+export type OtpOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "code_ASC"
+  | "code_DESC"
+  | "validated_ASC"
+  | "validated_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type RoleOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
@@ -516,100 +569,9 @@ export interface AuthWhereInput {
   userId_not_starts_with?: Maybe<String>;
   userId_ends_with?: Maybe<String>;
   userId_not_ends_with?: Maybe<String>;
-  user?: Maybe<UserWhereInput>;
   AND?: Maybe<AuthWhereInput[] | AuthWhereInput>;
   OR?: Maybe<AuthWhereInput[] | AuthWhereInput>;
   NOT?: Maybe<AuthWhereInput[] | AuthWhereInput>;
-}
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  firstName?: Maybe<String>;
-  firstName_not?: Maybe<String>;
-  firstName_in?: Maybe<String[] | String>;
-  firstName_not_in?: Maybe<String[] | String>;
-  firstName_lt?: Maybe<String>;
-  firstName_lte?: Maybe<String>;
-  firstName_gt?: Maybe<String>;
-  firstName_gte?: Maybe<String>;
-  firstName_contains?: Maybe<String>;
-  firstName_not_contains?: Maybe<String>;
-  firstName_starts_with?: Maybe<String>;
-  firstName_not_starts_with?: Maybe<String>;
-  firstName_ends_with?: Maybe<String>;
-  firstName_not_ends_with?: Maybe<String>;
-  lastName?: Maybe<String>;
-  lastName_not?: Maybe<String>;
-  lastName_in?: Maybe<String[] | String>;
-  lastName_not_in?: Maybe<String[] | String>;
-  lastName_lt?: Maybe<String>;
-  lastName_lte?: Maybe<String>;
-  lastName_gt?: Maybe<String>;
-  lastName_gte?: Maybe<String>;
-  lastName_contains?: Maybe<String>;
-  lastName_not_contains?: Maybe<String>;
-  lastName_starts_with?: Maybe<String>;
-  lastName_not_starts_with?: Maybe<String>;
-  lastName_ends_with?: Maybe<String>;
-  lastName_not_ends_with?: Maybe<String>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumber_not?: Maybe<String>;
-  phoneNumber_in?: Maybe<String[] | String>;
-  phoneNumber_not_in?: Maybe<String[] | String>;
-  phoneNumber_lt?: Maybe<String>;
-  phoneNumber_lte?: Maybe<String>;
-  phoneNumber_gt?: Maybe<String>;
-  phoneNumber_gte?: Maybe<String>;
-  phoneNumber_contains?: Maybe<String>;
-  phoneNumber_not_contains?: Maybe<String>;
-  phoneNumber_starts_with?: Maybe<String>;
-  phoneNumber_not_starts_with?: Maybe<String>;
-  phoneNumber_ends_with?: Maybe<String>;
-  phoneNumber_not_ends_with?: Maybe<String>;
-  dob?: Maybe<String>;
-  dob_not?: Maybe<String>;
-  dob_in?: Maybe<String[] | String>;
-  dob_not_in?: Maybe<String[] | String>;
-  dob_lt?: Maybe<String>;
-  dob_lte?: Maybe<String>;
-  dob_gt?: Maybe<String>;
-  dob_gte?: Maybe<String>;
-  dob_contains?: Maybe<String>;
-  dob_not_contains?: Maybe<String>;
-  dob_starts_with?: Maybe<String>;
-  dob_not_starts_with?: Maybe<String>;
-  dob_ends_with?: Maybe<String>;
-  dob_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
 export type BankWhereUniqueInput = AtLeastOne<{
@@ -815,6 +777,77 @@ export type OrganizationTypeWhereUniqueInput = AtLeastOne<{
   name?: Maybe<String>;
 }>;
 
+export type OtpWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  phoneNumber?: Maybe<String>;
+}>;
+
+export interface OtpWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  code?: Maybe<String>;
+  code_not?: Maybe<String>;
+  code_in?: Maybe<String[] | String>;
+  code_not_in?: Maybe<String[] | String>;
+  code_lt?: Maybe<String>;
+  code_lte?: Maybe<String>;
+  code_gt?: Maybe<String>;
+  code_gte?: Maybe<String>;
+  code_contains?: Maybe<String>;
+  code_not_contains?: Maybe<String>;
+  code_starts_with?: Maybe<String>;
+  code_not_starts_with?: Maybe<String>;
+  code_ends_with?: Maybe<String>;
+  code_not_ends_with?: Maybe<String>;
+  validated?: Maybe<Boolean>;
+  validated_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<OtpWhereInput[] | OtpWhereInput>;
+  OR?: Maybe<OtpWhereInput[] | OtpWhereInput>;
+  NOT?: Maybe<OtpWhereInput[] | OtpWhereInput>;
+}
+
 export type RoleWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   name?: Maybe<String>;
@@ -858,6 +891,96 @@ export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  firstName?: Maybe<String>;
+  firstName_not?: Maybe<String>;
+  firstName_in?: Maybe<String[] | String>;
+  firstName_not_in?: Maybe<String[] | String>;
+  firstName_lt?: Maybe<String>;
+  firstName_lte?: Maybe<String>;
+  firstName_gt?: Maybe<String>;
+  firstName_gte?: Maybe<String>;
+  firstName_contains?: Maybe<String>;
+  firstName_not_contains?: Maybe<String>;
+  firstName_starts_with?: Maybe<String>;
+  firstName_not_starts_with?: Maybe<String>;
+  firstName_ends_with?: Maybe<String>;
+  firstName_not_ends_with?: Maybe<String>;
+  lastName?: Maybe<String>;
+  lastName_not?: Maybe<String>;
+  lastName_in?: Maybe<String[] | String>;
+  lastName_not_in?: Maybe<String[] | String>;
+  lastName_lt?: Maybe<String>;
+  lastName_lte?: Maybe<String>;
+  lastName_gt?: Maybe<String>;
+  lastName_gte?: Maybe<String>;
+  lastName_contains?: Maybe<String>;
+  lastName_not_contains?: Maybe<String>;
+  lastName_starts_with?: Maybe<String>;
+  lastName_not_starts_with?: Maybe<String>;
+  lastName_ends_with?: Maybe<String>;
+  lastName_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  dob?: Maybe<String>;
+  dob_not?: Maybe<String>;
+  dob_in?: Maybe<String[] | String>;
+  dob_not_in?: Maybe<String[] | String>;
+  dob_lt?: Maybe<String>;
+  dob_lte?: Maybe<String>;
+  dob_gt?: Maybe<String>;
+  dob_gte?: Maybe<String>;
+  dob_contains?: Maybe<String>;
+  dob_not_contains?: Maybe<String>;
+  dob_starts_with?: Maybe<String>;
+  dob_not_starts_with?: Maybe<String>;
+  dob_ends_with?: Maybe<String>;
+  dob_not_ends_with?: Maybe<String>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
 export type UserOrganizationRoleWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -895,21 +1018,6 @@ export interface AuthCreateInput {
   phoneNumber: String;
   pin: String;
   userId: String;
-  user: UserCreateOneInput;
-}
-
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  lastName: String;
-  email: String;
-  phoneNumber: String;
-  dob: String;
 }
 
 export interface AuthUpdateInput {
@@ -917,27 +1025,6 @@ export interface AuthUpdateInput {
   phoneNumber?: Maybe<String>;
   pin?: Maybe<String>;
   userId?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredInput>;
-}
-
-export interface UserUpdateOneRequiredInput {
-  create?: Maybe<UserCreateInput>;
-  update?: Maybe<UserUpdateDataInput>;
-  upsert?: Maybe<UserUpsertNestedInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserUpdateDataInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  email?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  dob?: Maybe<String>;
-}
-
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
 }
 
 export interface AuthUpdateManyMutationInput {
@@ -1050,6 +1137,25 @@ export interface OrganizationTypeUpdateManyMutationInput {
   name?: Maybe<String>;
 }
 
+export interface OtpCreateInput {
+  id?: Maybe<ID_Input>;
+  phoneNumber: String;
+  code: String;
+  validated: Boolean;
+}
+
+export interface OtpUpdateInput {
+  phoneNumber?: Maybe<String>;
+  code?: Maybe<String>;
+  validated?: Maybe<Boolean>;
+}
+
+export interface OtpUpdateManyMutationInput {
+  phoneNumber?: Maybe<String>;
+  code?: Maybe<String>;
+  validated?: Maybe<Boolean>;
+}
+
 export interface RoleCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
@@ -1061,6 +1167,15 @@ export interface RoleUpdateInput {
 
 export interface RoleUpdateManyMutationInput {
   name?: Maybe<String>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  lastName: String;
+  email: String;
+  phoneNumber: String;
+  dob: String;
 }
 
 export interface UserUpdateInput {
@@ -1086,6 +1201,11 @@ export interface UserOrganizationRoleCreateInput {
   organization: OrganizationCreateOneInput;
 }
 
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
 export interface RoleCreateOneInput {
   create?: Maybe<RoleCreateInput>;
   connect?: Maybe<RoleWhereUniqueInput>;
@@ -1100,6 +1220,26 @@ export interface UserOrganizationRoleUpdateInput {
   user?: Maybe<UserUpdateOneRequiredInput>;
   role?: Maybe<RoleUpdateOneRequiredInput>;
   organization?: Maybe<OrganizationUpdateOneRequiredInput>;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: Maybe<UserCreateInput>;
+  update?: Maybe<UserUpdateDataInput>;
+  upsert?: Maybe<UserUpsertNestedInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateDataInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  email?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  dob?: Maybe<String>;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface RoleUpdateOneRequiredInput {
@@ -1197,6 +1337,17 @@ export interface OrganizationTypeSubscriptionWhereInput {
   >;
 }
 
+export interface OtpSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<OtpWhereInput>;
+  AND?: Maybe<OtpSubscriptionWhereInput[] | OtpSubscriptionWhereInput>;
+  OR?: Maybe<OtpSubscriptionWhereInput[] | OtpSubscriptionWhereInput>;
+  NOT?: Maybe<OtpSubscriptionWhereInput[] | OtpSubscriptionWhereInput>;
+}
+
 export interface RoleSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -1261,7 +1412,6 @@ export interface AuthPromise extends Promise<Auth>, Fragmentable {
   phoneNumber: () => Promise<String>;
   pin: () => Promise<String>;
   userId: () => Promise<String>;
-  user: <T = UserPromise>() => T;
 }
 
 export interface AuthSubscription
@@ -1274,7 +1424,6 @@ export interface AuthSubscription
   phoneNumber: () => Promise<AsyncIterator<String>>;
   pin: () => Promise<AsyncIterator<String>>;
   userId: () => Promise<AsyncIterator<String>>;
-  user: <T = UserSubscription>() => T;
 }
 
 export interface AuthNullablePromise
@@ -1287,47 +1436,6 @@ export interface AuthNullablePromise
   phoneNumber: () => Promise<String>;
   pin: () => Promise<String>;
   userId: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-}
-
-export interface User {
-  id: ID_Output;
-  firstName: String;
-  lastName: String;
-  email: String;
-  phoneNumber: String;
-  dob: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  email: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  dob: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  phoneNumber: () => Promise<AsyncIterator<String>>;
-  dob: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  email: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  dob: () => Promise<String>;
 }
 
 export interface AuthConnection {
@@ -1683,6 +1791,98 @@ export interface AggregateOrganizationTypeSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface Otp {
+  id: ID_Output;
+  phoneNumber: String;
+  code: String;
+  validated: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface OtpPromise extends Promise<Otp>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  phoneNumber: () => Promise<String>;
+  code: () => Promise<String>;
+  validated: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface OtpSubscription
+  extends Promise<AsyncIterator<Otp>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  code: () => Promise<AsyncIterator<String>>;
+  validated: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface OtpNullablePromise extends Promise<Otp | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  phoneNumber: () => Promise<String>;
+  code: () => Promise<String>;
+  validated: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface OtpConnection {
+  pageInfo: PageInfo;
+  edges: OtpEdge[];
+}
+
+export interface OtpConnectionPromise
+  extends Promise<OtpConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OtpEdge>>() => T;
+  aggregate: <T = AggregateOtpPromise>() => T;
+}
+
+export interface OtpConnectionSubscription
+  extends Promise<AsyncIterator<OtpConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OtpEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOtpSubscription>() => T;
+}
+
+export interface OtpEdge {
+  node: Otp;
+  cursor: String;
+}
+
+export interface OtpEdgePromise extends Promise<OtpEdge>, Fragmentable {
+  node: <T = OtpPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OtpEdgeSubscription
+  extends Promise<AsyncIterator<OtpEdge>>,
+    Fragmentable {
+  node: <T = OtpSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOtp {
+  count: Int;
+}
+
+export interface AggregateOtpPromise
+  extends Promise<AggregateOtp>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateOtpSubscription
+  extends Promise<AsyncIterator<AggregateOtp>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface Role {
   id: ID_Output;
   name: String;
@@ -1759,6 +1959,46 @@ export interface AggregateRoleSubscription
   extends Promise<AsyncIterator<AggregateRole>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface User {
+  id: ID_Output;
+  firstName: String;
+  lastName: String;
+  email: String;
+  phoneNumber: String;
+  dob: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  email: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  dob: () => Promise<String>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  dob: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  email: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  dob: () => Promise<String>;
 }
 
 export interface UserConnection {
@@ -2132,6 +2372,62 @@ export interface OrganizationTypePreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
+export interface OtpSubscriptionPayload {
+  mutation: MutationType;
+  node: Otp;
+  updatedFields: String[];
+  previousValues: OtpPreviousValues;
+}
+
+export interface OtpSubscriptionPayloadPromise
+  extends Promise<OtpSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OtpPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OtpPreviousValuesPromise>() => T;
+}
+
+export interface OtpSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OtpSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OtpSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OtpPreviousValuesSubscription>() => T;
+}
+
+export interface OtpPreviousValues {
+  id: ID_Output;
+  phoneNumber: String;
+  code: String;
+  validated: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface OtpPreviousValuesPromise
+  extends Promise<OtpPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  phoneNumber: () => Promise<String>;
+  code: () => Promise<String>;
+  validated: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface OtpPreviousValuesSubscription
+  extends Promise<AsyncIterator<OtpPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  code: () => Promise<AsyncIterator<String>>;
+  validated: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface RoleSubscriptionPayload {
   mutation: MutationType;
   node: Role;
@@ -2325,6 +2621,10 @@ export const models: Model[] = [
   },
   {
     name: "Auth",
+    embedded: false
+  },
+  {
+    name: "Otp",
     embedded: false
   },
   {
