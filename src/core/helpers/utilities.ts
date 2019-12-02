@@ -3,7 +3,6 @@ import crypto from 'crypto';
 import Validator from 'validatorjs';
 import url from 'url';
 import BadRequestError from '../errors/badRequestError';
-import models from '../models';
 
 const { URL } = url;
 
@@ -77,19 +76,6 @@ export const getUniqueRandom = async (table: string, field: string, length: numb
     // Get random string
     const randomString = getRandomString(length, type);
 
-    // Verify uniqueness
-    const sql = `select ${field} from ${table} where ${field} = :needle`;
-    const rows = await models.sequelize.query(sql, {
-        raw: true,
-        type: models.Sequelize.QueryTypes.SELECT,
-        replacements: {
-            needle: randomString
-        }
-    });
-
-    if (rows.length > 0) {
-        await getUniqueRandom(table, field, length, type);
-    }
     return randomString;
 };
 

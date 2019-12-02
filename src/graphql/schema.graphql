@@ -30,6 +30,11 @@ type Mutation {
     login(pin: String!, phoneNumber: String!): AuthPayload!
     createRole(name: String!): Role!
     createOrganizationType(name: String!): OrganizationType!
+    resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
+}
+
+type AccountResolve {
+    accountName: String
 }
 
 type User {

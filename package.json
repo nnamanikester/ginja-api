@@ -67,6 +67,7 @@
         "mysql2": "^1.6.5",
         "node-cron": "^2.0.3",
         "node-expat": "^2.3.18",
+        "paystack-node": "^0.2.2",
         "pg": "^7.12.1",
         "pg-hstore": "^2.3.3",
         "prisma-client-lib": "^1.34.10",

@@ -1,10 +1,13 @@
+import { resolveAccountNumber } from '../controllers/bank';
 const bankQueries = {
     banks: (root: any, args: any, context: any, info: any) => {
         return context.prisma.banks();
     }
 };
 
-const bankMutations = {};
+const bankMutations = {
+    resolveAccountNumber: (root: any, args: any, context: any) => resolveAccountNumber(root, args, context)
+};
 
 const bankTypes = {
     Bank: {

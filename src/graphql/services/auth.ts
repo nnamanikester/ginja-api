@@ -1,7 +1,3 @@
-import AuthService from '../integrations/AuthService';
-
-const authService = new AuthService();
-
 // Create auth
 const createAuth = async (graph: any, params: any) => {
     const { parent, args, context } = graph;
