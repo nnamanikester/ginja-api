@@ -14,10 +14,11 @@ const AfricasTalking: AfricasTalkingModel = require('africastalking')(options);
 // Initialize a service e.g. SMS
 sms = AfricasTalking.SMS;
 
-const sendSms = (to: Array<any>, message: String) => {
+const sendSms = (to: Array<any>, from: String, message: String) => {
     // Use the service
     const options = {
         to,
+        from,
         message
     };
 

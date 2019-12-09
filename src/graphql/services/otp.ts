@@ -27,7 +27,7 @@ const generateOtp = async (graph: any) => {
             });
             const to: any = [formatPhoneNumberToInternational(phoneNumber, '+234')];
             const message: string = `Your Otp is ${code}`;
-            await sendSms(to, message);
+            await sendSms(to, process.env.AFRICAS_TALKING_SENDER_ID, message);
             return otp;
         }
         const otp = await prisma.createOtp({
@@ -37,7 +37,7 @@ const generateOtp = async (graph: any) => {
         });
         const to: any = [formatPhoneNumberToInternational(phoneNumber, '+234')];
         const message: string = `Your Otp is ${code}`;
-        await sendSms(to, message);
+        await sendSms(to, process.env.AFRICAS_TALKING_SENDER_ID, message);
         return { ...otp, code: 'sent' };
     } catch (error) {
         throw error;
