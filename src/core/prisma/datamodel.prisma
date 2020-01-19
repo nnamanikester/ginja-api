@@ -5,8 +5,8 @@ type User {
     email: String!
     phoneNumber: String!
     dob: String!
+    terms: Boolean
 }
-
 
 type Organization {
     createdAt: DateTime! @createdAt
@@ -33,6 +33,7 @@ type Auth {
     phoneNumber: String!  @unique
     pin: String!
     userId: String!
+    user: User!
 }
 
 type Otp {

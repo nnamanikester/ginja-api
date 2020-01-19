@@ -1,5 +1,3 @@
-let sms: any;
-
 interface AfricasTalkingModel extends Function {
     SMS: any;
 }
@@ -12,9 +10,10 @@ const options = {
 const AfricasTalking: AfricasTalkingModel = require('africastalking')(options);
 
 // Initialize a service e.g. SMS
-sms = AfricasTalking.SMS;
+const sms: any = AfricasTalking.SMS;
 
-const sendSms = (to: Array<any>, from: String, message: String) => {
+const sendSms = (to: any[], from: string, message: string) => {
+    console.log(to);
     // Use the service
     const options = {
         to,

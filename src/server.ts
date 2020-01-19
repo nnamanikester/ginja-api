@@ -73,7 +73,7 @@ app.use((err: any, req: express.Request, res: express.Response, _next: express.N
 });
 
 const options = {
-    port: 8000,
+    port: 9700,
     endpoint: '/api',
     subscriptions: '/subscriptions',
     playground: '/playground'

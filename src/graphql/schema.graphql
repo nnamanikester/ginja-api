@@ -26,9 +26,10 @@ type Mutation {
         bankCode: String!
     ): AuthPayload!
     generateOtp(phoneNumber: String!): Otp!
-    validateOtp(otp: String!, phoneNumber: String!): OtpPayload!
+    validateOtp(otp: String!, phoneNumber: String!): Success!
     login(pin: String!, phoneNumber: String!): AuthPayload!
-    createRole(name: String!): Role!
+    createRole(name: String!): Success!
+    acceptTerms(id: String!): Role!
     createOrganizationType(name: String!): OrganizationType!
     resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
 }
@@ -44,9 +45,10 @@ type User {
     email: String!
     phoneNumber: String!
     dob: String!
+    terms: Boolean
 }
 
-type OtpPayload {
+type Success {
     success: Boolean!
 }
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Create Bank
 const createOrganization = async (graph: any, params: any) => {
     const { parent, args, context } = graph;

@@ -1,8 +1,8 @@
 import express from 'express';
-import { ValidationError, ValidationErrorItem } from 'sequelize';
-import DomainError from '../../core/errors/domainError';
-import logger from '../../core/utils/logger';
 import { AxiosError } from 'axios';
+import { ValidationError, ValidationErrorItem } from 'sequelize';
+import DomainError from '../errors/domainError';
+import logger from '../utils/logger';
 
 function handle(_err: AxiosError, req: express.Request, res: express.Response, _next: express.NextFunction): any {
     logger.error(_err.stack);

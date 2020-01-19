@@ -1,16 +1,35 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 // Create user
 const createUser = async (graph: any) => {
-    const { parent, args, context } = graph;
+    const { args, context } = graph;
     const { prisma } = context;
-    const { dob, phoneNumber, email, lastName, firstName, type } = args;
-
+    const { dob, phoneNumber, email, lastName, firstName } = args;
     try {
         return await prisma.createUser({
             firstName,
             phoneNumber,
             email,
             lastName,
-            dob
+            dob,
+            terms: false
+        });
+    } catch (error) {
+        throw error;
+    }
+};
+
+const acceptTerms = async (graph: any, params: any) => {
+    const { context } = graph;
+    const { prisma } = context;
+    const { id } = params;
+    try {
+        return await prisma.updateUser({
+            data: {
+                terms: true
+            },
+            where: {
+                id
+            }
         });
     } catch (error) {
         throw error;
@@ -29,4 +48,4 @@ const checkUser = async (graph: any, params: any) => {
     }
 };
 
-export { createUser, checkUser };
+export { createUser, checkUser, acceptTerms };

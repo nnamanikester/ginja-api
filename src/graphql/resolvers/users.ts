@@ -13,7 +13,8 @@ const userTypes = {
         lastName: (parent: any) => parent.lastName,
         email: (parent: any) => parent.email,
         phoneNumber: (parent: any) => parent.phoneNumber,
-        dob: (parent: any) => parent.dob
+        dob: (parent: any) => parent.dob,
+        terms: (parent: any) => parent.terms
     }
 };
 

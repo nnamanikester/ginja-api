@@ -10,6 +10,7 @@ const permissions = {
         organizations: authMiddleware
     },
     Mutation: {
+        acceptTerms: authMiddleware,
         createRole: authMiddleware,
         createOrganizationType: authMiddleware
     }

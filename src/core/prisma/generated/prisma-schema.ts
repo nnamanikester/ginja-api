@@ -42,6 +42,7 @@ type Auth {
   phoneNumber: String!
   pin: String!
   userId: String!
+  user: User!
 }
 
 type AuthConnection {
@@ -56,6 +57,7 @@ input AuthCreateInput {
   phoneNumber: String!
   pin: String!
   userId: String!
+  user: UserCreateOneInput!
 }
 
 type AuthEdge {
@@ -113,6 +115,7 @@ input AuthUpdateInput {
   phoneNumber: String
   pin: String
   userId: String
+  user: UserUpdateOneRequiredInput
 }
 
 input AuthUpdateManyMutationInput {
@@ -209,6 +212,7 @@ input AuthWhereInput {
   userId_not_starts_with: String
   userId_ends_with: String
   userId_not_ends_with: String
+  user: UserWhereInput
   AND: [AuthWhereInput!]
   OR: [AuthWhereInput!]
   NOT: [AuthWhereInput!]
@@ -1111,6 +1115,7 @@ type User {
   email: String!
   phoneNumber: String!
   dob: String!
+  terms: Boolean
 }
 
 type UserConnection {
@@ -1126,6 +1131,7 @@ input UserCreateInput {
   email: String!
   phoneNumber: String!
   dob: String!
+  terms: Boolean
 }
 
 input UserCreateOneInput {
@@ -1151,6 +1157,8 @@ enum UserOrderByInput {
   phoneNumber_DESC
   dob_ASC
   dob_DESC
+  terms_ASC
+  terms_DESC
 }
 
 type UserOrganizationRole {
@@ -1245,6 +1253,7 @@ type UserPreviousValues {
   email: String!
   phoneNumber: String!
   dob: String!
+  terms: Boolean
 }
 
 type UserSubscriptionPayload {
@@ -1271,6 +1280,7 @@ input UserUpdateDataInput {
   email: String
   phoneNumber: String
   dob: String
+  terms: Boolean
 }
 
 input UserUpdateInput {
@@ -1279,6 +1289,7 @@ input UserUpdateInput {
   email: String
   phoneNumber: String
   dob: String
+  terms: Boolean
 }
 
 input UserUpdateManyMutationInput {
@@ -1287,6 +1298,7 @@ input UserUpdateManyMutationInput {
   email: String
   phoneNumber: String
   dob: String
+  terms: Boolean
 }
 
 input UserUpdateOneRequiredInput {
@@ -1386,6 +1398,8 @@ input UserWhereInput {
   dob_not_starts_with: String
   dob_ends_with: String
   dob_not_ends_with: String
+  terms: Boolean
+  terms_not: Boolean
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

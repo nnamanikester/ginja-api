@@ -1,4 +1,5 @@
-export interface userModel {
+export interface UserModel {
+    id: string;
     dob: string;
     pin: string;
     phoneNumber: string;

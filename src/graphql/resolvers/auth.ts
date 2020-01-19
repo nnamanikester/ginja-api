@@ -1,4 +1,4 @@
-import { signUp, login } from '../controllers/auth';
+import { signUp, login, acceptTerms } from '../controllers/auth';
 
 const authQueries = {
     auths: (root: any, args: any, context: any, info: any) => {
@@ -8,7 +8,8 @@ const authQueries = {
 
 const authMutations = {
     signUp: (root: any, args: any, context: any) => signUp(root, args, context),
-    login: (root: any, args: any, context: any) => login(root, args, context)
+    login: (root: any, args: any, context: any) => login(root, args, context),
+    acceptTerms: (root: any, args: any, context: any) => acceptTerms(root, args, context)
 };
 
 const authTypes = {
