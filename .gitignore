@@ -53,3 +53,5 @@ src/core/middlewares/oauth-private.key
 src/core/middlewares/oauth-public.key
 src/core/utils/oauth-private.key
 src/core/utils/oauth-public.key
+src/core/prisma/
+src/core/prisma
