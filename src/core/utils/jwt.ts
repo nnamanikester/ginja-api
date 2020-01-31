@@ -1,11 +1,18 @@
 import fs from 'fs';
 import path from 'path';
 import jwt, { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
-import { NotAuthenticatedError } from '../../core/errors';
+import { NotAuthenticatedError } from '../errors';
 
+interface SignOptions {
+    issuer: string;
+    subject: string;
+    audience: string;
+    expiresIn: string;
+    algorithm: any | Algorithm;
+}
 const signPayload = (payload: object): any => {
     // SIGNING OPTIONS
-    const signOptions = {
+    const signOptions: SignOptions = {
         issuer: process.env.JWT_TOKEN_ISSUER,
         subject: process.env.JWT_TOKEN_SUBJECT,
         audience: process.env.JWT_TOKEN_AUDIENCE,
