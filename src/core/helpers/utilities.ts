@@ -269,8 +269,8 @@ export const formatPhoneNumberToInternational = (phone: string, suffix: string) 
     if (phone.startsWith(suffix)) {
         return phone;
     }
-    if (phone.startsWith(suffix.replace(/\+/g, ''))) {
-        return phone.replace(/ |\+|\-|\(|\)/g, '').replace(`/^${suffix}/`, suffix);
+    if (phone.startsWith('234')) {
+        return phone.replace(/ |\+|\-|\(|\)/g, "").replace(/^234/, suffix);
     }
-    return phone.replace(/ |\+|\-|\(|\)/g, '').replace(/^0/, suffix);
+    return phone.replace(/ |\+|\-|\(|\)/g, "").replace(/^0/, suffix);
 };
