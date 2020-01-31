@@ -29,7 +29,7 @@ type Mutation {
     validateOtp(otp: String!, phoneNumber: String!): Success!
     login(pin: String!, phoneNumber: String!): AuthPayload!
     createRole(name: String!): Success!
-    acceptTerms(id: String!): Role!
+    acceptTerms(id: String!): Success!
     createOrganizationType(name: String!): OrganizationType!
     resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
 }

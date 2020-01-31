@@ -57,6 +57,11 @@ type Role {
     name: String!  @unique
 }
 
+type Success {
+    id: ID! @id @unique
+    success: Boolean!
+}
+
 type Bank {
     id: ID! @id @unique
     accountNumber: String!
