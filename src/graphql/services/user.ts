@@ -3,7 +3,7 @@
 const createUser = async (graph: any) => {
     const { args, context } = graph;
     const { prisma } = context;
-    const { dob, phoneNumber, email, lastName, firstName } = args;
+    const { dob, phoneNumber, email, lastName, firstName, type } = args;
     try {
         return await prisma.createUser({
             firstName,
@@ -11,7 +11,8 @@ const createUser = async (graph: any) => {
             email,
             lastName,
             dob,
-            terms: false
+            terms: false,
+            type
         });
     } catch (error) {
         throw error;

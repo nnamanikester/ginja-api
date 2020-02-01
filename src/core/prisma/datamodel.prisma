@@ -6,6 +6,7 @@ type User {
     phoneNumber: String!
     dob: String!
     terms: Boolean
+    type: String!
 }
 
 type Organization {

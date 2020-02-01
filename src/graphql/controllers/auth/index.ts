@@ -75,7 +75,6 @@ const login = async (parent: any, args: UserModel, context: any): Promise<any> =
 
 const acceptTerms = async (parent: any, args: UserModel, context: any): Promise<any> => {
 
-    console.log(context.userId);
     const { id: userId } = args;
 
     const user = await userService.checkUser({ parent, args, context }, { id: userId });

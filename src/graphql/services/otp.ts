@@ -70,8 +70,9 @@ const validateOtp = async (graph: any) => {
                     phoneNumber
                 }
             });
+            return { success };
         }
-        return { success };
+        throw new Error('Invalid OTP');
     } catch (error) {
         throw error;
     }
