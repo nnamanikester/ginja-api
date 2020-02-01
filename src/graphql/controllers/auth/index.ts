@@ -39,7 +39,7 @@ const signUp = async (parent: any, args: UserModel, context: any): Promise<any> 
             user
         };
     } catch (error) {
-        throw error;
+        throw new Error('User with email address and mobile number exits.');
     }
 };
 
@@ -49,12 +49,12 @@ const login = async (parent: any, args: UserModel, context: any): Promise<any> =
     const { id, pin, userId } = (await authService.checkAuth({ parent, args, context }, { phoneNumber })) || {};
 
     if (!id) {
-        throw new Error('No such user found');
+        throw new Error('Invalid username/password');
     }
     const user = await userService.checkUser({ parent, args, context }, { id: userId });
 
     if (!user) {
-        throw new Error('No such user found');
+        throw new Error('Invalid username/password');
     }
 
     // 2
@@ -74,12 +74,11 @@ const login = async (parent: any, args: UserModel, context: any): Promise<any> =
 };
 
 const acceptTerms = async (parent: any, args: UserModel, context: any): Promise<any> => {
-
     const { id: userId } = args;
 
     const user = await userService.checkUser({ parent, args, context }, { id: userId });
     if (!user) {
-        throw new Error('No such user found');
+        throw new Error('Unable to accept Terms and condition');
     }
 
     const result = userService.acceptTerms({ parent, args, context }, { id: userId });
