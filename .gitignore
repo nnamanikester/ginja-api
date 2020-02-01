@@ -54,5 +54,5 @@ src/core/middlewares/oauth-public.key
 src/core/utils/oauth-private.key
 src/core/utils/oauth-public.key
 src/core/prisma/.env
-src/core/prisma/prisma.yml
-src/core/prisma/generated
+src/core/prisma/*.yml
+src/core/prisma/generated/*

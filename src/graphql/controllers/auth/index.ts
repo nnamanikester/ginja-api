@@ -61,7 +61,7 @@ const login = async (parent: any, args: UserModel, context: any): Promise<any> =
     const valid = await hashUtility.compare(args.pin, pin);
 
     if (!valid) {
-        throw new Error('Invalid password');
+        throw new Error('Invalid username/password');
     }
 
     const token = jwtUtility.signPayload({ userId: user.id });
@@ -74,16 +74,16 @@ const login = async (parent: any, args: UserModel, context: any): Promise<any> =
 };
 
 const acceptTerms = async (parent: any, args: UserModel, context: any): Promise<any> => {
+
+    console.log(context.userId);
     const { id: userId } = args;
 
     const user = await userService.checkUser({ parent, args, context }, { id: userId });
-
     if (!user) {
         throw new Error('No such user found');
     }
 
     const result = userService.acceptTerms({ parent, args, context }, { id: userId });
-
     if (!result) {
         throw new Error('Unable to accept Terms and condition');
     }
