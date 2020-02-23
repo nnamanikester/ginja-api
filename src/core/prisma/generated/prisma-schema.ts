@@ -2,11 +2,63 @@
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-export const typeDefs = /* GraphQL */ `type AggregateAuth {
+export const typeDefs = /* GraphQL */ `type AggregateAmenitiesOptions {
+  count: Int!
+}
+
+type AggregateAuth {
   count: Int!
 }
 
 type AggregateBank {
+  count: Int!
+}
+
+type AggregateCountries {
+  count: Int!
+}
+
+type AggregateFloorsOptions {
+  count: Int!
+}
+
+type AggregateIdentificationsOptions {
+  count: Int!
+}
+
+type AggregateListing {
+  count: Int!
+}
+
+type AggregateListingAvailability {
+  count: Int!
+}
+
+type AggregateListingDimensions {
+  count: Int!
+}
+
+type AggregateListingPhotos {
+  count: Int!
+}
+
+type AggregateListingProducts {
+  count: Int!
+}
+
+type AggregateListingRating {
+  count: Int!
+}
+
+type AggregateListingRequirements {
+  count: Int!
+}
+
+type AggregateListingsFrequencies {
+  count: Int!
+}
+
+type AggregateLocations {
   count: Int!
 }
 
@@ -22,7 +74,47 @@ type AggregateOtp {
   count: Int!
 }
 
+type AggregatePropertiesOptions {
+  count: Int!
+}
+
+type AggregateRating {
+  count: Int!
+}
+
+type AggregateRequisition {
+  count: Int!
+}
+
+type AggregateRequisitionCost {
+  count: Int!
+}
+
+type AggregateRequisitionDuration {
+  count: Int!
+}
+
 type AggregateRole {
+  count: Int!
+}
+
+type AggregateRoofingMaterialOptions {
+  count: Int!
+}
+
+type AggregateSelectOptions {
+  count: Int!
+}
+
+type AggregateSpacesOptions {
+  count: Int!
+}
+
+type AggregateStates {
+  count: Int!
+}
+
+type AggregateSuccess {
   count: Int!
 }
 
@@ -32,6 +124,277 @@ type AggregateUser {
 
 type AggregateUserOrganizationRole {
   count: Int!
+}
+
+type AggregateValueAddedServices {
+  count: Int!
+}
+
+type AggregateWallFinishesOptions {
+  count: Int!
+}
+
+type AggregateWarehouserIdentification {
+  count: Int!
+}
+
+type AmenitiesOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type AmenitiesOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [AmenitiesOptionsEdge]!
+  aggregate: AggregateAmenitiesOptions!
+}
+
+input AmenitiesOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsCreateManyInput {
+  create: [AmenitiesOptionsCreateInput!]
+  connect: [AmenitiesOptionsWhereUniqueInput!]
+}
+
+type AmenitiesOptionsEdge {
+  node: AmenitiesOptions!
+  cursor: String!
+}
+
+enum AmenitiesOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type AmenitiesOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [AmenitiesOptionsScalarWhereInput!]
+  OR: [AmenitiesOptionsScalarWhereInput!]
+  NOT: [AmenitiesOptionsScalarWhereInput!]
+}
+
+type AmenitiesOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: AmenitiesOptions
+  updatedFields: [String!]
+  previousValues: AmenitiesOptionsPreviousValues
+}
+
+input AmenitiesOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AmenitiesOptionsWhereInput
+  AND: [AmenitiesOptionsSubscriptionWhereInput!]
+  OR: [AmenitiesOptionsSubscriptionWhereInput!]
+  NOT: [AmenitiesOptionsSubscriptionWhereInput!]
+}
+
+input AmenitiesOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsUpdateManyInput {
+  create: [AmenitiesOptionsCreateInput!]
+  update: [AmenitiesOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [AmenitiesOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [AmenitiesOptionsWhereUniqueInput!]
+  connect: [AmenitiesOptionsWhereUniqueInput!]
+  set: [AmenitiesOptionsWhereUniqueInput!]
+  disconnect: [AmenitiesOptionsWhereUniqueInput!]
+  deleteMany: [AmenitiesOptionsScalarWhereInput!]
+  updateMany: [AmenitiesOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input AmenitiesOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input AmenitiesOptionsUpdateManyWithWhereNestedInput {
+  where: AmenitiesOptionsScalarWhereInput!
+  data: AmenitiesOptionsUpdateManyDataInput!
+}
+
+input AmenitiesOptionsUpdateWithWhereUniqueNestedInput {
+  where: AmenitiesOptionsWhereUniqueInput!
+  data: AmenitiesOptionsUpdateDataInput!
+}
+
+input AmenitiesOptionsUpsertWithWhereUniqueNestedInput {
+  where: AmenitiesOptionsWhereUniqueInput!
+  update: AmenitiesOptionsUpdateDataInput!
+  create: AmenitiesOptionsCreateInput!
+}
+
+input AmenitiesOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [AmenitiesOptionsWhereInput!]
+  OR: [AmenitiesOptionsWhereInput!]
+  NOT: [AmenitiesOptionsWhereInput!]
+}
+
+input AmenitiesOptionsWhereUniqueInput {
+  id: ID
 }
 
 type Auth {
@@ -412,11 +775,2500 @@ type BatchPayload {
   count: Long!
 }
 
+type Countries {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type CountriesConnection {
+  pageInfo: PageInfo!
+  edges: [CountriesEdge]!
+  aggregate: AggregateCountries!
+}
+
+input CountriesCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type CountriesEdge {
+  node: Countries!
+  cursor: String!
+}
+
+enum CountriesOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+}
+
+type CountriesPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type CountriesSubscriptionPayload {
+  mutation: MutationType!
+  node: Countries
+  updatedFields: [String!]
+  previousValues: CountriesPreviousValues
+}
+
+input CountriesSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CountriesWhereInput
+  AND: [CountriesSubscriptionWhereInput!]
+  OR: [CountriesSubscriptionWhereInput!]
+  NOT: [CountriesSubscriptionWhereInput!]
+}
+
+input CountriesUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input CountriesUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input CountriesWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [CountriesWhereInput!]
+  OR: [CountriesWhereInput!]
+  NOT: [CountriesWhereInput!]
+}
+
+input CountriesWhereUniqueInput {
+  id: ID
+}
+
 scalar DateTime
+
+type FloorsOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type FloorsOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [FloorsOptionsEdge]!
+  aggregate: AggregateFloorsOptions!
+}
+
+input FloorsOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsCreateManyInput {
+  create: [FloorsOptionsCreateInput!]
+  connect: [FloorsOptionsWhereUniqueInput!]
+}
+
+type FloorsOptionsEdge {
+  node: FloorsOptions!
+  cursor: String!
+}
+
+enum FloorsOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type FloorsOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [FloorsOptionsScalarWhereInput!]
+  OR: [FloorsOptionsScalarWhereInput!]
+  NOT: [FloorsOptionsScalarWhereInput!]
+}
+
+type FloorsOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: FloorsOptions
+  updatedFields: [String!]
+  previousValues: FloorsOptionsPreviousValues
+}
+
+input FloorsOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FloorsOptionsWhereInput
+  AND: [FloorsOptionsSubscriptionWhereInput!]
+  OR: [FloorsOptionsSubscriptionWhereInput!]
+  NOT: [FloorsOptionsSubscriptionWhereInput!]
+}
+
+input FloorsOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsUpdateManyInput {
+  create: [FloorsOptionsCreateInput!]
+  update: [FloorsOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [FloorsOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [FloorsOptionsWhereUniqueInput!]
+  connect: [FloorsOptionsWhereUniqueInput!]
+  set: [FloorsOptionsWhereUniqueInput!]
+  disconnect: [FloorsOptionsWhereUniqueInput!]
+  deleteMany: [FloorsOptionsScalarWhereInput!]
+  updateMany: [FloorsOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input FloorsOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input FloorsOptionsUpdateManyWithWhereNestedInput {
+  where: FloorsOptionsScalarWhereInput!
+  data: FloorsOptionsUpdateManyDataInput!
+}
+
+input FloorsOptionsUpdateWithWhereUniqueNestedInput {
+  where: FloorsOptionsWhereUniqueInput!
+  data: FloorsOptionsUpdateDataInput!
+}
+
+input FloorsOptionsUpsertWithWhereUniqueNestedInput {
+  where: FloorsOptionsWhereUniqueInput!
+  update: FloorsOptionsUpdateDataInput!
+  create: FloorsOptionsCreateInput!
+}
+
+input FloorsOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [FloorsOptionsWhereInput!]
+  OR: [FloorsOptionsWhereInput!]
+  NOT: [FloorsOptionsWhereInput!]
+}
+
+input FloorsOptionsWhereUniqueInput {
+  id: ID
+}
+
+type IdentificationsOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type IdentificationsOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [IdentificationsOptionsEdge]!
+  aggregate: AggregateIdentificationsOptions!
+}
+
+input IdentificationsOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type IdentificationsOptionsEdge {
+  node: IdentificationsOptions!
+  cursor: String!
+}
+
+enum IdentificationsOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type IdentificationsOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type IdentificationsOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: IdentificationsOptions
+  updatedFields: [String!]
+  previousValues: IdentificationsOptionsPreviousValues
+}
+
+input IdentificationsOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: IdentificationsOptionsWhereInput
+  AND: [IdentificationsOptionsSubscriptionWhereInput!]
+  OR: [IdentificationsOptionsSubscriptionWhereInput!]
+  NOT: [IdentificationsOptionsSubscriptionWhereInput!]
+}
+
+input IdentificationsOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input IdentificationsOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input IdentificationsOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [IdentificationsOptionsWhereInput!]
+  OR: [IdentificationsOptionsWhereInput!]
+  NOT: [IdentificationsOptionsWhereInput!]
+}
+
+input IdentificationsOptionsWhereUniqueInput {
+  id: ID
+}
+
+type Listing {
+  id: ID!
+  name: String
+  slug: String
+  user: User!
+  description: String!
+  price: Float!
+  discount: Int
+  currency: String!
+  proofOfOwnership: String!
+  identification: WarehouserIdentification!
+  spacing(where: SpacesOptionsWhereInput, orderBy: SpacesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SpacesOptions!]
+  property(where: PropertiesOptionsWhereInput, orderBy: PropertiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PropertiesOptions!]
+  floor(where: FloorsOptionsWhereInput, orderBy: FloorsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FloorsOptions!]
+  wallFinish(where: WallFinishesOptionsWhereInput, orderBy: WallFinishesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WallFinishesOptions!]
+  roofing(where: RoofingMaterialOptionsWhereInput, orderBy: RoofingMaterialOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RoofingMaterialOptions!]
+  isSecure: SelectOptions!
+  pest: SelectOptions!
+  windows: Int!
+  location: Locations!
+  amenities(where: AmenitiesOptionsWhereInput, orderBy: AmenitiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AmenitiesOptions!]
+  avatar: String!
+  vas(where: ValueAddedServicesWhereInput, orderBy: ValueAddedServicesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ValueAddedServices!]
+  listingPhotos(where: ListingPhotosWhereInput, orderBy: ListingPhotosOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingPhotos!]
+  frequency: ListingsFrequencies!
+  requirements(where: ListingRequirementsWhereInput, orderBy: ListingRequirementsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingRequirements!]
+  products(where: ListingProductsWhereInput, orderBy: ListingProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingProducts!]
+  availability: ListingAvailability!
+  dimensions: ListingDimensions!
+  status: Int!
+  rating: ListingRating!
+}
+
+type ListingAvailability {
+  id: ID!
+  from: String!
+  to: String!
+}
+
+type ListingAvailabilityConnection {
+  pageInfo: PageInfo!
+  edges: [ListingAvailabilityEdge]!
+  aggregate: AggregateListingAvailability!
+}
+
+input ListingAvailabilityCreateInput {
+  id: ID
+  from: String!
+  to: String!
+}
+
+input ListingAvailabilityCreateOneInput {
+  create: ListingAvailabilityCreateInput
+  connect: ListingAvailabilityWhereUniqueInput
+}
+
+type ListingAvailabilityEdge {
+  node: ListingAvailability!
+  cursor: String!
+}
+
+enum ListingAvailabilityOrderByInput {
+  id_ASC
+  id_DESC
+  from_ASC
+  from_DESC
+  to_ASC
+  to_DESC
+}
+
+type ListingAvailabilityPreviousValues {
+  id: ID!
+  from: String!
+  to: String!
+}
+
+type ListingAvailabilitySubscriptionPayload {
+  mutation: MutationType!
+  node: ListingAvailability
+  updatedFields: [String!]
+  previousValues: ListingAvailabilityPreviousValues
+}
+
+input ListingAvailabilitySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingAvailabilityWhereInput
+  AND: [ListingAvailabilitySubscriptionWhereInput!]
+  OR: [ListingAvailabilitySubscriptionWhereInput!]
+  NOT: [ListingAvailabilitySubscriptionWhereInput!]
+}
+
+input ListingAvailabilityUpdateDataInput {
+  from: String
+  to: String
+}
+
+input ListingAvailabilityUpdateInput {
+  from: String
+  to: String
+}
+
+input ListingAvailabilityUpdateManyMutationInput {
+  from: String
+  to: String
+}
+
+input ListingAvailabilityUpdateOneRequiredInput {
+  create: ListingAvailabilityCreateInput
+  update: ListingAvailabilityUpdateDataInput
+  upsert: ListingAvailabilityUpsertNestedInput
+  connect: ListingAvailabilityWhereUniqueInput
+}
+
+input ListingAvailabilityUpsertNestedInput {
+  update: ListingAvailabilityUpdateDataInput!
+  create: ListingAvailabilityCreateInput!
+}
+
+input ListingAvailabilityWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  from: String
+  from_not: String
+  from_in: [String!]
+  from_not_in: [String!]
+  from_lt: String
+  from_lte: String
+  from_gt: String
+  from_gte: String
+  from_contains: String
+  from_not_contains: String
+  from_starts_with: String
+  from_not_starts_with: String
+  from_ends_with: String
+  from_not_ends_with: String
+  to: String
+  to_not: String
+  to_in: [String!]
+  to_not_in: [String!]
+  to_lt: String
+  to_lte: String
+  to_gt: String
+  to_gte: String
+  to_contains: String
+  to_not_contains: String
+  to_starts_with: String
+  to_not_starts_with: String
+  to_ends_with: String
+  to_not_ends_with: String
+  AND: [ListingAvailabilityWhereInput!]
+  OR: [ListingAvailabilityWhereInput!]
+  NOT: [ListingAvailabilityWhereInput!]
+}
+
+input ListingAvailabilityWhereUniqueInput {
+  id: ID
+}
+
+type ListingConnection {
+  pageInfo: PageInfo!
+  edges: [ListingEdge]!
+  aggregate: AggregateListing!
+}
+
+input ListingCreateInput {
+  id: ID
+  name: String
+  slug: String
+  user: UserCreateOneInput!
+  description: String!
+  price: Float!
+  discount: Int
+  currency: String!
+  proofOfOwnership: String!
+  identification: WarehouserIdentificationCreateOneInput!
+  spacing: SpacesOptionsCreateManyInput
+  property: PropertiesOptionsCreateManyInput
+  floor: FloorsOptionsCreateManyInput
+  wallFinish: WallFinishesOptionsCreateManyInput
+  roofing: RoofingMaterialOptionsCreateManyInput
+  isSecure: SelectOptionsCreateOneInput!
+  pest: SelectOptionsCreateOneInput!
+  windows: Int!
+  location: LocationsCreateOneInput!
+  amenities: AmenitiesOptionsCreateManyInput
+  avatar: String!
+  vas: ValueAddedServicesCreateManyInput
+  listingPhotos: ListingPhotosCreateManyInput
+  frequency: ListingsFrequenciesCreateOneInput!
+  requirements: ListingRequirementsCreateManyInput
+  products: ListingProductsCreateManyInput
+  availability: ListingAvailabilityCreateOneInput!
+  dimensions: ListingDimensionsCreateOneInput!
+  status: Int!
+  rating: ListingRatingCreateOneInput!
+}
+
+input ListingCreateOneInput {
+  create: ListingCreateInput
+  connect: ListingWhereUniqueInput
+}
+
+type ListingDimensions {
+  id: ID!
+  height: Float!
+  weight: Float!
+  length: Float!
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+type ListingDimensionsConnection {
+  pageInfo: PageInfo!
+  edges: [ListingDimensionsEdge]!
+  aggregate: AggregateListingDimensions!
+}
+
+input ListingDimensionsCreateInput {
+  id: ID
+  height: Float!
+  weight: Float!
+  length: Float!
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+input ListingDimensionsCreateOneInput {
+  create: ListingDimensionsCreateInput
+  connect: ListingDimensionsWhereUniqueInput
+}
+
+type ListingDimensionsEdge {
+  node: ListingDimensions!
+  cursor: String!
+}
+
+enum ListingDimensionsOrderByInput {
+  id_ASC
+  id_DESC
+  height_ASC
+  height_DESC
+  weight_ASC
+  weight_DESC
+  length_ASC
+  length_DESC
+  unitOfDimensions_ASC
+  unitOfDimensions_DESC
+  volume_ASC
+  volume_DESC
+  area_ASC
+  area_DESC
+}
+
+type ListingDimensionsPreviousValues {
+  id: ID!
+  height: Float!
+  weight: Float!
+  length: Float!
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+type ListingDimensionsSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingDimensions
+  updatedFields: [String!]
+  previousValues: ListingDimensionsPreviousValues
+}
+
+input ListingDimensionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingDimensionsWhereInput
+  AND: [ListingDimensionsSubscriptionWhereInput!]
+  OR: [ListingDimensionsSubscriptionWhereInput!]
+  NOT: [ListingDimensionsSubscriptionWhereInput!]
+}
+
+input ListingDimensionsUpdateDataInput {
+  height: Float
+  weight: Float
+  length: Float
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+input ListingDimensionsUpdateInput {
+  height: Float
+  weight: Float
+  length: Float
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+input ListingDimensionsUpdateManyMutationInput {
+  height: Float
+  weight: Float
+  length: Float
+  unitOfDimensions: Int
+  volume: Float
+  area: Float
+}
+
+input ListingDimensionsUpdateOneRequiredInput {
+  create: ListingDimensionsCreateInput
+  update: ListingDimensionsUpdateDataInput
+  upsert: ListingDimensionsUpsertNestedInput
+  connect: ListingDimensionsWhereUniqueInput
+}
+
+input ListingDimensionsUpsertNestedInput {
+  update: ListingDimensionsUpdateDataInput!
+  create: ListingDimensionsCreateInput!
+}
+
+input ListingDimensionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  height: Float
+  height_not: Float
+  height_in: [Float!]
+  height_not_in: [Float!]
+  height_lt: Float
+  height_lte: Float
+  height_gt: Float
+  height_gte: Float
+  weight: Float
+  weight_not: Float
+  weight_in: [Float!]
+  weight_not_in: [Float!]
+  weight_lt: Float
+  weight_lte: Float
+  weight_gt: Float
+  weight_gte: Float
+  length: Float
+  length_not: Float
+  length_in: [Float!]
+  length_not_in: [Float!]
+  length_lt: Float
+  length_lte: Float
+  length_gt: Float
+  length_gte: Float
+  unitOfDimensions: Int
+  unitOfDimensions_not: Int
+  unitOfDimensions_in: [Int!]
+  unitOfDimensions_not_in: [Int!]
+  unitOfDimensions_lt: Int
+  unitOfDimensions_lte: Int
+  unitOfDimensions_gt: Int
+  unitOfDimensions_gte: Int
+  volume: Float
+  volume_not: Float
+  volume_in: [Float!]
+  volume_not_in: [Float!]
+  volume_lt: Float
+  volume_lte: Float
+  volume_gt: Float
+  volume_gte: Float
+  area: Float
+  area_not: Float
+  area_in: [Float!]
+  area_not_in: [Float!]
+  area_lt: Float
+  area_lte: Float
+  area_gt: Float
+  area_gte: Float
+  AND: [ListingDimensionsWhereInput!]
+  OR: [ListingDimensionsWhereInput!]
+  NOT: [ListingDimensionsWhereInput!]
+}
+
+input ListingDimensionsWhereUniqueInput {
+  id: ID
+}
+
+type ListingEdge {
+  node: Listing!
+  cursor: String!
+}
+
+enum ListingOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+  description_ASC
+  description_DESC
+  price_ASC
+  price_DESC
+  discount_ASC
+  discount_DESC
+  currency_ASC
+  currency_DESC
+  proofOfOwnership_ASC
+  proofOfOwnership_DESC
+  windows_ASC
+  windows_DESC
+  avatar_ASC
+  avatar_DESC
+  status_ASC
+  status_DESC
+}
+
+type ListingPhotos {
+  id: ID!
+  url: String!
+  default: Boolean
+}
+
+type ListingPhotosConnection {
+  pageInfo: PageInfo!
+  edges: [ListingPhotosEdge]!
+  aggregate: AggregateListingPhotos!
+}
+
+input ListingPhotosCreateInput {
+  id: ID
+  url: String!
+  default: Boolean
+}
+
+input ListingPhotosCreateManyInput {
+  create: [ListingPhotosCreateInput!]
+  connect: [ListingPhotosWhereUniqueInput!]
+}
+
+type ListingPhotosEdge {
+  node: ListingPhotos!
+  cursor: String!
+}
+
+enum ListingPhotosOrderByInput {
+  id_ASC
+  id_DESC
+  url_ASC
+  url_DESC
+  default_ASC
+  default_DESC
+}
+
+type ListingPhotosPreviousValues {
+  id: ID!
+  url: String!
+  default: Boolean
+}
+
+input ListingPhotosScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [ListingPhotosScalarWhereInput!]
+  OR: [ListingPhotosScalarWhereInput!]
+  NOT: [ListingPhotosScalarWhereInput!]
+}
+
+type ListingPhotosSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingPhotos
+  updatedFields: [String!]
+  previousValues: ListingPhotosPreviousValues
+}
+
+input ListingPhotosSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingPhotosWhereInput
+  AND: [ListingPhotosSubscriptionWhereInput!]
+  OR: [ListingPhotosSubscriptionWhereInput!]
+  NOT: [ListingPhotosSubscriptionWhereInput!]
+}
+
+input ListingPhotosUpdateDataInput {
+  url: String
+  default: Boolean
+}
+
+input ListingPhotosUpdateInput {
+  url: String
+  default: Boolean
+}
+
+input ListingPhotosUpdateManyDataInput {
+  url: String
+  default: Boolean
+}
+
+input ListingPhotosUpdateManyInput {
+  create: [ListingPhotosCreateInput!]
+  update: [ListingPhotosUpdateWithWhereUniqueNestedInput!]
+  upsert: [ListingPhotosUpsertWithWhereUniqueNestedInput!]
+  delete: [ListingPhotosWhereUniqueInput!]
+  connect: [ListingPhotosWhereUniqueInput!]
+  set: [ListingPhotosWhereUniqueInput!]
+  disconnect: [ListingPhotosWhereUniqueInput!]
+  deleteMany: [ListingPhotosScalarWhereInput!]
+  updateMany: [ListingPhotosUpdateManyWithWhereNestedInput!]
+}
+
+input ListingPhotosUpdateManyMutationInput {
+  url: String
+  default: Boolean
+}
+
+input ListingPhotosUpdateManyWithWhereNestedInput {
+  where: ListingPhotosScalarWhereInput!
+  data: ListingPhotosUpdateManyDataInput!
+}
+
+input ListingPhotosUpdateWithWhereUniqueNestedInput {
+  where: ListingPhotosWhereUniqueInput!
+  data: ListingPhotosUpdateDataInput!
+}
+
+input ListingPhotosUpsertWithWhereUniqueNestedInput {
+  where: ListingPhotosWhereUniqueInput!
+  update: ListingPhotosUpdateDataInput!
+  create: ListingPhotosCreateInput!
+}
+
+input ListingPhotosWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [ListingPhotosWhereInput!]
+  OR: [ListingPhotosWhereInput!]
+  NOT: [ListingPhotosWhereInput!]
+}
+
+input ListingPhotosWhereUniqueInput {
+  id: ID
+}
+
+type ListingPreviousValues {
+  id: ID!
+  name: String
+  slug: String
+  description: String!
+  price: Float!
+  discount: Int
+  currency: String!
+  proofOfOwnership: String!
+  windows: Int!
+  avatar: String!
+  status: Int!
+}
+
+type ListingProducts {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type ListingProductsConnection {
+  pageInfo: PageInfo!
+  edges: [ListingProductsEdge]!
+  aggregate: AggregateListingProducts!
+}
+
+input ListingProductsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsCreateManyInput {
+  create: [ListingProductsCreateInput!]
+  connect: [ListingProductsWhereUniqueInput!]
+}
+
+type ListingProductsEdge {
+  node: ListingProducts!
+  cursor: String!
+}
+
+enum ListingProductsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type ListingProductsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [ListingProductsScalarWhereInput!]
+  OR: [ListingProductsScalarWhereInput!]
+  NOT: [ListingProductsScalarWhereInput!]
+}
+
+type ListingProductsSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingProducts
+  updatedFields: [String!]
+  previousValues: ListingProductsPreviousValues
+}
+
+input ListingProductsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingProductsWhereInput
+  AND: [ListingProductsSubscriptionWhereInput!]
+  OR: [ListingProductsSubscriptionWhereInput!]
+  NOT: [ListingProductsSubscriptionWhereInput!]
+}
+
+input ListingProductsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsUpdateManyInput {
+  create: [ListingProductsCreateInput!]
+  update: [ListingProductsUpdateWithWhereUniqueNestedInput!]
+  upsert: [ListingProductsUpsertWithWhereUniqueNestedInput!]
+  delete: [ListingProductsWhereUniqueInput!]
+  connect: [ListingProductsWhereUniqueInput!]
+  set: [ListingProductsWhereUniqueInput!]
+  disconnect: [ListingProductsWhereUniqueInput!]
+  deleteMany: [ListingProductsScalarWhereInput!]
+  updateMany: [ListingProductsUpdateManyWithWhereNestedInput!]
+}
+
+input ListingProductsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingProductsUpdateManyWithWhereNestedInput {
+  where: ListingProductsScalarWhereInput!
+  data: ListingProductsUpdateManyDataInput!
+}
+
+input ListingProductsUpdateWithWhereUniqueNestedInput {
+  where: ListingProductsWhereUniqueInput!
+  data: ListingProductsUpdateDataInput!
+}
+
+input ListingProductsUpsertWithWhereUniqueNestedInput {
+  where: ListingProductsWhereUniqueInput!
+  update: ListingProductsUpdateDataInput!
+  create: ListingProductsCreateInput!
+}
+
+input ListingProductsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [ListingProductsWhereInput!]
+  OR: [ListingProductsWhereInput!]
+  NOT: [ListingProductsWhereInput!]
+}
+
+input ListingProductsWhereUniqueInput {
+  id: ID
+}
+
+type ListingRating {
+  id: ID!
+  count: Int!
+  rates: Int!
+  average: Float!
+}
+
+type ListingRatingConnection {
+  pageInfo: PageInfo!
+  edges: [ListingRatingEdge]!
+  aggregate: AggregateListingRating!
+}
+
+input ListingRatingCreateInput {
+  id: ID
+  count: Int!
+  rates: Int!
+  average: Float!
+}
+
+input ListingRatingCreateOneInput {
+  create: ListingRatingCreateInput
+  connect: ListingRatingWhereUniqueInput
+}
+
+type ListingRatingEdge {
+  node: ListingRating!
+  cursor: String!
+}
+
+enum ListingRatingOrderByInput {
+  id_ASC
+  id_DESC
+  count_ASC
+  count_DESC
+  rates_ASC
+  rates_DESC
+  average_ASC
+  average_DESC
+}
+
+type ListingRatingPreviousValues {
+  id: ID!
+  count: Int!
+  rates: Int!
+  average: Float!
+}
+
+type ListingRatingSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingRating
+  updatedFields: [String!]
+  previousValues: ListingRatingPreviousValues
+}
+
+input ListingRatingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingRatingWhereInput
+  AND: [ListingRatingSubscriptionWhereInput!]
+  OR: [ListingRatingSubscriptionWhereInput!]
+  NOT: [ListingRatingSubscriptionWhereInput!]
+}
+
+input ListingRatingUpdateDataInput {
+  count: Int
+  rates: Int
+  average: Float
+}
+
+input ListingRatingUpdateInput {
+  count: Int
+  rates: Int
+  average: Float
+}
+
+input ListingRatingUpdateManyMutationInput {
+  count: Int
+  rates: Int
+  average: Float
+}
+
+input ListingRatingUpdateOneRequiredInput {
+  create: ListingRatingCreateInput
+  update: ListingRatingUpdateDataInput
+  upsert: ListingRatingUpsertNestedInput
+  connect: ListingRatingWhereUniqueInput
+}
+
+input ListingRatingUpsertNestedInput {
+  update: ListingRatingUpdateDataInput!
+  create: ListingRatingCreateInput!
+}
+
+input ListingRatingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  count: Int
+  count_not: Int
+  count_in: [Int!]
+  count_not_in: [Int!]
+  count_lt: Int
+  count_lte: Int
+  count_gt: Int
+  count_gte: Int
+  rates: Int
+  rates_not: Int
+  rates_in: [Int!]
+  rates_not_in: [Int!]
+  rates_lt: Int
+  rates_lte: Int
+  rates_gt: Int
+  rates_gte: Int
+  average: Float
+  average_not: Float
+  average_in: [Float!]
+  average_not_in: [Float!]
+  average_lt: Float
+  average_lte: Float
+  average_gt: Float
+  average_gte: Float
+  AND: [ListingRatingWhereInput!]
+  OR: [ListingRatingWhereInput!]
+  NOT: [ListingRatingWhereInput!]
+}
+
+input ListingRatingWhereUniqueInput {
+  id: ID
+}
+
+type ListingRequirements {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type ListingRequirementsConnection {
+  pageInfo: PageInfo!
+  edges: [ListingRequirementsEdge]!
+  aggregate: AggregateListingRequirements!
+}
+
+input ListingRequirementsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsCreateManyInput {
+  create: [ListingRequirementsCreateInput!]
+  connect: [ListingRequirementsWhereUniqueInput!]
+}
+
+type ListingRequirementsEdge {
+  node: ListingRequirements!
+  cursor: String!
+}
+
+enum ListingRequirementsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+}
+
+type ListingRequirementsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [ListingRequirementsScalarWhereInput!]
+  OR: [ListingRequirementsScalarWhereInput!]
+  NOT: [ListingRequirementsScalarWhereInput!]
+}
+
+type ListingRequirementsSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingRequirements
+  updatedFields: [String!]
+  previousValues: ListingRequirementsPreviousValues
+}
+
+input ListingRequirementsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingRequirementsWhereInput
+  AND: [ListingRequirementsSubscriptionWhereInput!]
+  OR: [ListingRequirementsSubscriptionWhereInput!]
+  NOT: [ListingRequirementsSubscriptionWhereInput!]
+}
+
+input ListingRequirementsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsUpdateManyInput {
+  create: [ListingRequirementsCreateInput!]
+  update: [ListingRequirementsUpdateWithWhereUniqueNestedInput!]
+  upsert: [ListingRequirementsUpsertWithWhereUniqueNestedInput!]
+  delete: [ListingRequirementsWhereUniqueInput!]
+  connect: [ListingRequirementsWhereUniqueInput!]
+  set: [ListingRequirementsWhereUniqueInput!]
+  disconnect: [ListingRequirementsWhereUniqueInput!]
+  deleteMany: [ListingRequirementsScalarWhereInput!]
+  updateMany: [ListingRequirementsUpdateManyWithWhereNestedInput!]
+}
+
+input ListingRequirementsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input ListingRequirementsUpdateManyWithWhereNestedInput {
+  where: ListingRequirementsScalarWhereInput!
+  data: ListingRequirementsUpdateManyDataInput!
+}
+
+input ListingRequirementsUpdateWithWhereUniqueNestedInput {
+  where: ListingRequirementsWhereUniqueInput!
+  data: ListingRequirementsUpdateDataInput!
+}
+
+input ListingRequirementsUpsertWithWhereUniqueNestedInput {
+  where: ListingRequirementsWhereUniqueInput!
+  update: ListingRequirementsUpdateDataInput!
+  create: ListingRequirementsCreateInput!
+}
+
+input ListingRequirementsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [ListingRequirementsWhereInput!]
+  OR: [ListingRequirementsWhereInput!]
+  NOT: [ListingRequirementsWhereInput!]
+}
+
+input ListingRequirementsWhereUniqueInput {
+  id: ID
+}
+
+type ListingsFrequencies {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type ListingsFrequenciesConnection {
+  pageInfo: PageInfo!
+  edges: [ListingsFrequenciesEdge]!
+  aggregate: AggregateListingsFrequencies!
+}
+
+input ListingsFrequenciesCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingsFrequenciesCreateOneInput {
+  create: ListingsFrequenciesCreateInput
+  connect: ListingsFrequenciesWhereUniqueInput
+}
+
+type ListingsFrequenciesEdge {
+  node: ListingsFrequencies!
+  cursor: String!
+}
+
+enum ListingsFrequenciesOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type ListingsFrequenciesPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type ListingsFrequenciesSubscriptionPayload {
+  mutation: MutationType!
+  node: ListingsFrequencies
+  updatedFields: [String!]
+  previousValues: ListingsFrequenciesPreviousValues
+}
+
+input ListingsFrequenciesSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingsFrequenciesWhereInput
+  AND: [ListingsFrequenciesSubscriptionWhereInput!]
+  OR: [ListingsFrequenciesSubscriptionWhereInput!]
+  NOT: [ListingsFrequenciesSubscriptionWhereInput!]
+}
+
+input ListingsFrequenciesUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingsFrequenciesUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingsFrequenciesUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input ListingsFrequenciesUpdateOneRequiredInput {
+  create: ListingsFrequenciesCreateInput
+  update: ListingsFrequenciesUpdateDataInput
+  upsert: ListingsFrequenciesUpsertNestedInput
+  connect: ListingsFrequenciesWhereUniqueInput
+}
+
+input ListingsFrequenciesUpsertNestedInput {
+  update: ListingsFrequenciesUpdateDataInput!
+  create: ListingsFrequenciesCreateInput!
+}
+
+input ListingsFrequenciesWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [ListingsFrequenciesWhereInput!]
+  OR: [ListingsFrequenciesWhereInput!]
+  NOT: [ListingsFrequenciesWhereInput!]
+}
+
+input ListingsFrequenciesWhereUniqueInput {
+  id: ID
+}
+
+type ListingSubscriptionPayload {
+  mutation: MutationType!
+  node: Listing
+  updatedFields: [String!]
+  previousValues: ListingPreviousValues
+}
+
+input ListingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ListingWhereInput
+  AND: [ListingSubscriptionWhereInput!]
+  OR: [ListingSubscriptionWhereInput!]
+  NOT: [ListingSubscriptionWhereInput!]
+}
+
+input ListingUpdateDataInput {
+  name: String
+  slug: String
+  user: UserUpdateOneRequiredInput
+  description: String
+  price: Float
+  discount: Int
+  currency: String
+  proofOfOwnership: String
+  identification: WarehouserIdentificationUpdateOneRequiredInput
+  spacing: SpacesOptionsUpdateManyInput
+  property: PropertiesOptionsUpdateManyInput
+  floor: FloorsOptionsUpdateManyInput
+  wallFinish: WallFinishesOptionsUpdateManyInput
+  roofing: RoofingMaterialOptionsUpdateManyInput
+  isSecure: SelectOptionsUpdateOneRequiredInput
+  pest: SelectOptionsUpdateOneRequiredInput
+  windows: Int
+  location: LocationsUpdateOneRequiredInput
+  amenities: AmenitiesOptionsUpdateManyInput
+  avatar: String
+  vas: ValueAddedServicesUpdateManyInput
+  listingPhotos: ListingPhotosUpdateManyInput
+  frequency: ListingsFrequenciesUpdateOneRequiredInput
+  requirements: ListingRequirementsUpdateManyInput
+  products: ListingProductsUpdateManyInput
+  availability: ListingAvailabilityUpdateOneRequiredInput
+  dimensions: ListingDimensionsUpdateOneRequiredInput
+  status: Int
+  rating: ListingRatingUpdateOneRequiredInput
+}
+
+input ListingUpdateInput {
+  name: String
+  slug: String
+  user: UserUpdateOneRequiredInput
+  description: String
+  price: Float
+  discount: Int
+  currency: String
+  proofOfOwnership: String
+  identification: WarehouserIdentificationUpdateOneRequiredInput
+  spacing: SpacesOptionsUpdateManyInput
+  property: PropertiesOptionsUpdateManyInput
+  floor: FloorsOptionsUpdateManyInput
+  wallFinish: WallFinishesOptionsUpdateManyInput
+  roofing: RoofingMaterialOptionsUpdateManyInput
+  isSecure: SelectOptionsUpdateOneRequiredInput
+  pest: SelectOptionsUpdateOneRequiredInput
+  windows: Int
+  location: LocationsUpdateOneRequiredInput
+  amenities: AmenitiesOptionsUpdateManyInput
+  avatar: String
+  vas: ValueAddedServicesUpdateManyInput
+  listingPhotos: ListingPhotosUpdateManyInput
+  frequency: ListingsFrequenciesUpdateOneRequiredInput
+  requirements: ListingRequirementsUpdateManyInput
+  products: ListingProductsUpdateManyInput
+  availability: ListingAvailabilityUpdateOneRequiredInput
+  dimensions: ListingDimensionsUpdateOneRequiredInput
+  status: Int
+  rating: ListingRatingUpdateOneRequiredInput
+}
+
+input ListingUpdateManyMutationInput {
+  name: String
+  slug: String
+  description: String
+  price: Float
+  discount: Int
+  currency: String
+  proofOfOwnership: String
+  windows: Int
+  avatar: String
+  status: Int
+}
+
+input ListingUpdateOneRequiredInput {
+  create: ListingCreateInput
+  update: ListingUpdateDataInput
+  upsert: ListingUpsertNestedInput
+  connect: ListingWhereUniqueInput
+}
+
+input ListingUpsertNestedInput {
+  update: ListingUpdateDataInput!
+  create: ListingCreateInput!
+}
+
+input ListingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  user: UserWhereInput
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  discount: Int
+  discount_not: Int
+  discount_in: [Int!]
+  discount_not_in: [Int!]
+  discount_lt: Int
+  discount_lte: Int
+  discount_gt: Int
+  discount_gte: Int
+  currency: String
+  currency_not: String
+  currency_in: [String!]
+  currency_not_in: [String!]
+  currency_lt: String
+  currency_lte: String
+  currency_gt: String
+  currency_gte: String
+  currency_contains: String
+  currency_not_contains: String
+  currency_starts_with: String
+  currency_not_starts_with: String
+  currency_ends_with: String
+  currency_not_ends_with: String
+  proofOfOwnership: String
+  proofOfOwnership_not: String
+  proofOfOwnership_in: [String!]
+  proofOfOwnership_not_in: [String!]
+  proofOfOwnership_lt: String
+  proofOfOwnership_lte: String
+  proofOfOwnership_gt: String
+  proofOfOwnership_gte: String
+  proofOfOwnership_contains: String
+  proofOfOwnership_not_contains: String
+  proofOfOwnership_starts_with: String
+  proofOfOwnership_not_starts_with: String
+  proofOfOwnership_ends_with: String
+  proofOfOwnership_not_ends_with: String
+  identification: WarehouserIdentificationWhereInput
+  spacing_every: SpacesOptionsWhereInput
+  spacing_some: SpacesOptionsWhereInput
+  spacing_none: SpacesOptionsWhereInput
+  property_every: PropertiesOptionsWhereInput
+  property_some: PropertiesOptionsWhereInput
+  property_none: PropertiesOptionsWhereInput
+  floor_every: FloorsOptionsWhereInput
+  floor_some: FloorsOptionsWhereInput
+  floor_none: FloorsOptionsWhereInput
+  wallFinish_every: WallFinishesOptionsWhereInput
+  wallFinish_some: WallFinishesOptionsWhereInput
+  wallFinish_none: WallFinishesOptionsWhereInput
+  roofing_every: RoofingMaterialOptionsWhereInput
+  roofing_some: RoofingMaterialOptionsWhereInput
+  roofing_none: RoofingMaterialOptionsWhereInput
+  isSecure: SelectOptionsWhereInput
+  pest: SelectOptionsWhereInput
+  windows: Int
+  windows_not: Int
+  windows_in: [Int!]
+  windows_not_in: [Int!]
+  windows_lt: Int
+  windows_lte: Int
+  windows_gt: Int
+  windows_gte: Int
+  location: LocationsWhereInput
+  amenities_every: AmenitiesOptionsWhereInput
+  amenities_some: AmenitiesOptionsWhereInput
+  amenities_none: AmenitiesOptionsWhereInput
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  vas_every: ValueAddedServicesWhereInput
+  vas_some: ValueAddedServicesWhereInput
+  vas_none: ValueAddedServicesWhereInput
+  listingPhotos_every: ListingPhotosWhereInput
+  listingPhotos_some: ListingPhotosWhereInput
+  listingPhotos_none: ListingPhotosWhereInput
+  frequency: ListingsFrequenciesWhereInput
+  requirements_every: ListingRequirementsWhereInput
+  requirements_some: ListingRequirementsWhereInput
+  requirements_none: ListingRequirementsWhereInput
+  products_every: ListingProductsWhereInput
+  products_some: ListingProductsWhereInput
+  products_none: ListingProductsWhereInput
+  availability: ListingAvailabilityWhereInput
+  dimensions: ListingDimensionsWhereInput
+  status: Int
+  status_not: Int
+  status_in: [Int!]
+  status_not_in: [Int!]
+  status_lt: Int
+  status_lte: Int
+  status_gt: Int
+  status_gte: Int
+  rating: ListingRatingWhereInput
+  AND: [ListingWhereInput!]
+  OR: [ListingWhereInput!]
+  NOT: [ListingWhereInput!]
+}
+
+input ListingWhereUniqueInput {
+  id: ID
+}
+
+type Locations {
+  id: ID!
+  country: String!
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+type LocationsConnection {
+  pageInfo: PageInfo!
+  edges: [LocationsEdge]!
+  aggregate: AggregateLocations!
+}
+
+input LocationsCreateInput {
+  id: ID
+  country: String!
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+input LocationsCreateOneInput {
+  create: LocationsCreateInput
+  connect: LocationsWhereUniqueInput
+}
+
+type LocationsEdge {
+  node: Locations!
+  cursor: String!
+}
+
+enum LocationsOrderByInput {
+  id_ASC
+  id_DESC
+  country_ASC
+  country_DESC
+  state_ASC
+  state_DESC
+  geo_ASC
+  geo_DESC
+  lga_ASC
+  lga_DESC
+  street_ASC
+  street_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type LocationsPreviousValues {
+  id: ID!
+  country: String!
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+type LocationsSubscriptionPayload {
+  mutation: MutationType!
+  node: Locations
+  updatedFields: [String!]
+  previousValues: LocationsPreviousValues
+}
+
+input LocationsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LocationsWhereInput
+  AND: [LocationsSubscriptionWhereInput!]
+  OR: [LocationsSubscriptionWhereInput!]
+  NOT: [LocationsSubscriptionWhereInput!]
+}
+
+input LocationsUpdateDataInput {
+  country: String
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+input LocationsUpdateInput {
+  country: String
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+input LocationsUpdateManyMutationInput {
+  country: String
+  state: String
+  geo: String
+  lga: String
+  street: String
+  userId: String
+}
+
+input LocationsUpdateOneRequiredInput {
+  create: LocationsCreateInput
+  update: LocationsUpdateDataInput
+  upsert: LocationsUpsertNestedInput
+  connect: LocationsWhereUniqueInput
+}
+
+input LocationsUpsertNestedInput {
+  update: LocationsUpdateDataInput!
+  create: LocationsCreateInput!
+}
+
+input LocationsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  geo: String
+  geo_not: String
+  geo_in: [String!]
+  geo_not_in: [String!]
+  geo_lt: String
+  geo_lte: String
+  geo_gt: String
+  geo_gte: String
+  geo_contains: String
+  geo_not_contains: String
+  geo_starts_with: String
+  geo_not_starts_with: String
+  geo_ends_with: String
+  geo_not_ends_with: String
+  lga: String
+  lga_not: String
+  lga_in: [String!]
+  lga_not_in: [String!]
+  lga_lt: String
+  lga_lte: String
+  lga_gt: String
+  lga_gte: String
+  lga_contains: String
+  lga_not_contains: String
+  lga_starts_with: String
+  lga_not_starts_with: String
+  lga_ends_with: String
+  lga_not_ends_with: String
+  street: String
+  street_not: String
+  street_in: [String!]
+  street_not_in: [String!]
+  street_lt: String
+  street_lte: String
+  street_gt: String
+  street_gte: String
+  street_contains: String
+  street_not_contains: String
+  street_starts_with: String
+  street_not_starts_with: String
+  street_ends_with: String
+  street_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [LocationsWhereInput!]
+  OR: [LocationsWhereInput!]
+  NOT: [LocationsWhereInput!]
+}
+
+input LocationsWhereUniqueInput {
+  id: ID
+}
 
 scalar Long
 
 type Mutation {
+  createAmenitiesOptions(data: AmenitiesOptionsCreateInput!): AmenitiesOptions!
+  updateAmenitiesOptions(data: AmenitiesOptionsUpdateInput!, where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
+  updateManyAmenitiesOptionses(data: AmenitiesOptionsUpdateManyMutationInput!, where: AmenitiesOptionsWhereInput): BatchPayload!
+  upsertAmenitiesOptions(where: AmenitiesOptionsWhereUniqueInput!, create: AmenitiesOptionsCreateInput!, update: AmenitiesOptionsUpdateInput!): AmenitiesOptions!
+  deleteAmenitiesOptions(where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
+  deleteManyAmenitiesOptionses(where: AmenitiesOptionsWhereInput): BatchPayload!
   createAuth(data: AuthCreateInput!): Auth!
   updateAuth(data: AuthUpdateInput!, where: AuthWhereUniqueInput!): Auth
   updateManyAuths(data: AuthUpdateManyMutationInput!, where: AuthWhereInput): BatchPayload!
@@ -429,6 +3281,78 @@ type Mutation {
   upsertBank(where: BankWhereUniqueInput!, create: BankCreateInput!, update: BankUpdateInput!): Bank!
   deleteBank(where: BankWhereUniqueInput!): Bank
   deleteManyBanks(where: BankWhereInput): BatchPayload!
+  createCountries(data: CountriesCreateInput!): Countries!
+  updateCountries(data: CountriesUpdateInput!, where: CountriesWhereUniqueInput!): Countries
+  updateManyCountrieses(data: CountriesUpdateManyMutationInput!, where: CountriesWhereInput): BatchPayload!
+  upsertCountries(where: CountriesWhereUniqueInput!, create: CountriesCreateInput!, update: CountriesUpdateInput!): Countries!
+  deleteCountries(where: CountriesWhereUniqueInput!): Countries
+  deleteManyCountrieses(where: CountriesWhereInput): BatchPayload!
+  createFloorsOptions(data: FloorsOptionsCreateInput!): FloorsOptions!
+  updateFloorsOptions(data: FloorsOptionsUpdateInput!, where: FloorsOptionsWhereUniqueInput!): FloorsOptions
+  updateManyFloorsOptionses(data: FloorsOptionsUpdateManyMutationInput!, where: FloorsOptionsWhereInput): BatchPayload!
+  upsertFloorsOptions(where: FloorsOptionsWhereUniqueInput!, create: FloorsOptionsCreateInput!, update: FloorsOptionsUpdateInput!): FloorsOptions!
+  deleteFloorsOptions(where: FloorsOptionsWhereUniqueInput!): FloorsOptions
+  deleteManyFloorsOptionses(where: FloorsOptionsWhereInput): BatchPayload!
+  createIdentificationsOptions(data: IdentificationsOptionsCreateInput!): IdentificationsOptions!
+  updateIdentificationsOptions(data: IdentificationsOptionsUpdateInput!, where: IdentificationsOptionsWhereUniqueInput!): IdentificationsOptions
+  updateManyIdentificationsOptionses(data: IdentificationsOptionsUpdateManyMutationInput!, where: IdentificationsOptionsWhereInput): BatchPayload!
+  upsertIdentificationsOptions(where: IdentificationsOptionsWhereUniqueInput!, create: IdentificationsOptionsCreateInput!, update: IdentificationsOptionsUpdateInput!): IdentificationsOptions!
+  deleteIdentificationsOptions(where: IdentificationsOptionsWhereUniqueInput!): IdentificationsOptions
+  deleteManyIdentificationsOptionses(where: IdentificationsOptionsWhereInput): BatchPayload!
+  createListing(data: ListingCreateInput!): Listing!
+  updateListing(data: ListingUpdateInput!, where: ListingWhereUniqueInput!): Listing
+  updateManyListings(data: ListingUpdateManyMutationInput!, where: ListingWhereInput): BatchPayload!
+  upsertListing(where: ListingWhereUniqueInput!, create: ListingCreateInput!, update: ListingUpdateInput!): Listing!
+  deleteListing(where: ListingWhereUniqueInput!): Listing
+  deleteManyListings(where: ListingWhereInput): BatchPayload!
+  createListingAvailability(data: ListingAvailabilityCreateInput!): ListingAvailability!
+  updateListingAvailability(data: ListingAvailabilityUpdateInput!, where: ListingAvailabilityWhereUniqueInput!): ListingAvailability
+  updateManyListingAvailabilities(data: ListingAvailabilityUpdateManyMutationInput!, where: ListingAvailabilityWhereInput): BatchPayload!
+  upsertListingAvailability(where: ListingAvailabilityWhereUniqueInput!, create: ListingAvailabilityCreateInput!, update: ListingAvailabilityUpdateInput!): ListingAvailability!
+  deleteListingAvailability(where: ListingAvailabilityWhereUniqueInput!): ListingAvailability
+  deleteManyListingAvailabilities(where: ListingAvailabilityWhereInput): BatchPayload!
+  createListingDimensions(data: ListingDimensionsCreateInput!): ListingDimensions!
+  updateListingDimensions(data: ListingDimensionsUpdateInput!, where: ListingDimensionsWhereUniqueInput!): ListingDimensions
+  updateManyListingDimensionses(data: ListingDimensionsUpdateManyMutationInput!, where: ListingDimensionsWhereInput): BatchPayload!
+  upsertListingDimensions(where: ListingDimensionsWhereUniqueInput!, create: ListingDimensionsCreateInput!, update: ListingDimensionsUpdateInput!): ListingDimensions!
+  deleteListingDimensions(where: ListingDimensionsWhereUniqueInput!): ListingDimensions
+  deleteManyListingDimensionses(where: ListingDimensionsWhereInput): BatchPayload!
+  createListingPhotos(data: ListingPhotosCreateInput!): ListingPhotos!
+  updateListingPhotos(data: ListingPhotosUpdateInput!, where: ListingPhotosWhereUniqueInput!): ListingPhotos
+  updateManyListingPhotoses(data: ListingPhotosUpdateManyMutationInput!, where: ListingPhotosWhereInput): BatchPayload!
+  upsertListingPhotos(where: ListingPhotosWhereUniqueInput!, create: ListingPhotosCreateInput!, update: ListingPhotosUpdateInput!): ListingPhotos!
+  deleteListingPhotos(where: ListingPhotosWhereUniqueInput!): ListingPhotos
+  deleteManyListingPhotoses(where: ListingPhotosWhereInput): BatchPayload!
+  createListingProducts(data: ListingProductsCreateInput!): ListingProducts!
+  updateListingProducts(data: ListingProductsUpdateInput!, where: ListingProductsWhereUniqueInput!): ListingProducts
+  updateManyListingProductses(data: ListingProductsUpdateManyMutationInput!, where: ListingProductsWhereInput): BatchPayload!
+  upsertListingProducts(where: ListingProductsWhereUniqueInput!, create: ListingProductsCreateInput!, update: ListingProductsUpdateInput!): ListingProducts!
+  deleteListingProducts(where: ListingProductsWhereUniqueInput!): ListingProducts
+  deleteManyListingProductses(where: ListingProductsWhereInput): BatchPayload!
+  createListingRating(data: ListingRatingCreateInput!): ListingRating!
+  updateListingRating(data: ListingRatingUpdateInput!, where: ListingRatingWhereUniqueInput!): ListingRating
+  updateManyListingRatings(data: ListingRatingUpdateManyMutationInput!, where: ListingRatingWhereInput): BatchPayload!
+  upsertListingRating(where: ListingRatingWhereUniqueInput!, create: ListingRatingCreateInput!, update: ListingRatingUpdateInput!): ListingRating!
+  deleteListingRating(where: ListingRatingWhereUniqueInput!): ListingRating
+  deleteManyListingRatings(where: ListingRatingWhereInput): BatchPayload!
+  createListingRequirements(data: ListingRequirementsCreateInput!): ListingRequirements!
+  updateListingRequirements(data: ListingRequirementsUpdateInput!, where: ListingRequirementsWhereUniqueInput!): ListingRequirements
+  updateManyListingRequirementses(data: ListingRequirementsUpdateManyMutationInput!, where: ListingRequirementsWhereInput): BatchPayload!
+  upsertListingRequirements(where: ListingRequirementsWhereUniqueInput!, create: ListingRequirementsCreateInput!, update: ListingRequirementsUpdateInput!): ListingRequirements!
+  deleteListingRequirements(where: ListingRequirementsWhereUniqueInput!): ListingRequirements
+  deleteManyListingRequirementses(where: ListingRequirementsWhereInput): BatchPayload!
+  createListingsFrequencies(data: ListingsFrequenciesCreateInput!): ListingsFrequencies!
+  updateListingsFrequencies(data: ListingsFrequenciesUpdateInput!, where: ListingsFrequenciesWhereUniqueInput!): ListingsFrequencies
+  updateManyListingsFrequencieses(data: ListingsFrequenciesUpdateManyMutationInput!, where: ListingsFrequenciesWhereInput): BatchPayload!
+  upsertListingsFrequencies(where: ListingsFrequenciesWhereUniqueInput!, create: ListingsFrequenciesCreateInput!, update: ListingsFrequenciesUpdateInput!): ListingsFrequencies!
+  deleteListingsFrequencies(where: ListingsFrequenciesWhereUniqueInput!): ListingsFrequencies
+  deleteManyListingsFrequencieses(where: ListingsFrequenciesWhereInput): BatchPayload!
+  createLocations(data: LocationsCreateInput!): Locations!
+  updateLocations(data: LocationsUpdateInput!, where: LocationsWhereUniqueInput!): Locations
+  updateManyLocationses(data: LocationsUpdateManyMutationInput!, where: LocationsWhereInput): BatchPayload!
+  upsertLocations(where: LocationsWhereUniqueInput!, create: LocationsCreateInput!, update: LocationsUpdateInput!): Locations!
+  deleteLocations(where: LocationsWhereUniqueInput!): Locations
+  deleteManyLocationses(where: LocationsWhereInput): BatchPayload!
   createOrganization(data: OrganizationCreateInput!): Organization!
   updateOrganization(data: OrganizationUpdateInput!, where: OrganizationWhereUniqueInput!): Organization
   updateManyOrganizations(data: OrganizationUpdateManyMutationInput!, where: OrganizationWhereInput): BatchPayload!
@@ -447,12 +3371,72 @@ type Mutation {
   upsertOtp(where: OtpWhereUniqueInput!, create: OtpCreateInput!, update: OtpUpdateInput!): Otp!
   deleteOtp(where: OtpWhereUniqueInput!): Otp
   deleteManyOtps(where: OtpWhereInput): BatchPayload!
+  createPropertiesOptions(data: PropertiesOptionsCreateInput!): PropertiesOptions!
+  updatePropertiesOptions(data: PropertiesOptionsUpdateInput!, where: PropertiesOptionsWhereUniqueInput!): PropertiesOptions
+  updateManyPropertiesOptionses(data: PropertiesOptionsUpdateManyMutationInput!, where: PropertiesOptionsWhereInput): BatchPayload!
+  upsertPropertiesOptions(where: PropertiesOptionsWhereUniqueInput!, create: PropertiesOptionsCreateInput!, update: PropertiesOptionsUpdateInput!): PropertiesOptions!
+  deletePropertiesOptions(where: PropertiesOptionsWhereUniqueInput!): PropertiesOptions
+  deleteManyPropertiesOptionses(where: PropertiesOptionsWhereInput): BatchPayload!
+  createRating(data: RatingCreateInput!): Rating!
+  updateRating(data: RatingUpdateInput!, where: RatingWhereUniqueInput!): Rating
+  updateManyRatings(data: RatingUpdateManyMutationInput!, where: RatingWhereInput): BatchPayload!
+  upsertRating(where: RatingWhereUniqueInput!, create: RatingCreateInput!, update: RatingUpdateInput!): Rating!
+  deleteRating(where: RatingWhereUniqueInput!): Rating
+  deleteManyRatings(where: RatingWhereInput): BatchPayload!
+  createRequisition(data: RequisitionCreateInput!): Requisition!
+  updateRequisition(data: RequisitionUpdateInput!, where: RequisitionWhereUniqueInput!): Requisition
+  updateManyRequisitions(data: RequisitionUpdateManyMutationInput!, where: RequisitionWhereInput): BatchPayload!
+  upsertRequisition(where: RequisitionWhereUniqueInput!, create: RequisitionCreateInput!, update: RequisitionUpdateInput!): Requisition!
+  deleteRequisition(where: RequisitionWhereUniqueInput!): Requisition
+  deleteManyRequisitions(where: RequisitionWhereInput): BatchPayload!
+  createRequisitionCost(data: RequisitionCostCreateInput!): RequisitionCost!
+  updateRequisitionCost(data: RequisitionCostUpdateInput!, where: RequisitionCostWhereUniqueInput!): RequisitionCost
+  updateManyRequisitionCosts(data: RequisitionCostUpdateManyMutationInput!, where: RequisitionCostWhereInput): BatchPayload!
+  upsertRequisitionCost(where: RequisitionCostWhereUniqueInput!, create: RequisitionCostCreateInput!, update: RequisitionCostUpdateInput!): RequisitionCost!
+  deleteRequisitionCost(where: RequisitionCostWhereUniqueInput!): RequisitionCost
+  deleteManyRequisitionCosts(where: RequisitionCostWhereInput): BatchPayload!
+  createRequisitionDuration(data: RequisitionDurationCreateInput!): RequisitionDuration!
+  updateRequisitionDuration(data: RequisitionDurationUpdateInput!, where: RequisitionDurationWhereUniqueInput!): RequisitionDuration
+  updateManyRequisitionDurations(data: RequisitionDurationUpdateManyMutationInput!, where: RequisitionDurationWhereInput): BatchPayload!
+  upsertRequisitionDuration(where: RequisitionDurationWhereUniqueInput!, create: RequisitionDurationCreateInput!, update: RequisitionDurationUpdateInput!): RequisitionDuration!
+  deleteRequisitionDuration(where: RequisitionDurationWhereUniqueInput!): RequisitionDuration
+  deleteManyRequisitionDurations(where: RequisitionDurationWhereInput): BatchPayload!
   createRole(data: RoleCreateInput!): Role!
   updateRole(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role
   updateManyRoles(data: RoleUpdateManyMutationInput!, where: RoleWhereInput): BatchPayload!
   upsertRole(where: RoleWhereUniqueInput!, create: RoleCreateInput!, update: RoleUpdateInput!): Role!
   deleteRole(where: RoleWhereUniqueInput!): Role
   deleteManyRoles(where: RoleWhereInput): BatchPayload!
+  createRoofingMaterialOptions(data: RoofingMaterialOptionsCreateInput!): RoofingMaterialOptions!
+  updateRoofingMaterialOptions(data: RoofingMaterialOptionsUpdateInput!, where: RoofingMaterialOptionsWhereUniqueInput!): RoofingMaterialOptions
+  updateManyRoofingMaterialOptionses(data: RoofingMaterialOptionsUpdateManyMutationInput!, where: RoofingMaterialOptionsWhereInput): BatchPayload!
+  upsertRoofingMaterialOptions(where: RoofingMaterialOptionsWhereUniqueInput!, create: RoofingMaterialOptionsCreateInput!, update: RoofingMaterialOptionsUpdateInput!): RoofingMaterialOptions!
+  deleteRoofingMaterialOptions(where: RoofingMaterialOptionsWhereUniqueInput!): RoofingMaterialOptions
+  deleteManyRoofingMaterialOptionses(where: RoofingMaterialOptionsWhereInput): BatchPayload!
+  createSelectOptions(data: SelectOptionsCreateInput!): SelectOptions!
+  updateSelectOptions(data: SelectOptionsUpdateInput!, where: SelectOptionsWhereUniqueInput!): SelectOptions
+  updateManySelectOptionses(data: SelectOptionsUpdateManyMutationInput!, where: SelectOptionsWhereInput): BatchPayload!
+  upsertSelectOptions(where: SelectOptionsWhereUniqueInput!, create: SelectOptionsCreateInput!, update: SelectOptionsUpdateInput!): SelectOptions!
+  deleteSelectOptions(where: SelectOptionsWhereUniqueInput!): SelectOptions
+  deleteManySelectOptionses(where: SelectOptionsWhereInput): BatchPayload!
+  createSpacesOptions(data: SpacesOptionsCreateInput!): SpacesOptions!
+  updateSpacesOptions(data: SpacesOptionsUpdateInput!, where: SpacesOptionsWhereUniqueInput!): SpacesOptions
+  updateManySpacesOptionses(data: SpacesOptionsUpdateManyMutationInput!, where: SpacesOptionsWhereInput): BatchPayload!
+  upsertSpacesOptions(where: SpacesOptionsWhereUniqueInput!, create: SpacesOptionsCreateInput!, update: SpacesOptionsUpdateInput!): SpacesOptions!
+  deleteSpacesOptions(where: SpacesOptionsWhereUniqueInput!): SpacesOptions
+  deleteManySpacesOptionses(where: SpacesOptionsWhereInput): BatchPayload!
+  createStates(data: StatesCreateInput!): States!
+  updateStates(data: StatesUpdateInput!, where: StatesWhereUniqueInput!): States
+  updateManyStateses(data: StatesUpdateManyMutationInput!, where: StatesWhereInput): BatchPayload!
+  upsertStates(where: StatesWhereUniqueInput!, create: StatesCreateInput!, update: StatesUpdateInput!): States!
+  deleteStates(where: StatesWhereUniqueInput!): States
+  deleteManyStateses(where: StatesWhereInput): BatchPayload!
+  createSuccess(data: SuccessCreateInput!): Success!
+  updateSuccess(data: SuccessUpdateInput!, where: SuccessWhereUniqueInput!): Success
+  updateManySuccesses(data: SuccessUpdateManyMutationInput!, where: SuccessWhereInput): BatchPayload!
+  upsertSuccess(where: SuccessWhereUniqueInput!, create: SuccessCreateInput!, update: SuccessUpdateInput!): Success!
+  deleteSuccess(where: SuccessWhereUniqueInput!): Success
+  deleteManySuccesses(where: SuccessWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -464,6 +3448,24 @@ type Mutation {
   upsertUserOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!, create: UserOrganizationRoleCreateInput!, update: UserOrganizationRoleUpdateInput!): UserOrganizationRole!
   deleteUserOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!): UserOrganizationRole
   deleteManyUserOrganizationRoles(where: UserOrganizationRoleWhereInput): BatchPayload!
+  createValueAddedServices(data: ValueAddedServicesCreateInput!): ValueAddedServices!
+  updateValueAddedServices(data: ValueAddedServicesUpdateInput!, where: ValueAddedServicesWhereUniqueInput!): ValueAddedServices
+  updateManyValueAddedServiceses(data: ValueAddedServicesUpdateManyMutationInput!, where: ValueAddedServicesWhereInput): BatchPayload!
+  upsertValueAddedServices(where: ValueAddedServicesWhereUniqueInput!, create: ValueAddedServicesCreateInput!, update: ValueAddedServicesUpdateInput!): ValueAddedServices!
+  deleteValueAddedServices(where: ValueAddedServicesWhereUniqueInput!): ValueAddedServices
+  deleteManyValueAddedServiceses(where: ValueAddedServicesWhereInput): BatchPayload!
+  createWallFinishesOptions(data: WallFinishesOptionsCreateInput!): WallFinishesOptions!
+  updateWallFinishesOptions(data: WallFinishesOptionsUpdateInput!, where: WallFinishesOptionsWhereUniqueInput!): WallFinishesOptions
+  updateManyWallFinishesOptionses(data: WallFinishesOptionsUpdateManyMutationInput!, where: WallFinishesOptionsWhereInput): BatchPayload!
+  upsertWallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!, create: WallFinishesOptionsCreateInput!, update: WallFinishesOptionsUpdateInput!): WallFinishesOptions!
+  deleteWallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!): WallFinishesOptions
+  deleteManyWallFinishesOptionses(where: WallFinishesOptionsWhereInput): BatchPayload!
+  createWarehouserIdentification(data: WarehouserIdentificationCreateInput!): WarehouserIdentification!
+  updateWarehouserIdentification(data: WarehouserIdentificationUpdateInput!, where: WarehouserIdentificationWhereUniqueInput!): WarehouserIdentification
+  updateManyWarehouserIdentifications(data: WarehouserIdentificationUpdateManyMutationInput!, where: WarehouserIdentificationWhereInput): BatchPayload!
+  upsertWarehouserIdentification(where: WarehouserIdentificationWhereUniqueInput!, create: WarehouserIdentificationCreateInput!, update: WarehouserIdentificationUpdateInput!): WarehouserIdentification!
+  deleteWarehouserIdentification(where: WarehouserIdentificationWhereUniqueInput!): WarehouserIdentification
+  deleteManyWarehouserIdentifications(where: WarehouserIdentificationWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -480,7 +3482,7 @@ type Organization {
   createdAt: DateTime!
   updatedAt: DateTime
   id: ID!
-  name: String!
+  name: String
   email: String!
   type: OrganizationType!
   phoneNumber: String!
@@ -495,7 +3497,7 @@ type OrganizationConnection {
 
 input OrganizationCreateInput {
   id: ID
-  name: String!
+  name: String
   email: String!
   type: OrganizationTypeCreateOneInput!
   phoneNumber: String!
@@ -531,7 +3533,7 @@ type OrganizationPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime
   id: ID!
-  name: String!
+  name: String
   email: String!
   phoneNumber: String!
 }
@@ -556,7 +3558,7 @@ input OrganizationSubscriptionWhereInput {
 
 type OrganizationType {
   id: ID!
-  name: String!
+  name: String
 }
 
 type OrganizationTypeConnection {
@@ -567,7 +3569,7 @@ type OrganizationTypeConnection {
 
 input OrganizationTypeCreateInput {
   id: ID
-  name: String!
+  name: String
 }
 
 input OrganizationTypeCreateOneInput {
@@ -589,7 +3591,7 @@ enum OrganizationTypeOrderByInput {
 
 type OrganizationTypePreviousValues {
   id: ID!
-  name: String!
+  name: String
 }
 
 type OrganizationTypeSubscriptionPayload {
@@ -950,13 +3952,311 @@ type PageInfo {
   endCursor: String
 }
 
+type PropertiesOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type PropertiesOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [PropertiesOptionsEdge]!
+  aggregate: AggregatePropertiesOptions!
+}
+
+input PropertiesOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsCreateManyInput {
+  create: [PropertiesOptionsCreateInput!]
+  connect: [PropertiesOptionsWhereUniqueInput!]
+}
+
+type PropertiesOptionsEdge {
+  node: PropertiesOptions!
+  cursor: String!
+}
+
+enum PropertiesOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type PropertiesOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [PropertiesOptionsScalarWhereInput!]
+  OR: [PropertiesOptionsScalarWhereInput!]
+  NOT: [PropertiesOptionsScalarWhereInput!]
+}
+
+type PropertiesOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: PropertiesOptions
+  updatedFields: [String!]
+  previousValues: PropertiesOptionsPreviousValues
+}
+
+input PropertiesOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PropertiesOptionsWhereInput
+  AND: [PropertiesOptionsSubscriptionWhereInput!]
+  OR: [PropertiesOptionsSubscriptionWhereInput!]
+  NOT: [PropertiesOptionsSubscriptionWhereInput!]
+}
+
+input PropertiesOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsUpdateManyInput {
+  create: [PropertiesOptionsCreateInput!]
+  update: [PropertiesOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [PropertiesOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [PropertiesOptionsWhereUniqueInput!]
+  connect: [PropertiesOptionsWhereUniqueInput!]
+  set: [PropertiesOptionsWhereUniqueInput!]
+  disconnect: [PropertiesOptionsWhereUniqueInput!]
+  deleteMany: [PropertiesOptionsScalarWhereInput!]
+  updateMany: [PropertiesOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input PropertiesOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input PropertiesOptionsUpdateManyWithWhereNestedInput {
+  where: PropertiesOptionsScalarWhereInput!
+  data: PropertiesOptionsUpdateManyDataInput!
+}
+
+input PropertiesOptionsUpdateWithWhereUniqueNestedInput {
+  where: PropertiesOptionsWhereUniqueInput!
+  data: PropertiesOptionsUpdateDataInput!
+}
+
+input PropertiesOptionsUpsertWithWhereUniqueNestedInput {
+  where: PropertiesOptionsWhereUniqueInput!
+  update: PropertiesOptionsUpdateDataInput!
+  create: PropertiesOptionsCreateInput!
+}
+
+input PropertiesOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [PropertiesOptionsWhereInput!]
+  OR: [PropertiesOptionsWhereInput!]
+  NOT: [PropertiesOptionsWhereInput!]
+}
+
+input PropertiesOptionsWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  amenitiesOptions(where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
+  amenitiesOptionses(where: AmenitiesOptionsWhereInput, orderBy: AmenitiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AmenitiesOptions]!
+  amenitiesOptionsesConnection(where: AmenitiesOptionsWhereInput, orderBy: AmenitiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AmenitiesOptionsConnection!
   auth(where: AuthWhereUniqueInput!): Auth
   auths(where: AuthWhereInput, orderBy: AuthOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Auth]!
   authsConnection(where: AuthWhereInput, orderBy: AuthOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AuthConnection!
   bank(where: BankWhereUniqueInput!): Bank
   banks(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bank]!
   banksConnection(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BankConnection!
+  countries(where: CountriesWhereUniqueInput!): Countries
+  countrieses(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Countries]!
+  countriesesConnection(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountriesConnection!
+  floorsOptions(where: FloorsOptionsWhereUniqueInput!): FloorsOptions
+  floorsOptionses(where: FloorsOptionsWhereInput, orderBy: FloorsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FloorsOptions]!
+  floorsOptionsesConnection(where: FloorsOptionsWhereInput, orderBy: FloorsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FloorsOptionsConnection!
+  identificationsOptions(where: IdentificationsOptionsWhereUniqueInput!): IdentificationsOptions
+  identificationsOptionses(where: IdentificationsOptionsWhereInput, orderBy: IdentificationsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [IdentificationsOptions]!
+  identificationsOptionsesConnection(where: IdentificationsOptionsWhereInput, orderBy: IdentificationsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IdentificationsOptionsConnection!
+  listing(where: ListingWhereUniqueInput!): Listing
+  listings(where: ListingWhereInput, orderBy: ListingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Listing]!
+  listingsConnection(where: ListingWhereInput, orderBy: ListingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingConnection!
+  listingAvailability(where: ListingAvailabilityWhereUniqueInput!): ListingAvailability
+  listingAvailabilities(where: ListingAvailabilityWhereInput, orderBy: ListingAvailabilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingAvailability]!
+  listingAvailabilitiesConnection(where: ListingAvailabilityWhereInput, orderBy: ListingAvailabilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingAvailabilityConnection!
+  listingDimensions(where: ListingDimensionsWhereUniqueInput!): ListingDimensions
+  listingDimensionses(where: ListingDimensionsWhereInput, orderBy: ListingDimensionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingDimensions]!
+  listingDimensionsesConnection(where: ListingDimensionsWhereInput, orderBy: ListingDimensionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingDimensionsConnection!
+  listingPhotos(where: ListingPhotosWhereUniqueInput!): ListingPhotos
+  listingPhotoses(where: ListingPhotosWhereInput, orderBy: ListingPhotosOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingPhotos]!
+  listingPhotosesConnection(where: ListingPhotosWhereInput, orderBy: ListingPhotosOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingPhotosConnection!
+  listingProducts(where: ListingProductsWhereUniqueInput!): ListingProducts
+  listingProductses(where: ListingProductsWhereInput, orderBy: ListingProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingProducts]!
+  listingProductsesConnection(where: ListingProductsWhereInput, orderBy: ListingProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingProductsConnection!
+  listingRating(where: ListingRatingWhereUniqueInput!): ListingRating
+  listingRatings(where: ListingRatingWhereInput, orderBy: ListingRatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingRating]!
+  listingRatingsConnection(where: ListingRatingWhereInput, orderBy: ListingRatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingRatingConnection!
+  listingRequirements(where: ListingRequirementsWhereUniqueInput!): ListingRequirements
+  listingRequirementses(where: ListingRequirementsWhereInput, orderBy: ListingRequirementsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingRequirements]!
+  listingRequirementsesConnection(where: ListingRequirementsWhereInput, orderBy: ListingRequirementsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingRequirementsConnection!
+  listingsFrequencies(where: ListingsFrequenciesWhereUniqueInput!): ListingsFrequencies
+  listingsFrequencieses(where: ListingsFrequenciesWhereInput, orderBy: ListingsFrequenciesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingsFrequencies]!
+  listingsFrequenciesesConnection(where: ListingsFrequenciesWhereInput, orderBy: ListingsFrequenciesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ListingsFrequenciesConnection!
+  locations(where: LocationsWhereUniqueInput!): Locations
+  locationses(where: LocationsWhereInput, orderBy: LocationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Locations]!
+  locationsesConnection(where: LocationsWhereInput, orderBy: LocationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationsConnection!
   organization(where: OrganizationWhereUniqueInput!): Organization
   organizations(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Organization]!
   organizationsConnection(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationConnection!
@@ -966,21 +4266,647 @@ type Query {
   otp(where: OtpWhereUniqueInput!): Otp
   otps(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Otp]!
   otpsConnection(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OtpConnection!
+  propertiesOptions(where: PropertiesOptionsWhereUniqueInput!): PropertiesOptions
+  propertiesOptionses(where: PropertiesOptionsWhereInput, orderBy: PropertiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PropertiesOptions]!
+  propertiesOptionsesConnection(where: PropertiesOptionsWhereInput, orderBy: PropertiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PropertiesOptionsConnection!
+  rating(where: RatingWhereUniqueInput!): Rating
+  ratings(where: RatingWhereInput, orderBy: RatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Rating]!
+  ratingsConnection(where: RatingWhereInput, orderBy: RatingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RatingConnection!
+  requisition(where: RequisitionWhereUniqueInput!): Requisition
+  requisitions(where: RequisitionWhereInput, orderBy: RequisitionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Requisition]!
+  requisitionsConnection(where: RequisitionWhereInput, orderBy: RequisitionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RequisitionConnection!
+  requisitionCost(where: RequisitionCostWhereUniqueInput!): RequisitionCost
+  requisitionCosts(where: RequisitionCostWhereInput, orderBy: RequisitionCostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RequisitionCost]!
+  requisitionCostsConnection(where: RequisitionCostWhereInput, orderBy: RequisitionCostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RequisitionCostConnection!
+  requisitionDuration(where: RequisitionDurationWhereUniqueInput!): RequisitionDuration
+  requisitionDurations(where: RequisitionDurationWhereInput, orderBy: RequisitionDurationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RequisitionDuration]!
+  requisitionDurationsConnection(where: RequisitionDurationWhereInput, orderBy: RequisitionDurationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RequisitionDurationConnection!
   role(where: RoleWhereUniqueInput!): Role
   roles(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Role]!
   rolesConnection(where: RoleWhereInput, orderBy: RoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoleConnection!
+  roofingMaterialOptions(where: RoofingMaterialOptionsWhereUniqueInput!): RoofingMaterialOptions
+  roofingMaterialOptionses(where: RoofingMaterialOptionsWhereInput, orderBy: RoofingMaterialOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RoofingMaterialOptions]!
+  roofingMaterialOptionsesConnection(where: RoofingMaterialOptionsWhereInput, orderBy: RoofingMaterialOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoofingMaterialOptionsConnection!
+  selectOptions(where: SelectOptionsWhereUniqueInput!): SelectOptions
+  selectOptionses(where: SelectOptionsWhereInput, orderBy: SelectOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SelectOptions]!
+  selectOptionsesConnection(where: SelectOptionsWhereInput, orderBy: SelectOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SelectOptionsConnection!
+  spacesOptions(where: SpacesOptionsWhereUniqueInput!): SpacesOptions
+  spacesOptionses(where: SpacesOptionsWhereInput, orderBy: SpacesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SpacesOptions]!
+  spacesOptionsesConnection(where: SpacesOptionsWhereInput, orderBy: SpacesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpacesOptionsConnection!
+  states(where: StatesWhereUniqueInput!): States
+  stateses(where: StatesWhereInput, orderBy: StatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [States]!
+  statesesConnection(where: StatesWhereInput, orderBy: StatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatesConnection!
+  success(where: SuccessWhereUniqueInput!): Success
+  successes(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Success]!
+  successesConnection(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SuccessConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   userOrganizationRole(where: UserOrganizationRoleWhereUniqueInput!): UserOrganizationRole
   userOrganizationRoles(where: UserOrganizationRoleWhereInput, orderBy: UserOrganizationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserOrganizationRole]!
   userOrganizationRolesConnection(where: UserOrganizationRoleWhereInput, orderBy: UserOrganizationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserOrganizationRoleConnection!
+  valueAddedServices(where: ValueAddedServicesWhereUniqueInput!): ValueAddedServices
+  valueAddedServiceses(where: ValueAddedServicesWhereInput, orderBy: ValueAddedServicesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ValueAddedServices]!
+  valueAddedServicesesConnection(where: ValueAddedServicesWhereInput, orderBy: ValueAddedServicesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ValueAddedServicesConnection!
+  wallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!): WallFinishesOptions
+  wallFinishesOptionses(where: WallFinishesOptionsWhereInput, orderBy: WallFinishesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WallFinishesOptions]!
+  wallFinishesOptionsesConnection(where: WallFinishesOptionsWhereInput, orderBy: WallFinishesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WallFinishesOptionsConnection!
+  warehouserIdentification(where: WarehouserIdentificationWhereUniqueInput!): WarehouserIdentification
+  warehouserIdentifications(where: WarehouserIdentificationWhereInput, orderBy: WarehouserIdentificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WarehouserIdentification]!
+  warehouserIdentificationsConnection(where: WarehouserIdentificationWhereInput, orderBy: WarehouserIdentificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WarehouserIdentificationConnection!
   node(id: ID!): Node
+}
+
+type Rating {
+  id: ID!
+  listingId: String!
+  ratingId: String!
+  rate: Int!
+  userId: String!
+}
+
+type RatingConnection {
+  pageInfo: PageInfo!
+  edges: [RatingEdge]!
+  aggregate: AggregateRating!
+}
+
+input RatingCreateInput {
+  id: ID
+  listingId: String!
+  ratingId: String!
+  rate: Int!
+  userId: String!
+}
+
+type RatingEdge {
+  node: Rating!
+  cursor: String!
+}
+
+enum RatingOrderByInput {
+  id_ASC
+  id_DESC
+  listingId_ASC
+  listingId_DESC
+  ratingId_ASC
+  ratingId_DESC
+  rate_ASC
+  rate_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type RatingPreviousValues {
+  id: ID!
+  listingId: String!
+  ratingId: String!
+  rate: Int!
+  userId: String!
+}
+
+type RatingSubscriptionPayload {
+  mutation: MutationType!
+  node: Rating
+  updatedFields: [String!]
+  previousValues: RatingPreviousValues
+}
+
+input RatingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RatingWhereInput
+  AND: [RatingSubscriptionWhereInput!]
+  OR: [RatingSubscriptionWhereInput!]
+  NOT: [RatingSubscriptionWhereInput!]
+}
+
+input RatingUpdateInput {
+  listingId: String
+  ratingId: String
+  rate: Int
+  userId: String
+}
+
+input RatingUpdateManyMutationInput {
+  listingId: String
+  ratingId: String
+  rate: Int
+  userId: String
+}
+
+input RatingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  listingId: String
+  listingId_not: String
+  listingId_in: [String!]
+  listingId_not_in: [String!]
+  listingId_lt: String
+  listingId_lte: String
+  listingId_gt: String
+  listingId_gte: String
+  listingId_contains: String
+  listingId_not_contains: String
+  listingId_starts_with: String
+  listingId_not_starts_with: String
+  listingId_ends_with: String
+  listingId_not_ends_with: String
+  ratingId: String
+  ratingId_not: String
+  ratingId_in: [String!]
+  ratingId_not_in: [String!]
+  ratingId_lt: String
+  ratingId_lte: String
+  ratingId_gt: String
+  ratingId_gte: String
+  ratingId_contains: String
+  ratingId_not_contains: String
+  ratingId_starts_with: String
+  ratingId_not_starts_with: String
+  ratingId_ends_with: String
+  ratingId_not_ends_with: String
+  rate: Int
+  rate_not: Int
+  rate_in: [Int!]
+  rate_not_in: [Int!]
+  rate_lt: Int
+  rate_lte: Int
+  rate_gt: Int
+  rate_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [RatingWhereInput!]
+  OR: [RatingWhereInput!]
+  NOT: [RatingWhereInput!]
+}
+
+input RatingWhereUniqueInput {
+  id: ID
+}
+
+type Requisition {
+  id: ID!
+  duration: RequisitionDuration!
+  cost: RequisitionCost!
+  user: User!
+  expires: String
+  products(where: ListingProductsWhereInput, orderBy: ListingProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ListingProducts!]
+  listing: Listing!
+  space: Int!
+  status: Int!
+}
+
+type RequisitionConnection {
+  pageInfo: PageInfo!
+  edges: [RequisitionEdge]!
+  aggregate: AggregateRequisition!
+}
+
+type RequisitionCost {
+  id: ID!
+  baseCost: Float!
+  vat: Float!
+  discount: Float
+}
+
+type RequisitionCostConnection {
+  pageInfo: PageInfo!
+  edges: [RequisitionCostEdge]!
+  aggregate: AggregateRequisitionCost!
+}
+
+input RequisitionCostCreateInput {
+  id: ID
+  baseCost: Float!
+  vat: Float!
+  discount: Float
+}
+
+input RequisitionCostCreateOneInput {
+  create: RequisitionCostCreateInput
+  connect: RequisitionCostWhereUniqueInput
+}
+
+type RequisitionCostEdge {
+  node: RequisitionCost!
+  cursor: String!
+}
+
+enum RequisitionCostOrderByInput {
+  id_ASC
+  id_DESC
+  baseCost_ASC
+  baseCost_DESC
+  vat_ASC
+  vat_DESC
+  discount_ASC
+  discount_DESC
+}
+
+type RequisitionCostPreviousValues {
+  id: ID!
+  baseCost: Float!
+  vat: Float!
+  discount: Float
+}
+
+type RequisitionCostSubscriptionPayload {
+  mutation: MutationType!
+  node: RequisitionCost
+  updatedFields: [String!]
+  previousValues: RequisitionCostPreviousValues
+}
+
+input RequisitionCostSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RequisitionCostWhereInput
+  AND: [RequisitionCostSubscriptionWhereInput!]
+  OR: [RequisitionCostSubscriptionWhereInput!]
+  NOT: [RequisitionCostSubscriptionWhereInput!]
+}
+
+input RequisitionCostUpdateDataInput {
+  baseCost: Float
+  vat: Float
+  discount: Float
+}
+
+input RequisitionCostUpdateInput {
+  baseCost: Float
+  vat: Float
+  discount: Float
+}
+
+input RequisitionCostUpdateManyMutationInput {
+  baseCost: Float
+  vat: Float
+  discount: Float
+}
+
+input RequisitionCostUpdateOneRequiredInput {
+  create: RequisitionCostCreateInput
+  update: RequisitionCostUpdateDataInput
+  upsert: RequisitionCostUpsertNestedInput
+  connect: RequisitionCostWhereUniqueInput
+}
+
+input RequisitionCostUpsertNestedInput {
+  update: RequisitionCostUpdateDataInput!
+  create: RequisitionCostCreateInput!
+}
+
+input RequisitionCostWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  baseCost: Float
+  baseCost_not: Float
+  baseCost_in: [Float!]
+  baseCost_not_in: [Float!]
+  baseCost_lt: Float
+  baseCost_lte: Float
+  baseCost_gt: Float
+  baseCost_gte: Float
+  vat: Float
+  vat_not: Float
+  vat_in: [Float!]
+  vat_not_in: [Float!]
+  vat_lt: Float
+  vat_lte: Float
+  vat_gt: Float
+  vat_gte: Float
+  discount: Float
+  discount_not: Float
+  discount_in: [Float!]
+  discount_not_in: [Float!]
+  discount_lt: Float
+  discount_lte: Float
+  discount_gt: Float
+  discount_gte: Float
+  AND: [RequisitionCostWhereInput!]
+  OR: [RequisitionCostWhereInput!]
+  NOT: [RequisitionCostWhereInput!]
+}
+
+input RequisitionCostWhereUniqueInput {
+  id: ID
+}
+
+input RequisitionCreateInput {
+  id: ID
+  duration: RequisitionDurationCreateOneInput!
+  cost: RequisitionCostCreateOneInput!
+  user: UserCreateOneInput!
+  expires: String
+  products: ListingProductsCreateManyInput
+  listing: ListingCreateOneInput!
+  space: Int!
+  status: Int!
+}
+
+type RequisitionDuration {
+  id: ID!
+  name: String!
+  slug: String
+}
+
+type RequisitionDurationConnection {
+  pageInfo: PageInfo!
+  edges: [RequisitionDurationEdge]!
+  aggregate: AggregateRequisitionDuration!
+}
+
+input RequisitionDurationCreateInput {
+  id: ID
+  name: String!
+  slug: String
+}
+
+input RequisitionDurationCreateOneInput {
+  create: RequisitionDurationCreateInput
+  connect: RequisitionDurationWhereUniqueInput
+}
+
+type RequisitionDurationEdge {
+  node: RequisitionDuration!
+  cursor: String!
+}
+
+enum RequisitionDurationOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+}
+
+type RequisitionDurationPreviousValues {
+  id: ID!
+  name: String!
+  slug: String
+}
+
+type RequisitionDurationSubscriptionPayload {
+  mutation: MutationType!
+  node: RequisitionDuration
+  updatedFields: [String!]
+  previousValues: RequisitionDurationPreviousValues
+}
+
+input RequisitionDurationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RequisitionDurationWhereInput
+  AND: [RequisitionDurationSubscriptionWhereInput!]
+  OR: [RequisitionDurationSubscriptionWhereInput!]
+  NOT: [RequisitionDurationSubscriptionWhereInput!]
+}
+
+input RequisitionDurationUpdateDataInput {
+  name: String
+  slug: String
+}
+
+input RequisitionDurationUpdateInput {
+  name: String
+  slug: String
+}
+
+input RequisitionDurationUpdateManyMutationInput {
+  name: String
+  slug: String
+}
+
+input RequisitionDurationUpdateOneRequiredInput {
+  create: RequisitionDurationCreateInput
+  update: RequisitionDurationUpdateDataInput
+  upsert: RequisitionDurationUpsertNestedInput
+  connect: RequisitionDurationWhereUniqueInput
+}
+
+input RequisitionDurationUpsertNestedInput {
+  update: RequisitionDurationUpdateDataInput!
+  create: RequisitionDurationCreateInput!
+}
+
+input RequisitionDurationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  AND: [RequisitionDurationWhereInput!]
+  OR: [RequisitionDurationWhereInput!]
+  NOT: [RequisitionDurationWhereInput!]
+}
+
+input RequisitionDurationWhereUniqueInput {
+  id: ID
+}
+
+type RequisitionEdge {
+  node: Requisition!
+  cursor: String!
+}
+
+enum RequisitionOrderByInput {
+  id_ASC
+  id_DESC
+  expires_ASC
+  expires_DESC
+  space_ASC
+  space_DESC
+  status_ASC
+  status_DESC
+}
+
+type RequisitionPreviousValues {
+  id: ID!
+  expires: String
+  space: Int!
+  status: Int!
+}
+
+type RequisitionSubscriptionPayload {
+  mutation: MutationType!
+  node: Requisition
+  updatedFields: [String!]
+  previousValues: RequisitionPreviousValues
+}
+
+input RequisitionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RequisitionWhereInput
+  AND: [RequisitionSubscriptionWhereInput!]
+  OR: [RequisitionSubscriptionWhereInput!]
+  NOT: [RequisitionSubscriptionWhereInput!]
+}
+
+input RequisitionUpdateInput {
+  duration: RequisitionDurationUpdateOneRequiredInput
+  cost: RequisitionCostUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  expires: String
+  products: ListingProductsUpdateManyInput
+  listing: ListingUpdateOneRequiredInput
+  space: Int
+  status: Int
+}
+
+input RequisitionUpdateManyMutationInput {
+  expires: String
+  space: Int
+  status: Int
+}
+
+input RequisitionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  duration: RequisitionDurationWhereInput
+  cost: RequisitionCostWhereInput
+  user: UserWhereInput
+  expires: String
+  expires_not: String
+  expires_in: [String!]
+  expires_not_in: [String!]
+  expires_lt: String
+  expires_lte: String
+  expires_gt: String
+  expires_gte: String
+  expires_contains: String
+  expires_not_contains: String
+  expires_starts_with: String
+  expires_not_starts_with: String
+  expires_ends_with: String
+  expires_not_ends_with: String
+  products_every: ListingProductsWhereInput
+  products_some: ListingProductsWhereInput
+  products_none: ListingProductsWhereInput
+  listing: ListingWhereInput
+  space: Int
+  space_not: Int
+  space_in: [Int!]
+  space_not_in: [Int!]
+  space_lt: Int
+  space_lte: Int
+  space_gt: Int
+  space_gte: Int
+  status: Int
+  status_not: Int
+  status_in: [Int!]
+  status_not_in: [Int!]
+  status_lt: Int
+  status_lte: Int
+  status_gt: Int
+  status_gte: Int
+  AND: [RequisitionWhereInput!]
+  OR: [RequisitionWhereInput!]
+  NOT: [RequisitionWhereInput!]
+}
+
+input RequisitionWhereUniqueInput {
+  id: ID
 }
 
 type Role {
   id: ID!
-  name: String!
+  name: String
 }
 
 type RoleConnection {
@@ -991,7 +4917,7 @@ type RoleConnection {
 
 input RoleCreateInput {
   id: ID
-  name: String!
+  name: String
 }
 
 input RoleCreateOneInput {
@@ -1013,7 +4939,7 @@ enum RoleOrderByInput {
 
 type RolePreviousValues {
   id: ID!
-  name: String!
+  name: String
 }
 
 type RoleSubscriptionPayload {
@@ -1097,15 +5023,932 @@ input RoleWhereUniqueInput {
   name: String
 }
 
+type RoofingMaterialOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type RoofingMaterialOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [RoofingMaterialOptionsEdge]!
+  aggregate: AggregateRoofingMaterialOptions!
+}
+
+input RoofingMaterialOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsCreateManyInput {
+  create: [RoofingMaterialOptionsCreateInput!]
+  connect: [RoofingMaterialOptionsWhereUniqueInput!]
+}
+
+type RoofingMaterialOptionsEdge {
+  node: RoofingMaterialOptions!
+  cursor: String!
+}
+
+enum RoofingMaterialOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type RoofingMaterialOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [RoofingMaterialOptionsScalarWhereInput!]
+  OR: [RoofingMaterialOptionsScalarWhereInput!]
+  NOT: [RoofingMaterialOptionsScalarWhereInput!]
+}
+
+type RoofingMaterialOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: RoofingMaterialOptions
+  updatedFields: [String!]
+  previousValues: RoofingMaterialOptionsPreviousValues
+}
+
+input RoofingMaterialOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RoofingMaterialOptionsWhereInput
+  AND: [RoofingMaterialOptionsSubscriptionWhereInput!]
+  OR: [RoofingMaterialOptionsSubscriptionWhereInput!]
+  NOT: [RoofingMaterialOptionsSubscriptionWhereInput!]
+}
+
+input RoofingMaterialOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsUpdateManyInput {
+  create: [RoofingMaterialOptionsCreateInput!]
+  update: [RoofingMaterialOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [RoofingMaterialOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [RoofingMaterialOptionsWhereUniqueInput!]
+  connect: [RoofingMaterialOptionsWhereUniqueInput!]
+  set: [RoofingMaterialOptionsWhereUniqueInput!]
+  disconnect: [RoofingMaterialOptionsWhereUniqueInput!]
+  deleteMany: [RoofingMaterialOptionsScalarWhereInput!]
+  updateMany: [RoofingMaterialOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input RoofingMaterialOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input RoofingMaterialOptionsUpdateManyWithWhereNestedInput {
+  where: RoofingMaterialOptionsScalarWhereInput!
+  data: RoofingMaterialOptionsUpdateManyDataInput!
+}
+
+input RoofingMaterialOptionsUpdateWithWhereUniqueNestedInput {
+  where: RoofingMaterialOptionsWhereUniqueInput!
+  data: RoofingMaterialOptionsUpdateDataInput!
+}
+
+input RoofingMaterialOptionsUpsertWithWhereUniqueNestedInput {
+  where: RoofingMaterialOptionsWhereUniqueInput!
+  update: RoofingMaterialOptionsUpdateDataInput!
+  create: RoofingMaterialOptionsCreateInput!
+}
+
+input RoofingMaterialOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [RoofingMaterialOptionsWhereInput!]
+  OR: [RoofingMaterialOptionsWhereInput!]
+  NOT: [RoofingMaterialOptionsWhereInput!]
+}
+
+input RoofingMaterialOptionsWhereUniqueInput {
+  id: ID
+}
+
+type SelectOptions {
+  id: ID!
+  slug: String
+  name: String
+}
+
+type SelectOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [SelectOptionsEdge]!
+  aggregate: AggregateSelectOptions!
+}
+
+input SelectOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+}
+
+input SelectOptionsCreateOneInput {
+  create: SelectOptionsCreateInput
+  connect: SelectOptionsWhereUniqueInput
+}
+
+type SelectOptionsEdge {
+  node: SelectOptions!
+  cursor: String!
+}
+
+enum SelectOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+}
+
+type SelectOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+}
+
+type SelectOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: SelectOptions
+  updatedFields: [String!]
+  previousValues: SelectOptionsPreviousValues
+}
+
+input SelectOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SelectOptionsWhereInput
+  AND: [SelectOptionsSubscriptionWhereInput!]
+  OR: [SelectOptionsSubscriptionWhereInput!]
+  NOT: [SelectOptionsSubscriptionWhereInput!]
+}
+
+input SelectOptionsUpdateDataInput {
+  slug: String
+  name: String
+}
+
+input SelectOptionsUpdateInput {
+  slug: String
+  name: String
+}
+
+input SelectOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+}
+
+input SelectOptionsUpdateOneRequiredInput {
+  create: SelectOptionsCreateInput
+  update: SelectOptionsUpdateDataInput
+  upsert: SelectOptionsUpsertNestedInput
+  connect: SelectOptionsWhereUniqueInput
+}
+
+input SelectOptionsUpsertNestedInput {
+  update: SelectOptionsUpdateDataInput!
+  create: SelectOptionsCreateInput!
+}
+
+input SelectOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [SelectOptionsWhereInput!]
+  OR: [SelectOptionsWhereInput!]
+  NOT: [SelectOptionsWhereInput!]
+}
+
+input SelectOptionsWhereUniqueInput {
+  id: ID
+}
+
+type SpacesOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type SpacesOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [SpacesOptionsEdge]!
+  aggregate: AggregateSpacesOptions!
+}
+
+input SpacesOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsCreateManyInput {
+  create: [SpacesOptionsCreateInput!]
+  connect: [SpacesOptionsWhereUniqueInput!]
+}
+
+type SpacesOptionsEdge {
+  node: SpacesOptions!
+  cursor: String!
+}
+
+enum SpacesOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type SpacesOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [SpacesOptionsScalarWhereInput!]
+  OR: [SpacesOptionsScalarWhereInput!]
+  NOT: [SpacesOptionsScalarWhereInput!]
+}
+
+type SpacesOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: SpacesOptions
+  updatedFields: [String!]
+  previousValues: SpacesOptionsPreviousValues
+}
+
+input SpacesOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SpacesOptionsWhereInput
+  AND: [SpacesOptionsSubscriptionWhereInput!]
+  OR: [SpacesOptionsSubscriptionWhereInput!]
+  NOT: [SpacesOptionsSubscriptionWhereInput!]
+}
+
+input SpacesOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsUpdateManyInput {
+  create: [SpacesOptionsCreateInput!]
+  update: [SpacesOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [SpacesOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [SpacesOptionsWhereUniqueInput!]
+  connect: [SpacesOptionsWhereUniqueInput!]
+  set: [SpacesOptionsWhereUniqueInput!]
+  disconnect: [SpacesOptionsWhereUniqueInput!]
+  deleteMany: [SpacesOptionsScalarWhereInput!]
+  updateMany: [SpacesOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input SpacesOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input SpacesOptionsUpdateManyWithWhereNestedInput {
+  where: SpacesOptionsScalarWhereInput!
+  data: SpacesOptionsUpdateManyDataInput!
+}
+
+input SpacesOptionsUpdateWithWhereUniqueNestedInput {
+  where: SpacesOptionsWhereUniqueInput!
+  data: SpacesOptionsUpdateDataInput!
+}
+
+input SpacesOptionsUpsertWithWhereUniqueNestedInput {
+  where: SpacesOptionsWhereUniqueInput!
+  update: SpacesOptionsUpdateDataInput!
+  create: SpacesOptionsCreateInput!
+}
+
+input SpacesOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [SpacesOptionsWhereInput!]
+  OR: [SpacesOptionsWhereInput!]
+  NOT: [SpacesOptionsWhereInput!]
+}
+
+input SpacesOptionsWhereUniqueInput {
+  id: ID
+}
+
+type States {
+  id: ID!
+  countryId: String!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type StatesConnection {
+  pageInfo: PageInfo!
+  edges: [StatesEdge]!
+  aggregate: AggregateStates!
+}
+
+input StatesCreateInput {
+  id: ID
+  countryId: String!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type StatesEdge {
+  node: States!
+  cursor: String!
+}
+
+enum StatesOrderByInput {
+  id_ASC
+  id_DESC
+  countryId_ASC
+  countryId_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+}
+
+type StatesPreviousValues {
+  id: ID!
+  countryId: String!
+  slug: String
+  name: String
+  default: Boolean
+}
+
+type StatesSubscriptionPayload {
+  mutation: MutationType!
+  node: States
+  updatedFields: [String!]
+  previousValues: StatesPreviousValues
+}
+
+input StatesSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StatesWhereInput
+  AND: [StatesSubscriptionWhereInput!]
+  OR: [StatesSubscriptionWhereInput!]
+  NOT: [StatesSubscriptionWhereInput!]
+}
+
+input StatesUpdateInput {
+  countryId: String
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input StatesUpdateManyMutationInput {
+  countryId: String
+  slug: String
+  name: String
+  default: Boolean
+}
+
+input StatesWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  countryId: String
+  countryId_not: String
+  countryId_in: [String!]
+  countryId_not_in: [String!]
+  countryId_lt: String
+  countryId_lte: String
+  countryId_gt: String
+  countryId_gte: String
+  countryId_contains: String
+  countryId_not_contains: String
+  countryId_starts_with: String
+  countryId_not_starts_with: String
+  countryId_ends_with: String
+  countryId_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  AND: [StatesWhereInput!]
+  OR: [StatesWhereInput!]
+  NOT: [StatesWhereInput!]
+}
+
+input StatesWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
+  amenitiesOptions(where: AmenitiesOptionsSubscriptionWhereInput): AmenitiesOptionsSubscriptionPayload
   auth(where: AuthSubscriptionWhereInput): AuthSubscriptionPayload
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
+  countries(where: CountriesSubscriptionWhereInput): CountriesSubscriptionPayload
+  floorsOptions(where: FloorsOptionsSubscriptionWhereInput): FloorsOptionsSubscriptionPayload
+  identificationsOptions(where: IdentificationsOptionsSubscriptionWhereInput): IdentificationsOptionsSubscriptionPayload
+  listing(where: ListingSubscriptionWhereInput): ListingSubscriptionPayload
+  listingAvailability(where: ListingAvailabilitySubscriptionWhereInput): ListingAvailabilitySubscriptionPayload
+  listingDimensions(where: ListingDimensionsSubscriptionWhereInput): ListingDimensionsSubscriptionPayload
+  listingPhotos(where: ListingPhotosSubscriptionWhereInput): ListingPhotosSubscriptionPayload
+  listingProducts(where: ListingProductsSubscriptionWhereInput): ListingProductsSubscriptionPayload
+  listingRating(where: ListingRatingSubscriptionWhereInput): ListingRatingSubscriptionPayload
+  listingRequirements(where: ListingRequirementsSubscriptionWhereInput): ListingRequirementsSubscriptionPayload
+  listingsFrequencies(where: ListingsFrequenciesSubscriptionWhereInput): ListingsFrequenciesSubscriptionPayload
+  locations(where: LocationsSubscriptionWhereInput): LocationsSubscriptionPayload
   organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
   organizationType(where: OrganizationTypeSubscriptionWhereInput): OrganizationTypeSubscriptionPayload
   otp(where: OtpSubscriptionWhereInput): OtpSubscriptionPayload
+  propertiesOptions(where: PropertiesOptionsSubscriptionWhereInput): PropertiesOptionsSubscriptionPayload
+  rating(where: RatingSubscriptionWhereInput): RatingSubscriptionPayload
+  requisition(where: RequisitionSubscriptionWhereInput): RequisitionSubscriptionPayload
+  requisitionCost(where: RequisitionCostSubscriptionWhereInput): RequisitionCostSubscriptionPayload
+  requisitionDuration(where: RequisitionDurationSubscriptionWhereInput): RequisitionDurationSubscriptionPayload
   role(where: RoleSubscriptionWhereInput): RoleSubscriptionPayload
+  roofingMaterialOptions(where: RoofingMaterialOptionsSubscriptionWhereInput): RoofingMaterialOptionsSubscriptionPayload
+  selectOptions(where: SelectOptionsSubscriptionWhereInput): SelectOptionsSubscriptionPayload
+  spacesOptions(where: SpacesOptionsSubscriptionWhereInput): SpacesOptionsSubscriptionPayload
+  states(where: StatesSubscriptionWhereInput): StatesSubscriptionPayload
+  success(where: SuccessSubscriptionWhereInput): SuccessSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   userOrganizationRole(where: UserOrganizationRoleSubscriptionWhereInput): UserOrganizationRoleSubscriptionPayload
+  valueAddedServices(where: ValueAddedServicesSubscriptionWhereInput): ValueAddedServicesSubscriptionPayload
+  wallFinishesOptions(where: WallFinishesOptionsSubscriptionWhereInput): WallFinishesOptionsSubscriptionPayload
+  warehouserIdentification(where: WarehouserIdentificationSubscriptionWhereInput): WarehouserIdentificationSubscriptionPayload
+}
+
+type Success {
+  id: ID!
+  success: Boolean!
+}
+
+type SuccessConnection {
+  pageInfo: PageInfo!
+  edges: [SuccessEdge]!
+  aggregate: AggregateSuccess!
+}
+
+input SuccessCreateInput {
+  id: ID
+  success: Boolean!
+}
+
+type SuccessEdge {
+  node: Success!
+  cursor: String!
+}
+
+enum SuccessOrderByInput {
+  id_ASC
+  id_DESC
+  success_ASC
+  success_DESC
+}
+
+type SuccessPreviousValues {
+  id: ID!
+  success: Boolean!
+}
+
+type SuccessSubscriptionPayload {
+  mutation: MutationType!
+  node: Success
+  updatedFields: [String!]
+  previousValues: SuccessPreviousValues
+}
+
+input SuccessSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SuccessWhereInput
+  AND: [SuccessSubscriptionWhereInput!]
+  OR: [SuccessSubscriptionWhereInput!]
+  NOT: [SuccessSubscriptionWhereInput!]
+}
+
+input SuccessUpdateInput {
+  success: Boolean
+}
+
+input SuccessUpdateManyMutationInput {
+  success: Boolean
+}
+
+input SuccessWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  success: Boolean
+  success_not: Boolean
+  AND: [SuccessWhereInput!]
+  OR: [SuccessWhereInput!]
+  NOT: [SuccessWhereInput!]
+}
+
+input SuccessWhereUniqueInput {
+  id: ID
 }
 
 type User {
@@ -1116,6 +5959,7 @@ type User {
   phoneNumber: String!
   dob: String!
   terms: Boolean
+  type: String!
 }
 
 type UserConnection {
@@ -1132,6 +5976,7 @@ input UserCreateInput {
   phoneNumber: String!
   dob: String!
   terms: Boolean
+  type: String!
 }
 
 input UserCreateOneInput {
@@ -1159,6 +6004,8 @@ enum UserOrderByInput {
   dob_DESC
   terms_ASC
   terms_DESC
+  type_ASC
+  type_DESC
 }
 
 type UserOrganizationRole {
@@ -1254,6 +6101,7 @@ type UserPreviousValues {
   phoneNumber: String!
   dob: String!
   terms: Boolean
+  type: String!
 }
 
 type UserSubscriptionPayload {
@@ -1281,6 +6129,7 @@ input UserUpdateDataInput {
   phoneNumber: String
   dob: String
   terms: Boolean
+  type: String
 }
 
 input UserUpdateInput {
@@ -1290,6 +6139,7 @@ input UserUpdateInput {
   phoneNumber: String
   dob: String
   terms: Boolean
+  type: String
 }
 
 input UserUpdateManyMutationInput {
@@ -1299,6 +6149,7 @@ input UserUpdateManyMutationInput {
   phoneNumber: String
   dob: String
   terms: Boolean
+  type: String
 }
 
 input UserUpdateOneRequiredInput {
@@ -1400,12 +6251,706 @@ input UserWhereInput {
   dob_not_ends_with: String
   terms: Boolean
   terms_not: Boolean
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
 }
 
 input UserWhereUniqueInput {
+  id: ID
+}
+
+type ValueAddedServices {
+  id: ID!
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+type ValueAddedServicesConnection {
+  pageInfo: PageInfo!
+  edges: [ValueAddedServicesEdge]!
+  aggregate: AggregateValueAddedServices!
+}
+
+input ValueAddedServicesCreateInput {
+  id: ID
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesCreateManyInput {
+  create: [ValueAddedServicesCreateInput!]
+  connect: [ValueAddedServicesWhereUniqueInput!]
+}
+
+type ValueAddedServicesEdge {
+  node: ValueAddedServices!
+  cursor: String!
+}
+
+enum ValueAddedServicesOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  default_ASC
+  default_DESC
+  name_ASC
+  name_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type ValueAddedServicesPreviousValues {
+  id: ID!
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [ValueAddedServicesScalarWhereInput!]
+  OR: [ValueAddedServicesScalarWhereInput!]
+  NOT: [ValueAddedServicesScalarWhereInput!]
+}
+
+type ValueAddedServicesSubscriptionPayload {
+  mutation: MutationType!
+  node: ValueAddedServices
+  updatedFields: [String!]
+  previousValues: ValueAddedServicesPreviousValues
+}
+
+input ValueAddedServicesSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ValueAddedServicesWhereInput
+  AND: [ValueAddedServicesSubscriptionWhereInput!]
+  OR: [ValueAddedServicesSubscriptionWhereInput!]
+  NOT: [ValueAddedServicesSubscriptionWhereInput!]
+}
+
+input ValueAddedServicesUpdateDataInput {
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesUpdateInput {
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesUpdateManyDataInput {
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesUpdateManyInput {
+  create: [ValueAddedServicesCreateInput!]
+  update: [ValueAddedServicesUpdateWithWhereUniqueNestedInput!]
+  upsert: [ValueAddedServicesUpsertWithWhereUniqueNestedInput!]
+  delete: [ValueAddedServicesWhereUniqueInput!]
+  connect: [ValueAddedServicesWhereUniqueInput!]
+  set: [ValueAddedServicesWhereUniqueInput!]
+  disconnect: [ValueAddedServicesWhereUniqueInput!]
+  deleteMany: [ValueAddedServicesScalarWhereInput!]
+  updateMany: [ValueAddedServicesUpdateManyWithWhereNestedInput!]
+}
+
+input ValueAddedServicesUpdateManyMutationInput {
+  slug: String
+  default: Boolean
+  name: String
+  userId: String
+}
+
+input ValueAddedServicesUpdateManyWithWhereNestedInput {
+  where: ValueAddedServicesScalarWhereInput!
+  data: ValueAddedServicesUpdateManyDataInput!
+}
+
+input ValueAddedServicesUpdateWithWhereUniqueNestedInput {
+  where: ValueAddedServicesWhereUniqueInput!
+  data: ValueAddedServicesUpdateDataInput!
+}
+
+input ValueAddedServicesUpsertWithWhereUniqueNestedInput {
+  where: ValueAddedServicesWhereUniqueInput!
+  update: ValueAddedServicesUpdateDataInput!
+  create: ValueAddedServicesCreateInput!
+}
+
+input ValueAddedServicesWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [ValueAddedServicesWhereInput!]
+  OR: [ValueAddedServicesWhereInput!]
+  NOT: [ValueAddedServicesWhereInput!]
+}
+
+input ValueAddedServicesWhereUniqueInput {
+  id: ID
+}
+
+type WallFinishesOptions {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+type WallFinishesOptionsConnection {
+  pageInfo: PageInfo!
+  edges: [WallFinishesOptionsEdge]!
+  aggregate: AggregateWallFinishesOptions!
+}
+
+input WallFinishesOptionsCreateInput {
+  id: ID
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsCreateManyInput {
+  create: [WallFinishesOptionsCreateInput!]
+  connect: [WallFinishesOptionsWhereUniqueInput!]
+}
+
+type WallFinishesOptionsEdge {
+  node: WallFinishesOptions!
+  cursor: String!
+}
+
+enum WallFinishesOptionsOrderByInput {
+  id_ASC
+  id_DESC
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  default_ASC
+  default_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type WallFinishesOptionsPreviousValues {
+  id: ID!
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [WallFinishesOptionsScalarWhereInput!]
+  OR: [WallFinishesOptionsScalarWhereInput!]
+  NOT: [WallFinishesOptionsScalarWhereInput!]
+}
+
+type WallFinishesOptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: WallFinishesOptions
+  updatedFields: [String!]
+  previousValues: WallFinishesOptionsPreviousValues
+}
+
+input WallFinishesOptionsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: WallFinishesOptionsWhereInput
+  AND: [WallFinishesOptionsSubscriptionWhereInput!]
+  OR: [WallFinishesOptionsSubscriptionWhereInput!]
+  NOT: [WallFinishesOptionsSubscriptionWhereInput!]
+}
+
+input WallFinishesOptionsUpdateDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsUpdateInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsUpdateManyDataInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsUpdateManyInput {
+  create: [WallFinishesOptionsCreateInput!]
+  update: [WallFinishesOptionsUpdateWithWhereUniqueNestedInput!]
+  upsert: [WallFinishesOptionsUpsertWithWhereUniqueNestedInput!]
+  delete: [WallFinishesOptionsWhereUniqueInput!]
+  connect: [WallFinishesOptionsWhereUniqueInput!]
+  set: [WallFinishesOptionsWhereUniqueInput!]
+  disconnect: [WallFinishesOptionsWhereUniqueInput!]
+  deleteMany: [WallFinishesOptionsScalarWhereInput!]
+  updateMany: [WallFinishesOptionsUpdateManyWithWhereNestedInput!]
+}
+
+input WallFinishesOptionsUpdateManyMutationInput {
+  slug: String
+  name: String
+  default: Boolean
+  userId: String
+}
+
+input WallFinishesOptionsUpdateManyWithWhereNestedInput {
+  where: WallFinishesOptionsScalarWhereInput!
+  data: WallFinishesOptionsUpdateManyDataInput!
+}
+
+input WallFinishesOptionsUpdateWithWhereUniqueNestedInput {
+  where: WallFinishesOptionsWhereUniqueInput!
+  data: WallFinishesOptionsUpdateDataInput!
+}
+
+input WallFinishesOptionsUpsertWithWhereUniqueNestedInput {
+  where: WallFinishesOptionsWhereUniqueInput!
+  update: WallFinishesOptionsUpdateDataInput!
+  create: WallFinishesOptionsCreateInput!
+}
+
+input WallFinishesOptionsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  default: Boolean
+  default_not: Boolean
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [WallFinishesOptionsWhereInput!]
+  OR: [WallFinishesOptionsWhereInput!]
+  NOT: [WallFinishesOptionsWhereInput!]
+}
+
+input WallFinishesOptionsWhereUniqueInput {
+  id: ID
+}
+
+type WarehouserIdentification {
+  id: ID!
+  idNumber: String!
+  expiryDate: String!
+  idType: String!
+}
+
+type WarehouserIdentificationConnection {
+  pageInfo: PageInfo!
+  edges: [WarehouserIdentificationEdge]!
+  aggregate: AggregateWarehouserIdentification!
+}
+
+input WarehouserIdentificationCreateInput {
+  id: ID
+  idNumber: String!
+  expiryDate: String!
+  idType: String!
+}
+
+input WarehouserIdentificationCreateOneInput {
+  create: WarehouserIdentificationCreateInput
+  connect: WarehouserIdentificationWhereUniqueInput
+}
+
+type WarehouserIdentificationEdge {
+  node: WarehouserIdentification!
+  cursor: String!
+}
+
+enum WarehouserIdentificationOrderByInput {
+  id_ASC
+  id_DESC
+  idNumber_ASC
+  idNumber_DESC
+  expiryDate_ASC
+  expiryDate_DESC
+  idType_ASC
+  idType_DESC
+}
+
+type WarehouserIdentificationPreviousValues {
+  id: ID!
+  idNumber: String!
+  expiryDate: String!
+  idType: String!
+}
+
+type WarehouserIdentificationSubscriptionPayload {
+  mutation: MutationType!
+  node: WarehouserIdentification
+  updatedFields: [String!]
+  previousValues: WarehouserIdentificationPreviousValues
+}
+
+input WarehouserIdentificationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: WarehouserIdentificationWhereInput
+  AND: [WarehouserIdentificationSubscriptionWhereInput!]
+  OR: [WarehouserIdentificationSubscriptionWhereInput!]
+  NOT: [WarehouserIdentificationSubscriptionWhereInput!]
+}
+
+input WarehouserIdentificationUpdateDataInput {
+  idNumber: String
+  expiryDate: String
+  idType: String
+}
+
+input WarehouserIdentificationUpdateInput {
+  idNumber: String
+  expiryDate: String
+  idType: String
+}
+
+input WarehouserIdentificationUpdateManyMutationInput {
+  idNumber: String
+  expiryDate: String
+  idType: String
+}
+
+input WarehouserIdentificationUpdateOneRequiredInput {
+  create: WarehouserIdentificationCreateInput
+  update: WarehouserIdentificationUpdateDataInput
+  upsert: WarehouserIdentificationUpsertNestedInput
+  connect: WarehouserIdentificationWhereUniqueInput
+}
+
+input WarehouserIdentificationUpsertNestedInput {
+  update: WarehouserIdentificationUpdateDataInput!
+  create: WarehouserIdentificationCreateInput!
+}
+
+input WarehouserIdentificationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  idNumber: String
+  idNumber_not: String
+  idNumber_in: [String!]
+  idNumber_not_in: [String!]
+  idNumber_lt: String
+  idNumber_lte: String
+  idNumber_gt: String
+  idNumber_gte: String
+  idNumber_contains: String
+  idNumber_not_contains: String
+  idNumber_starts_with: String
+  idNumber_not_starts_with: String
+  idNumber_ends_with: String
+  idNumber_not_ends_with: String
+  expiryDate: String
+  expiryDate_not: String
+  expiryDate_in: [String!]
+  expiryDate_not_in: [String!]
+  expiryDate_lt: String
+  expiryDate_lte: String
+  expiryDate_gt: String
+  expiryDate_gte: String
+  expiryDate_contains: String
+  expiryDate_not_contains: String
+  expiryDate_starts_with: String
+  expiryDate_not_starts_with: String
+  expiryDate_ends_with: String
+  expiryDate_not_ends_with: String
+  idType: String
+  idType_not: String
+  idType_in: [String!]
+  idType_not_in: [String!]
+  idType_lt: String
+  idType_lte: String
+  idType_gt: String
+  idType_gte: String
+  idType_contains: String
+  idType_not_contains: String
+  idType_starts_with: String
+  idType_not_starts_with: String
+  idType_ends_with: String
+  idType_not_ends_with: String
+  AND: [WarehouserIdentificationWhereInput!]
+  OR: [WarehouserIdentificationWhereInput!]
+  NOT: [WarehouserIdentificationWhereInput!]
+}
+
+input WarehouserIdentificationWhereUniqueInput {
   id: ID
 }
 `

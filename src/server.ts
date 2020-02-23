@@ -52,7 +52,7 @@ app.get('/health', (req: express.Request, res: express.Response): void => {
 app.use(handleErrors);
 
 // handle 404 errors
-app.use((req, res, _next): void => {
+app.use((req: express.Request, res: express.Response, _next: express.NextFunction): void => {
     res.status(404).send({
         status: false,
         message: 'resource not found',

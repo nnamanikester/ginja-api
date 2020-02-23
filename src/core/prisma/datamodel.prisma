@@ -9,11 +9,231 @@ type User {
     type: String!
 }
 
+type SpacesOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type Locations {
+    id: ID!  @id @unique
+    country: String!
+    state: String
+    geo: String
+    lga: String
+    street: String
+    userId: String
+}
+
+type PropertiesOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type WallFinishesOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type ListingDimensions {
+    id: ID!  @id @unique
+    height: Float!
+    weight: Float!
+    length: Float!
+    unitOfDimensions: Int
+    volume: Float
+    area: Float
+}
+
+type WarehouserIdentification {
+    id: ID!  @id @unique
+    idNumber: String!
+    expiryDate: String!
+    idType: String!
+}
+
+type Listing {
+    id: ID!  @id @unique
+    name: String
+    slug: String
+    user: User!
+    description: String!
+    price: Float!
+    discount: Int
+    currency: String!
+    proofOfOwnership: String!
+    identification: WarehouserIdentification!
+    spacing: [SpacesOptions]!
+    property:[PropertiesOptions]!
+    floor:[FloorsOptions]!
+    wallFinish:[WallFinishesOptions]!
+    roofing:[RoofingMaterialOptions]!
+    isSecure: SelectOptions! @relation(name: "SelectOptions_isSecure")
+    pest: SelectOptions!  @relation(name: "SelectOptions_pest")
+    windows: Int!
+    location: Locations!
+    amenities: [AmenitiesOptions]!
+    avatar: String!
+    vas: [ValueAddedServices]!
+    listingPhotos: [ListingPhotos]!
+    frequency: ListingsFrequencies!
+    requirements: [ListingRequirements]!
+    products: [ListingProducts]!
+    availability: ListingAvailability!
+    dimensions: ListingDimensions!
+    status: Int!
+    rating: ListingRating!
+}
+
+type Rating {
+    id: ID!  @id @unique
+    listingId: String!
+    ratingId: String!
+    rate: Int!
+    userId: String!
+}
+
+type Requisition {
+    id: ID!  @id @unique
+    duration: RequisitionDuration!
+    cost: RequisitionCost!
+    user: User!
+    expires: String
+    products: [ListingProducts!]!
+    listing: Listing!
+    space: Int!
+    status: Int!
+}
+
+type RequisitionCost {
+    id: ID!  @id @unique
+    baseCost: Float!
+    vat: Float!
+    discount: Float
+}
+
+type RequisitionDuration {
+    id: ID!  @id @unique
+    name: String!
+    slug: String
+}
+
+type ListingRating {
+    id: ID!  @id @unique
+    count: Int!
+    rates: Int!
+    average: Float!
+}
+
+type ListingAvailability {
+    id: ID!  @id @unique
+    from: String!
+    to: String!
+}
+
+type ListingRequirements {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+}
+
+type SelectOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+}
+
+type RoofingMaterialOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type FloorsOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type AmenitiesOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type ValueAddedServices {
+    id: ID!  @id @unique
+    slug: String
+    default: Boolean
+    name: String
+    userId: String
+}
+
+type IdentificationsOptions {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type ListingsFrequencies {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
+type ListingPhotos {
+    id: ID!  @id @unique
+    url: String!
+    default: Boolean
+}
+
+type States {
+    id: ID!  @id @unique
+    countryId: String!
+    slug: String
+    name: String
+    default: Boolean
+}
+
+type Countries {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+}
+
+type ListingProducts {
+    id: ID!  @id @unique
+    slug: String
+    name: String
+    default: Boolean
+    userId: String
+}
+
 type Organization {
     createdAt: DateTime! @createdAt
     updatedAt: DateTime @updatedAt
     id: ID! @id @unique
-    name: String!
+    name: String
     email: String!
     type: OrganizationType!
     phoneNumber: String!
@@ -22,7 +242,7 @@ type Organization {
 
 type OrganizationType {
     id: ID! @id @unique
-    name: String!  @unique
+    name: String  @unique
 }
 
 
@@ -55,7 +275,7 @@ type UserOrganizationRole {
 
 type Role {
     id: ID! @id @unique
-    name: String!  @unique
+    name: String  @unique
 }
 
 type Success {

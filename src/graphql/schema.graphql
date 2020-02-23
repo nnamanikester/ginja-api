@@ -1,14 +1,27 @@
 type Query {
     info: String
     users: [User!]!
+    listings(filter: String, user: String, location: LocationsInput, skip: Int, first: Int): [Listing]
     banks: [Bank!]!
     auths: [Auth!]!
     roles: [Role!]!
+    listingProducts: [ListingProducts]
+    listingRequirements: [ListingRequirements]
+    listingsFrequencies: [ListingsFrequencies]
+    valueAddedServices: [ValueAddedServices]
+    amenitiesOptions: [AmenitiesOptions]
+    selectOptions: [SelectOptions]
+    floorsOptions: [FloorsOptions]
+    roofingMaterialOptions: [RoofingMaterialOptions]
+    wallFinishesOptions: [WallFinishesOptions]
+    propertiesOptions: [PropertiesOptions]
+    spacesOptions: [SpacesOptions]
     role(id: ID, name: String): Role!
     otp(id: ID, phoneNumber: String): Otp!
     organizations: [Organization!]!
     organizationTypes: [OrganizationType!]!
     userOrganizationRoles: [UserOrganizationRole!]!
+    requisitions( user: String, skip: Int, first: Int): [Requisition]!
 }
 
 type Mutation {
@@ -25,6 +38,45 @@ type Mutation {
         bankName: String!
         bankCode: String!
     ): AuthPayload!
+    submitRating(listingId:String!, ratingId:String!, rate: Int!, userId: String!): Success!
+    addListing(
+        user: String!
+        name: String!
+        slug: String!
+        description: String!
+        price: Float!
+        discount: Int
+        currency: String!
+        proofOfOwnership: String!
+        identification: WarehouserIdentification!
+        spacing: [SelectOption!]!
+        property: [SelectOption!]!
+        floor: [SelectOption!]!
+        wallFinish: [SelectOption!]!
+        roofing: [SelectOption!]!
+        isSecure: SelectOption!
+        pest: SelectOption!
+        windows: Int!
+        location: Locations!
+        amenities: [SelectOption!]!
+        avatar: String!
+        vas: [SelectOption!]!
+        listingPhotos: [ListingPhotos!]!
+        frequency: SelectOption!
+        requirements: [SelectOption!]!
+        products: [SelectOption!]!
+        availability: ListingAvailability!
+        dimensions: ListingDimensions!
+    ): Success!
+    createRequisition(
+        products: [SelectOption!]
+        duration: RequisitionDurationInput
+        cost: RequisitionCostInput!
+        expires: String!
+        user: String!
+        listing: String!
+        space: Int!
+        ): Success!
     generateOtp(phoneNumber: String!): Otp!
     validateOtp(otp: String!, phoneNumber: String!): Success!
     login(pin: String!, phoneNumber: String!): AuthPayload!
@@ -34,12 +86,304 @@ type Mutation {
     resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
 }
 
+input TableFilterStringInput {
+ ne: String
+ eq: String
+ le: String
+ ge: String
+ lt: String
+ contains: String
+ notContains: String
+ between: [String]
+ beginsWith: String
+}
+
+type SpacesOptions {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+input Locations {
+    country: String!
+    state: String!
+    geo: String!
+    lga: String
+    street: String!
+    userId: String
+}
+
+type LocationsResult {
+    country: String
+    state: String
+    geo: String
+    lga: String
+    street: String
+    userId: String
+}
+
+input LocationsInput {
+    country: String
+    state: String
+    geo: String
+    lga: String
+    street: String
+    userId: String
+}
+
+type PropertiesOptions {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+input SelectOption {
+    id: String!
+}
+
+
+type WallFinishesOptions {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+input ListingDimensions {
+    height: Float!
+    weight: Float!
+    length: Float!
+    unitOfDimensions: Int
+    volume: Float
+    area: Float
+}
+
+type ListingDimensionsResponse {
+    height: Float!
+    weight: Float!
+    length: Float!
+    unitOfDimensions: Int
+    volume: Float
+    area: Float
+}
+
+
+input WarehouserIdentification {  
+    idNumber: String!
+    expiryDate: String!
+    idType: String!
+}
+
+type WarehouserIdentificationResult {  
+    idNumber: String!
+    expiryDate: String!
+    idType: String!
+}
+
+type ListingDimensionsResult {
+    height: Float!
+    weight: Float!
+    length: Float!
+    unitOfDimensions: Int
+    volume: Float
+    area: Float
+}
+
+type Listing {
+    id: ID!
+    user: User!
+    name: String!
+    slug: String!
+    description: String!
+    price: Float!
+    discount: Int
+    currency: String!
+    proofOfOwnership: String!
+    identification: WarehouserIdentificationResult!
+    spacing: [SpacesOptions]!
+    property:[PropertiesOptions]!
+    floor:[FloorsOptions]!
+    wallFinish:[WallFinishesOptions]!
+    roofing:[RoofingMaterialOptions]!
+    isSecure: SelectOptions!
+    pest: SelectOptions!
+    windows: Int!
+    location: LocationsResult!
+    amenities: [AmenitiesOptions]!
+    avatar: String!
+    vas: [ValueAddedServices]!
+    listingPhotos: [ListingPhotosResult]!
+    frequency: ListingsFrequencies!
+    requirements: [ListingRequirements]!
+    products: [ListingProducts]!
+    availability: ListingAvailabilityResponse!
+    dimensions: ListingDimensionsResponse!
+    status: Int
+    rating: ListingRating
+}
+
+type Requisition {
+    id: ID!
+    duration: RequisitionDuration!
+    cost: RequisitionCost!
+    user: User!
+    listing: Listing!
+    expires: String
+    products: [ListingProducts!]!
+    space: Int!
+    status: Int!
+}
+
+
+input RequisitionCostInput {
+    baseCost: Float!
+    vat: Float!
+    discount: Float
+}
+
+input RequisitionDurationInput {
+    id: ID!
+}
+
+type RequisitionCost {
+    id: ID! 
+    baseCost: Float!
+    vat: Float!
+    discount: Float
+}
+
+type RequisitionDuration {
+    id: ID!
+    name: String!
+    slug: String
+}
+
+type ListingRating {
+    id: ID
+    count: Int
+    rates: Int
+    average: Float
+}
+
+type Rating {
+    id: ID!
+    listingId: String!
+    ratingId: String!
+    rate: Int!
+    userId: String!
+}
+
+input ListingAvailability {
+    from: String!
+    to: String!
+}
+
+type ListingAvailabilityResponse {
+    from: String!
+    to: String!
+}
+
+type ListingRequirements {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+}
+
+type SelectOptions {
+    id:ID!
+    slug: String!
+    name: String!
+}
+
+type RoofingMaterialOptions {
+    id:ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+type FloorsOptions {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+type AmenitiesOptions {
+    id:ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+type ValueAddedServices {
+    id:ID!
+    slug: String!
+    default: Boolean
+    name: String!
+    userId: String
+}
+
+type IdentificationsOptions { 
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
+type ListingsFrequencies {  
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+}
+
+type ListingPhotosResult {
+    url: String!
+    default: Boolean
+}
+
+input ListingPhotos {
+    url: String!
+    default: Boolean
+}
+
+type States {
+    countryId: String!
+    slug: String!
+    name: String!
+    default: Boolean
+}
+
+type Countries {
+    slug: String!
+    name: String!
+    default: Boolean
+}
+
+type ListingProducts {
+    id: ID!
+    slug: String!
+    name: String!
+    default: Boolean
+    userId: String
+}
+
 type AccountResolve {
     accountName: String
 }
 
 type User {
-    id: ID!
+    id: ID
     firstName: String!
     lastName: String!
     email: String!
@@ -50,19 +394,19 @@ type User {
 }
 
 type Success {
-    id: ID!
+    id: ID
     success: Boolean!
 }
 
 type Otp {
-    id: ID!
+    id: ID
     phoneNumber: String!
     code: String!
     validated: Boolean!
 }
 
 type Organization {
-    id: ID!
+    id: ID
     name: String!
     email: String!
     phoneNumber: String!

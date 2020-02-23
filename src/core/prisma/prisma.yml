@@ -9,3 +9,5 @@ datamodel: datamodel.prisma
 generate:
     - generator: typescript-client
       output: ./generated
+seed:
+  run: ts-node ./data/seed.ts
