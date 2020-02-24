@@ -18,6 +18,7 @@ type Query {
     spacesOptions: [SpacesOptions]
     role(id: ID, name: String): Role!
     otp(id: ID, phoneNumber: String): Otp!
+    stocks(first: Int, skip: Int, merchant: String, warehouser: String, status: Int ):[Stock]!
     organizations: [Organization!]!
     organizationTypes: [OrganizationType!]!
     userOrganizationRoles: [UserOrganizationRole!]!
@@ -38,6 +39,7 @@ type Mutation {
         bankName: String!
         bankCode: String!
     ): AuthPayload!
+    changeRequisitionStatus(id:String! status:Int!):Success!
     submitRating(listingId:String!, ratingId:String!, rate: Int!, userId: String!): Success!
     addListing(
         user: String!
@@ -77,6 +79,17 @@ type Mutation {
         listing: String!
         space: Int!
         ): Success!
+
+    createStock(
+        type: Int!
+        products:[StockProductInput!]!
+        requisition: String!
+        ): Success!
+    createDispatch(
+        id: String!
+        dispatch: StockDispatchInput!
+        ): Success!
+
     generateOtp(phoneNumber: String!): Otp!
     validateOtp(otp: String!, phoneNumber: String!): Success!
     login(pin: String!, phoneNumber: String!): AuthPayload!
@@ -239,6 +252,65 @@ type Requisition {
     status: Int!
 }
 
+type Stock {
+	id: ID!
+	type: Int!
+	products: [StockProduct!]!
+	status: Int!
+	dispatch: StockDispatch!
+    requisition: Requisition!
+}
+
+type StockDispatch {
+	id: ID!
+    pickupAgentName:String
+    pickupAgentPhone: String
+    pickupAgentIdentification: String
+    pickupAgentIdNumber: String
+    pickupDateMin: String
+    pickupDateMax: String
+    status: Int!
+}
+
+input StockDispatchInput {
+    pickupAgentName:String
+    pickupAgentPhone: String
+    pickupAgentIdentification: String
+    pickupAgentIdNumber: String
+    pickupDateMin: String
+    pickupDateMax: String
+    status: Int!
+}
+
+type DateRange {
+    id: ID!
+    min: String    
+    max: String!
+}
+
+input DateRangeInput {
+    min: String    
+    max: String!
+}
+
+type StockProduct {
+    id: ID!
+    productBrandName: String!
+    productType: String!
+    productPackageSize: String!
+    quantityPerPackageSize: Int!
+    totalQuantity: Int!
+    productImage: String!
+}
+
+input StockProductInput {
+    productBrandName: String!
+    productType: String!
+    productPackageSize: String!
+    quantityPerPackageSize: Int!
+    totalQuantity: Int!
+    productImage: String!
+}
 
 input RequisitionCostInput {
     baseCost: Float!

@@ -16,4 +16,11 @@ const requisitions = async (parent: any, args: any, context: any): Promise<any> 
     }
 };
 
-export { createRequisition, requisitions };
+const changeRequisitionStatus = async (parent: any, args: any, context: any): Promise<any> => {
+    try {
+        return await requisitionService.changeStatus({ parent, args, context });
+    } catch (error) {
+        throw error;
+    }
+};
+export { createRequisition, requisitions, changeRequisitionStatus };

@@ -306,3 +306,40 @@ input RoleWhereUniqueInput {
   id: ID
   name: String
 }
+
+type Stock {
+	id: ID!  @id @unique
+	type: Int!
+	products: [StockProduct!]!
+	status: Int!
+	dispatch: StockDispatch
+    requisition: Requisition!
+}
+
+type StockDispatch {
+    id: ID!  @id @unique
+    pickupAgentName:String
+    pickupAgentPhone: String
+    pickupAgentIdentification: String
+    pickupAgentIdNumber: String
+    pickupDate: DateRange
+    status: Int!
+    pickupDateMin: String
+    pickupDateMax: String
+}
+
+type DateRange {
+    id: ID!  @id @unique
+    min: String    
+    max: String!
+}
+
+type StockProduct {
+    id: ID!  @id @unique
+    productBrandName: String!
+    productType: String!
+    productPackageSize: String!
+    quantityPerPackageSize: Int!
+    totalQuantity: Int!
+    productImage: String!
+}

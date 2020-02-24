@@ -1,10 +1,11 @@
-import { createRequisition, requisitions } from '../controllers/requisition';
+import { createRequisition, requisitions, changeRequisitionStatus } from '../controllers/requisition';
 
 const requisitionQueries = {
     requisitions: (root: any, args: any, context: any, info: any) => requisitions(root, args, context)
 };
 
 const requisitionMutations = {
+    changeRequisitionStatus: (root: any, args: any, context: any) => changeRequisitionStatus(root, args, context),
     createRequisition: (root: any, args: any, context: any) => createRequisition(root, args, context)
 };
 

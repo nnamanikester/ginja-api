@@ -35,7 +35,6 @@ const createRequisition = async (graph: any) => {
 };
 
 const requisitions = async (graph: any) => {
-
     const { args, context } = graph;
     const { prisma } = context;
     const { first, skip, user, limit, nextToken, listing } = args;
@@ -64,4 +63,18 @@ const requisitions = async (graph: any) => {
     }
 };
 
-export { createRequisition, requisitions };
+const changeStatus = async (graph: any) => {
+    const { args, context } = graph;
+    const { prisma } = context;
+    const { id, status } = args;
+    const result = await prisma.updateRequisition({
+        where: { id },
+        data: {
+            status
+        }
+    });
+    if (result) return { success: true };
+    return { success: false };
+};
+
+export { createRequisition, requisitions, changeStatus };

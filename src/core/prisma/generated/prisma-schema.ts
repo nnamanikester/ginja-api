@@ -18,6 +18,10 @@ type AggregateCountries {
   count: Int!
 }
 
+type AggregateDateRange {
+  count: Int!
+}
+
 type AggregateFloorsOptions {
   count: Int!
 }
@@ -111,6 +115,18 @@ type AggregateSpacesOptions {
 }
 
 type AggregateStates {
+  count: Int!
+}
+
+type AggregateStock {
+  count: Int!
+}
+
+type AggregateStockDispatch {
+  count: Int!
+}
+
+type AggregateStockProduct {
   count: Int!
 }
 
@@ -899,6 +915,148 @@ input CountriesWhereInput {
 }
 
 input CountriesWhereUniqueInput {
+  id: ID
+}
+
+type DateRange {
+  id: ID!
+  min: String
+  max: String!
+}
+
+type DateRangeConnection {
+  pageInfo: PageInfo!
+  edges: [DateRangeEdge]!
+  aggregate: AggregateDateRange!
+}
+
+input DateRangeCreateInput {
+  id: ID
+  min: String
+  max: String!
+}
+
+input DateRangeCreateOneInput {
+  create: DateRangeCreateInput
+  connect: DateRangeWhereUniqueInput
+}
+
+type DateRangeEdge {
+  node: DateRange!
+  cursor: String!
+}
+
+enum DateRangeOrderByInput {
+  id_ASC
+  id_DESC
+  min_ASC
+  min_DESC
+  max_ASC
+  max_DESC
+}
+
+type DateRangePreviousValues {
+  id: ID!
+  min: String
+  max: String!
+}
+
+type DateRangeSubscriptionPayload {
+  mutation: MutationType!
+  node: DateRange
+  updatedFields: [String!]
+  previousValues: DateRangePreviousValues
+}
+
+input DateRangeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DateRangeWhereInput
+  AND: [DateRangeSubscriptionWhereInput!]
+  OR: [DateRangeSubscriptionWhereInput!]
+  NOT: [DateRangeSubscriptionWhereInput!]
+}
+
+input DateRangeUpdateDataInput {
+  min: String
+  max: String
+}
+
+input DateRangeUpdateInput {
+  min: String
+  max: String
+}
+
+input DateRangeUpdateManyMutationInput {
+  min: String
+  max: String
+}
+
+input DateRangeUpdateOneInput {
+  create: DateRangeCreateInput
+  update: DateRangeUpdateDataInput
+  upsert: DateRangeUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: DateRangeWhereUniqueInput
+}
+
+input DateRangeUpsertNestedInput {
+  update: DateRangeUpdateDataInput!
+  create: DateRangeCreateInput!
+}
+
+input DateRangeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  min: String
+  min_not: String
+  min_in: [String!]
+  min_not_in: [String!]
+  min_lt: String
+  min_lte: String
+  min_gt: String
+  min_gte: String
+  min_contains: String
+  min_not_contains: String
+  min_starts_with: String
+  min_not_starts_with: String
+  min_ends_with: String
+  min_not_ends_with: String
+  max: String
+  max_not: String
+  max_in: [String!]
+  max_not_in: [String!]
+  max_lt: String
+  max_lte: String
+  max_gt: String
+  max_gte: String
+  max_contains: String
+  max_not_contains: String
+  max_starts_with: String
+  max_not_starts_with: String
+  max_ends_with: String
+  max_not_ends_with: String
+  AND: [DateRangeWhereInput!]
+  OR: [DateRangeWhereInput!]
+  NOT: [DateRangeWhereInput!]
+}
+
+input DateRangeWhereUniqueInput {
   id: ID
 }
 
@@ -3287,6 +3445,12 @@ type Mutation {
   upsertCountries(where: CountriesWhereUniqueInput!, create: CountriesCreateInput!, update: CountriesUpdateInput!): Countries!
   deleteCountries(where: CountriesWhereUniqueInput!): Countries
   deleteManyCountrieses(where: CountriesWhereInput): BatchPayload!
+  createDateRange(data: DateRangeCreateInput!): DateRange!
+  updateDateRange(data: DateRangeUpdateInput!, where: DateRangeWhereUniqueInput!): DateRange
+  updateManyDateRanges(data: DateRangeUpdateManyMutationInput!, where: DateRangeWhereInput): BatchPayload!
+  upsertDateRange(where: DateRangeWhereUniqueInput!, create: DateRangeCreateInput!, update: DateRangeUpdateInput!): DateRange!
+  deleteDateRange(where: DateRangeWhereUniqueInput!): DateRange
+  deleteManyDateRanges(where: DateRangeWhereInput): BatchPayload!
   createFloorsOptions(data: FloorsOptionsCreateInput!): FloorsOptions!
   updateFloorsOptions(data: FloorsOptionsUpdateInput!, where: FloorsOptionsWhereUniqueInput!): FloorsOptions
   updateManyFloorsOptionses(data: FloorsOptionsUpdateManyMutationInput!, where: FloorsOptionsWhereInput): BatchPayload!
@@ -3431,6 +3595,24 @@ type Mutation {
   upsertStates(where: StatesWhereUniqueInput!, create: StatesCreateInput!, update: StatesUpdateInput!): States!
   deleteStates(where: StatesWhereUniqueInput!): States
   deleteManyStateses(where: StatesWhereInput): BatchPayload!
+  createStock(data: StockCreateInput!): Stock!
+  updateStock(data: StockUpdateInput!, where: StockWhereUniqueInput!): Stock
+  updateManyStocks(data: StockUpdateManyMutationInput!, where: StockWhereInput): BatchPayload!
+  upsertStock(where: StockWhereUniqueInput!, create: StockCreateInput!, update: StockUpdateInput!): Stock!
+  deleteStock(where: StockWhereUniqueInput!): Stock
+  deleteManyStocks(where: StockWhereInput): BatchPayload!
+  createStockDispatch(data: StockDispatchCreateInput!): StockDispatch!
+  updateStockDispatch(data: StockDispatchUpdateInput!, where: StockDispatchWhereUniqueInput!): StockDispatch
+  updateManyStockDispatches(data: StockDispatchUpdateManyMutationInput!, where: StockDispatchWhereInput): BatchPayload!
+  upsertStockDispatch(where: StockDispatchWhereUniqueInput!, create: StockDispatchCreateInput!, update: StockDispatchUpdateInput!): StockDispatch!
+  deleteStockDispatch(where: StockDispatchWhereUniqueInput!): StockDispatch
+  deleteManyStockDispatches(where: StockDispatchWhereInput): BatchPayload!
+  createStockProduct(data: StockProductCreateInput!): StockProduct!
+  updateStockProduct(data: StockProductUpdateInput!, where: StockProductWhereUniqueInput!): StockProduct
+  updateManyStockProducts(data: StockProductUpdateManyMutationInput!, where: StockProductWhereInput): BatchPayload!
+  upsertStockProduct(where: StockProductWhereUniqueInput!, create: StockProductCreateInput!, update: StockProductUpdateInput!): StockProduct!
+  deleteStockProduct(where: StockProductWhereUniqueInput!): StockProduct
+  deleteManyStockProducts(where: StockProductWhereInput): BatchPayload!
   createSuccess(data: SuccessCreateInput!): Success!
   updateSuccess(data: SuccessUpdateInput!, where: SuccessWhereUniqueInput!): Success
   updateManySuccesses(data: SuccessUpdateManyMutationInput!, where: SuccessWhereInput): BatchPayload!
@@ -4224,6 +4406,9 @@ type Query {
   countries(where: CountriesWhereUniqueInput!): Countries
   countrieses(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Countries]!
   countriesesConnection(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountriesConnection!
+  dateRange(where: DateRangeWhereUniqueInput!): DateRange
+  dateRanges(where: DateRangeWhereInput, orderBy: DateRangeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DateRange]!
+  dateRangesConnection(where: DateRangeWhereInput, orderBy: DateRangeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DateRangeConnection!
   floorsOptions(where: FloorsOptionsWhereUniqueInput!): FloorsOptions
   floorsOptionses(where: FloorsOptionsWhereInput, orderBy: FloorsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FloorsOptions]!
   floorsOptionsesConnection(where: FloorsOptionsWhereInput, orderBy: FloorsOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FloorsOptionsConnection!
@@ -4296,6 +4481,15 @@ type Query {
   states(where: StatesWhereUniqueInput!): States
   stateses(where: StatesWhereInput, orderBy: StatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [States]!
   statesesConnection(where: StatesWhereInput, orderBy: StatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatesConnection!
+  stock(where: StockWhereUniqueInput!): Stock
+  stocks(where: StockWhereInput, orderBy: StockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Stock]!
+  stocksConnection(where: StockWhereInput, orderBy: StockOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StockConnection!
+  stockDispatch(where: StockDispatchWhereUniqueInput!): StockDispatch
+  stockDispatches(where: StockDispatchWhereInput, orderBy: StockDispatchOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StockDispatch]!
+  stockDispatchesConnection(where: StockDispatchWhereInput, orderBy: StockDispatchOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StockDispatchConnection!
+  stockProduct(where: StockProductWhereUniqueInput!): StockProduct
+  stockProducts(where: StockProductWhereInput, orderBy: StockProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StockProduct]!
+  stockProductsConnection(where: StockProductWhereInput, orderBy: StockProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StockProductConnection!
   success(where: SuccessWhereUniqueInput!): Success
   successes(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Success]!
   successesConnection(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SuccessConnection!
@@ -4645,6 +4839,11 @@ input RequisitionCreateInput {
   status: Int!
 }
 
+input RequisitionCreateOneInput {
+  create: RequisitionCreateInput
+  connect: RequisitionWhereUniqueInput
+}
+
 type RequisitionDuration {
   id: ID!
   name: String!
@@ -4826,6 +5025,17 @@ input RequisitionSubscriptionWhereInput {
   NOT: [RequisitionSubscriptionWhereInput!]
 }
 
+input RequisitionUpdateDataInput {
+  duration: RequisitionDurationUpdateOneRequiredInput
+  cost: RequisitionCostUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  expires: String
+  products: ListingProductsUpdateManyInput
+  listing: ListingUpdateOneRequiredInput
+  space: Int
+  status: Int
+}
+
 input RequisitionUpdateInput {
   duration: RequisitionDurationUpdateOneRequiredInput
   cost: RequisitionCostUpdateOneRequiredInput
@@ -4841,6 +5051,18 @@ input RequisitionUpdateManyMutationInput {
   expires: String
   space: Int
   status: Int
+}
+
+input RequisitionUpdateOneRequiredInput {
+  create: RequisitionCreateInput
+  update: RequisitionUpdateDataInput
+  upsert: RequisitionUpsertNestedInput
+  connect: RequisitionWhereUniqueInput
+}
+
+input RequisitionUpsertNestedInput {
+  update: RequisitionUpdateDataInput!
+  create: RequisitionCreateInput!
 }
 
 input RequisitionWhereInput {
@@ -5829,11 +6051,716 @@ input StatesWhereUniqueInput {
   id: ID
 }
 
+type Stock {
+  id: ID!
+  type: Int!
+  products(where: StockProductWhereInput, orderBy: StockProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StockProduct!]
+  status: Int!
+  dispatch: StockDispatch
+  requisition: Requisition!
+}
+
+type StockConnection {
+  pageInfo: PageInfo!
+  edges: [StockEdge]!
+  aggregate: AggregateStock!
+}
+
+input StockCreateInput {
+  id: ID
+  type: Int!
+  products: StockProductCreateManyInput
+  status: Int!
+  dispatch: StockDispatchCreateOneInput
+  requisition: RequisitionCreateOneInput!
+}
+
+type StockDispatch {
+  id: ID!
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  pickupDate: DateRange
+  status: Int!
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+type StockDispatchConnection {
+  pageInfo: PageInfo!
+  edges: [StockDispatchEdge]!
+  aggregate: AggregateStockDispatch!
+}
+
+input StockDispatchCreateInput {
+  id: ID
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  pickupDate: DateRangeCreateOneInput
+  status: Int!
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+input StockDispatchCreateOneInput {
+  create: StockDispatchCreateInput
+  connect: StockDispatchWhereUniqueInput
+}
+
+type StockDispatchEdge {
+  node: StockDispatch!
+  cursor: String!
+}
+
+enum StockDispatchOrderByInput {
+  id_ASC
+  id_DESC
+  pickupAgentName_ASC
+  pickupAgentName_DESC
+  pickupAgentPhone_ASC
+  pickupAgentPhone_DESC
+  pickupAgentIdentification_ASC
+  pickupAgentIdentification_DESC
+  pickupAgentIdNumber_ASC
+  pickupAgentIdNumber_DESC
+  status_ASC
+  status_DESC
+  pickupDateMin_ASC
+  pickupDateMin_DESC
+  pickupDateMax_ASC
+  pickupDateMax_DESC
+}
+
+type StockDispatchPreviousValues {
+  id: ID!
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  status: Int!
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+type StockDispatchSubscriptionPayload {
+  mutation: MutationType!
+  node: StockDispatch
+  updatedFields: [String!]
+  previousValues: StockDispatchPreviousValues
+}
+
+input StockDispatchSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StockDispatchWhereInput
+  AND: [StockDispatchSubscriptionWhereInput!]
+  OR: [StockDispatchSubscriptionWhereInput!]
+  NOT: [StockDispatchSubscriptionWhereInput!]
+}
+
+input StockDispatchUpdateDataInput {
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  pickupDate: DateRangeUpdateOneInput
+  status: Int
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+input StockDispatchUpdateInput {
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  pickupDate: DateRangeUpdateOneInput
+  status: Int
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+input StockDispatchUpdateManyMutationInput {
+  pickupAgentName: String
+  pickupAgentPhone: String
+  pickupAgentIdentification: String
+  pickupAgentIdNumber: String
+  status: Int
+  pickupDateMin: String
+  pickupDateMax: String
+}
+
+input StockDispatchUpdateOneInput {
+  create: StockDispatchCreateInput
+  update: StockDispatchUpdateDataInput
+  upsert: StockDispatchUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: StockDispatchWhereUniqueInput
+}
+
+input StockDispatchUpsertNestedInput {
+  update: StockDispatchUpdateDataInput!
+  create: StockDispatchCreateInput!
+}
+
+input StockDispatchWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  pickupAgentName: String
+  pickupAgentName_not: String
+  pickupAgentName_in: [String!]
+  pickupAgentName_not_in: [String!]
+  pickupAgentName_lt: String
+  pickupAgentName_lte: String
+  pickupAgentName_gt: String
+  pickupAgentName_gte: String
+  pickupAgentName_contains: String
+  pickupAgentName_not_contains: String
+  pickupAgentName_starts_with: String
+  pickupAgentName_not_starts_with: String
+  pickupAgentName_ends_with: String
+  pickupAgentName_not_ends_with: String
+  pickupAgentPhone: String
+  pickupAgentPhone_not: String
+  pickupAgentPhone_in: [String!]
+  pickupAgentPhone_not_in: [String!]
+  pickupAgentPhone_lt: String
+  pickupAgentPhone_lte: String
+  pickupAgentPhone_gt: String
+  pickupAgentPhone_gte: String
+  pickupAgentPhone_contains: String
+  pickupAgentPhone_not_contains: String
+  pickupAgentPhone_starts_with: String
+  pickupAgentPhone_not_starts_with: String
+  pickupAgentPhone_ends_with: String
+  pickupAgentPhone_not_ends_with: String
+  pickupAgentIdentification: String
+  pickupAgentIdentification_not: String
+  pickupAgentIdentification_in: [String!]
+  pickupAgentIdentification_not_in: [String!]
+  pickupAgentIdentification_lt: String
+  pickupAgentIdentification_lte: String
+  pickupAgentIdentification_gt: String
+  pickupAgentIdentification_gte: String
+  pickupAgentIdentification_contains: String
+  pickupAgentIdentification_not_contains: String
+  pickupAgentIdentification_starts_with: String
+  pickupAgentIdentification_not_starts_with: String
+  pickupAgentIdentification_ends_with: String
+  pickupAgentIdentification_not_ends_with: String
+  pickupAgentIdNumber: String
+  pickupAgentIdNumber_not: String
+  pickupAgentIdNumber_in: [String!]
+  pickupAgentIdNumber_not_in: [String!]
+  pickupAgentIdNumber_lt: String
+  pickupAgentIdNumber_lte: String
+  pickupAgentIdNumber_gt: String
+  pickupAgentIdNumber_gte: String
+  pickupAgentIdNumber_contains: String
+  pickupAgentIdNumber_not_contains: String
+  pickupAgentIdNumber_starts_with: String
+  pickupAgentIdNumber_not_starts_with: String
+  pickupAgentIdNumber_ends_with: String
+  pickupAgentIdNumber_not_ends_with: String
+  pickupDate: DateRangeWhereInput
+  status: Int
+  status_not: Int
+  status_in: [Int!]
+  status_not_in: [Int!]
+  status_lt: Int
+  status_lte: Int
+  status_gt: Int
+  status_gte: Int
+  pickupDateMin: String
+  pickupDateMin_not: String
+  pickupDateMin_in: [String!]
+  pickupDateMin_not_in: [String!]
+  pickupDateMin_lt: String
+  pickupDateMin_lte: String
+  pickupDateMin_gt: String
+  pickupDateMin_gte: String
+  pickupDateMin_contains: String
+  pickupDateMin_not_contains: String
+  pickupDateMin_starts_with: String
+  pickupDateMin_not_starts_with: String
+  pickupDateMin_ends_with: String
+  pickupDateMin_not_ends_with: String
+  pickupDateMax: String
+  pickupDateMax_not: String
+  pickupDateMax_in: [String!]
+  pickupDateMax_not_in: [String!]
+  pickupDateMax_lt: String
+  pickupDateMax_lte: String
+  pickupDateMax_gt: String
+  pickupDateMax_gte: String
+  pickupDateMax_contains: String
+  pickupDateMax_not_contains: String
+  pickupDateMax_starts_with: String
+  pickupDateMax_not_starts_with: String
+  pickupDateMax_ends_with: String
+  pickupDateMax_not_ends_with: String
+  AND: [StockDispatchWhereInput!]
+  OR: [StockDispatchWhereInput!]
+  NOT: [StockDispatchWhereInput!]
+}
+
+input StockDispatchWhereUniqueInput {
+  id: ID
+}
+
+type StockEdge {
+  node: Stock!
+  cursor: String!
+}
+
+enum StockOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  status_ASC
+  status_DESC
+}
+
+type StockPreviousValues {
+  id: ID!
+  type: Int!
+  status: Int!
+}
+
+type StockProduct {
+  id: ID!
+  productBrandName: String!
+  productType: String!
+  productPackageSize: String!
+  quantityPerPackageSize: Int!
+  totalQuantity: Int!
+  productImage: String!
+}
+
+type StockProductConnection {
+  pageInfo: PageInfo!
+  edges: [StockProductEdge]!
+  aggregate: AggregateStockProduct!
+}
+
+input StockProductCreateInput {
+  id: ID
+  productBrandName: String!
+  productType: String!
+  productPackageSize: String!
+  quantityPerPackageSize: Int!
+  totalQuantity: Int!
+  productImage: String!
+}
+
+input StockProductCreateManyInput {
+  create: [StockProductCreateInput!]
+  connect: [StockProductWhereUniqueInput!]
+}
+
+type StockProductEdge {
+  node: StockProduct!
+  cursor: String!
+}
+
+enum StockProductOrderByInput {
+  id_ASC
+  id_DESC
+  productBrandName_ASC
+  productBrandName_DESC
+  productType_ASC
+  productType_DESC
+  productPackageSize_ASC
+  productPackageSize_DESC
+  quantityPerPackageSize_ASC
+  quantityPerPackageSize_DESC
+  totalQuantity_ASC
+  totalQuantity_DESC
+  productImage_ASC
+  productImage_DESC
+}
+
+type StockProductPreviousValues {
+  id: ID!
+  productBrandName: String!
+  productType: String!
+  productPackageSize: String!
+  quantityPerPackageSize: Int!
+  totalQuantity: Int!
+  productImage: String!
+}
+
+input StockProductScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  productBrandName: String
+  productBrandName_not: String
+  productBrandName_in: [String!]
+  productBrandName_not_in: [String!]
+  productBrandName_lt: String
+  productBrandName_lte: String
+  productBrandName_gt: String
+  productBrandName_gte: String
+  productBrandName_contains: String
+  productBrandName_not_contains: String
+  productBrandName_starts_with: String
+  productBrandName_not_starts_with: String
+  productBrandName_ends_with: String
+  productBrandName_not_ends_with: String
+  productType: String
+  productType_not: String
+  productType_in: [String!]
+  productType_not_in: [String!]
+  productType_lt: String
+  productType_lte: String
+  productType_gt: String
+  productType_gte: String
+  productType_contains: String
+  productType_not_contains: String
+  productType_starts_with: String
+  productType_not_starts_with: String
+  productType_ends_with: String
+  productType_not_ends_with: String
+  productPackageSize: String
+  productPackageSize_not: String
+  productPackageSize_in: [String!]
+  productPackageSize_not_in: [String!]
+  productPackageSize_lt: String
+  productPackageSize_lte: String
+  productPackageSize_gt: String
+  productPackageSize_gte: String
+  productPackageSize_contains: String
+  productPackageSize_not_contains: String
+  productPackageSize_starts_with: String
+  productPackageSize_not_starts_with: String
+  productPackageSize_ends_with: String
+  productPackageSize_not_ends_with: String
+  quantityPerPackageSize: Int
+  quantityPerPackageSize_not: Int
+  quantityPerPackageSize_in: [Int!]
+  quantityPerPackageSize_not_in: [Int!]
+  quantityPerPackageSize_lt: Int
+  quantityPerPackageSize_lte: Int
+  quantityPerPackageSize_gt: Int
+  quantityPerPackageSize_gte: Int
+  totalQuantity: Int
+  totalQuantity_not: Int
+  totalQuantity_in: [Int!]
+  totalQuantity_not_in: [Int!]
+  totalQuantity_lt: Int
+  totalQuantity_lte: Int
+  totalQuantity_gt: Int
+  totalQuantity_gte: Int
+  productImage: String
+  productImage_not: String
+  productImage_in: [String!]
+  productImage_not_in: [String!]
+  productImage_lt: String
+  productImage_lte: String
+  productImage_gt: String
+  productImage_gte: String
+  productImage_contains: String
+  productImage_not_contains: String
+  productImage_starts_with: String
+  productImage_not_starts_with: String
+  productImage_ends_with: String
+  productImage_not_ends_with: String
+  AND: [StockProductScalarWhereInput!]
+  OR: [StockProductScalarWhereInput!]
+  NOT: [StockProductScalarWhereInput!]
+}
+
+type StockProductSubscriptionPayload {
+  mutation: MutationType!
+  node: StockProduct
+  updatedFields: [String!]
+  previousValues: StockProductPreviousValues
+}
+
+input StockProductSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StockProductWhereInput
+  AND: [StockProductSubscriptionWhereInput!]
+  OR: [StockProductSubscriptionWhereInput!]
+  NOT: [StockProductSubscriptionWhereInput!]
+}
+
+input StockProductUpdateDataInput {
+  productBrandName: String
+  productType: String
+  productPackageSize: String
+  quantityPerPackageSize: Int
+  totalQuantity: Int
+  productImage: String
+}
+
+input StockProductUpdateInput {
+  productBrandName: String
+  productType: String
+  productPackageSize: String
+  quantityPerPackageSize: Int
+  totalQuantity: Int
+  productImage: String
+}
+
+input StockProductUpdateManyDataInput {
+  productBrandName: String
+  productType: String
+  productPackageSize: String
+  quantityPerPackageSize: Int
+  totalQuantity: Int
+  productImage: String
+}
+
+input StockProductUpdateManyInput {
+  create: [StockProductCreateInput!]
+  update: [StockProductUpdateWithWhereUniqueNestedInput!]
+  upsert: [StockProductUpsertWithWhereUniqueNestedInput!]
+  delete: [StockProductWhereUniqueInput!]
+  connect: [StockProductWhereUniqueInput!]
+  set: [StockProductWhereUniqueInput!]
+  disconnect: [StockProductWhereUniqueInput!]
+  deleteMany: [StockProductScalarWhereInput!]
+  updateMany: [StockProductUpdateManyWithWhereNestedInput!]
+}
+
+input StockProductUpdateManyMutationInput {
+  productBrandName: String
+  productType: String
+  productPackageSize: String
+  quantityPerPackageSize: Int
+  totalQuantity: Int
+  productImage: String
+}
+
+input StockProductUpdateManyWithWhereNestedInput {
+  where: StockProductScalarWhereInput!
+  data: StockProductUpdateManyDataInput!
+}
+
+input StockProductUpdateWithWhereUniqueNestedInput {
+  where: StockProductWhereUniqueInput!
+  data: StockProductUpdateDataInput!
+}
+
+input StockProductUpsertWithWhereUniqueNestedInput {
+  where: StockProductWhereUniqueInput!
+  update: StockProductUpdateDataInput!
+  create: StockProductCreateInput!
+}
+
+input StockProductWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  productBrandName: String
+  productBrandName_not: String
+  productBrandName_in: [String!]
+  productBrandName_not_in: [String!]
+  productBrandName_lt: String
+  productBrandName_lte: String
+  productBrandName_gt: String
+  productBrandName_gte: String
+  productBrandName_contains: String
+  productBrandName_not_contains: String
+  productBrandName_starts_with: String
+  productBrandName_not_starts_with: String
+  productBrandName_ends_with: String
+  productBrandName_not_ends_with: String
+  productType: String
+  productType_not: String
+  productType_in: [String!]
+  productType_not_in: [String!]
+  productType_lt: String
+  productType_lte: String
+  productType_gt: String
+  productType_gte: String
+  productType_contains: String
+  productType_not_contains: String
+  productType_starts_with: String
+  productType_not_starts_with: String
+  productType_ends_with: String
+  productType_not_ends_with: String
+  productPackageSize: String
+  productPackageSize_not: String
+  productPackageSize_in: [String!]
+  productPackageSize_not_in: [String!]
+  productPackageSize_lt: String
+  productPackageSize_lte: String
+  productPackageSize_gt: String
+  productPackageSize_gte: String
+  productPackageSize_contains: String
+  productPackageSize_not_contains: String
+  productPackageSize_starts_with: String
+  productPackageSize_not_starts_with: String
+  productPackageSize_ends_with: String
+  productPackageSize_not_ends_with: String
+  quantityPerPackageSize: Int
+  quantityPerPackageSize_not: Int
+  quantityPerPackageSize_in: [Int!]
+  quantityPerPackageSize_not_in: [Int!]
+  quantityPerPackageSize_lt: Int
+  quantityPerPackageSize_lte: Int
+  quantityPerPackageSize_gt: Int
+  quantityPerPackageSize_gte: Int
+  totalQuantity: Int
+  totalQuantity_not: Int
+  totalQuantity_in: [Int!]
+  totalQuantity_not_in: [Int!]
+  totalQuantity_lt: Int
+  totalQuantity_lte: Int
+  totalQuantity_gt: Int
+  totalQuantity_gte: Int
+  productImage: String
+  productImage_not: String
+  productImage_in: [String!]
+  productImage_not_in: [String!]
+  productImage_lt: String
+  productImage_lte: String
+  productImage_gt: String
+  productImage_gte: String
+  productImage_contains: String
+  productImage_not_contains: String
+  productImage_starts_with: String
+  productImage_not_starts_with: String
+  productImage_ends_with: String
+  productImage_not_ends_with: String
+  AND: [StockProductWhereInput!]
+  OR: [StockProductWhereInput!]
+  NOT: [StockProductWhereInput!]
+}
+
+input StockProductWhereUniqueInput {
+  id: ID
+}
+
+type StockSubscriptionPayload {
+  mutation: MutationType!
+  node: Stock
+  updatedFields: [String!]
+  previousValues: StockPreviousValues
+}
+
+input StockSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StockWhereInput
+  AND: [StockSubscriptionWhereInput!]
+  OR: [StockSubscriptionWhereInput!]
+  NOT: [StockSubscriptionWhereInput!]
+}
+
+input StockUpdateInput {
+  type: Int
+  products: StockProductUpdateManyInput
+  status: Int
+  dispatch: StockDispatchUpdateOneInput
+  requisition: RequisitionUpdateOneRequiredInput
+}
+
+input StockUpdateManyMutationInput {
+  type: Int
+  status: Int
+}
+
+input StockWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: Int
+  type_not: Int
+  type_in: [Int!]
+  type_not_in: [Int!]
+  type_lt: Int
+  type_lte: Int
+  type_gt: Int
+  type_gte: Int
+  products_every: StockProductWhereInput
+  products_some: StockProductWhereInput
+  products_none: StockProductWhereInput
+  status: Int
+  status_not: Int
+  status_in: [Int!]
+  status_not_in: [Int!]
+  status_lt: Int
+  status_lte: Int
+  status_gt: Int
+  status_gte: Int
+  dispatch: StockDispatchWhereInput
+  requisition: RequisitionWhereInput
+  AND: [StockWhereInput!]
+  OR: [StockWhereInput!]
+  NOT: [StockWhereInput!]
+}
+
+input StockWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   amenitiesOptions(where: AmenitiesOptionsSubscriptionWhereInput): AmenitiesOptionsSubscriptionPayload
   auth(where: AuthSubscriptionWhereInput): AuthSubscriptionPayload
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
   countries(where: CountriesSubscriptionWhereInput): CountriesSubscriptionPayload
+  dateRange(where: DateRangeSubscriptionWhereInput): DateRangeSubscriptionPayload
   floorsOptions(where: FloorsOptionsSubscriptionWhereInput): FloorsOptionsSubscriptionPayload
   identificationsOptions(where: IdentificationsOptionsSubscriptionWhereInput): IdentificationsOptionsSubscriptionPayload
   listing(where: ListingSubscriptionWhereInput): ListingSubscriptionPayload
@@ -5858,6 +6785,9 @@ type Subscription {
   selectOptions(where: SelectOptionsSubscriptionWhereInput): SelectOptionsSubscriptionPayload
   spacesOptions(where: SpacesOptionsSubscriptionWhereInput): SpacesOptionsSubscriptionPayload
   states(where: StatesSubscriptionWhereInput): StatesSubscriptionPayload
+  stock(where: StockSubscriptionWhereInput): StockSubscriptionPayload
+  stockDispatch(where: StockDispatchSubscriptionWhereInput): StockDispatchSubscriptionPayload
+  stockProduct(where: StockProductSubscriptionWhereInput): StockProductSubscriptionPayload
   success(where: SuccessSubscriptionWhereInput): SuccessSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   userOrganizationRole(where: UserOrganizationRoleSubscriptionWhereInput): UserOrganizationRoleSubscriptionPayload
