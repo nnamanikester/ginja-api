@@ -4,8 +4,8 @@ import * as bankService from '../../services/bank';
 import * as organizationService from '../../services/organization';
 import * as userService from '../../services/user';
 import * as roleService from '../../services/role';
-import * as hashUtility from '../../../core/utils/bcrypt';
-import * as jwtUtility from '../../../core/utils/jwt';
+import * as hashUtility from '../../core/utils/bcrypt';
+import * as jwtUtility from '../../core/utils/jwt';
 
 const signUp = async (parent: any, args: UserModel, context: any): Promise<any> => {
     try {

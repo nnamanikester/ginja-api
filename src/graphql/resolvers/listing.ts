@@ -1,4 +1,4 @@
-import { createListing, listings } from '../controllers/listing';
+import { createListing, listings } from '../../controllers/listing';
 
 const listingQueries = {
     listings: (root: any, args: any, context: any, info: any) => listings(root, args, context)

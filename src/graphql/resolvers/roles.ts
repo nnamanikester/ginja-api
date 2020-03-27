@@ -1,4 +1,4 @@
-import { createRole, getRoleByParam } from '../controllers/role';
+import { createRole, getRoleByParam } from '../../controllers/role';
 
 const roleQueries = {
     roles: (root: any, args: any, context: any, info: any) => context.prisma.roles(),

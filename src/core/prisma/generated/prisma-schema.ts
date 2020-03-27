@@ -78,6 +78,14 @@ type AggregateOtp {
   count: Int!
 }
 
+type AggregatePayment {
+  count: Int!
+}
+
+type AggregatePaymentCustomer {
+  count: Int!
+}
+
 type AggregatePropertiesOptions {
   count: Int!
 }
@@ -3535,6 +3543,18 @@ type Mutation {
   upsertOtp(where: OtpWhereUniqueInput!, create: OtpCreateInput!, update: OtpUpdateInput!): Otp!
   deleteOtp(where: OtpWhereUniqueInput!): Otp
   deleteManyOtps(where: OtpWhereInput): BatchPayload!
+  createPayment(data: PaymentCreateInput!): Payment!
+  updatePayment(data: PaymentUpdateInput!, where: PaymentWhereUniqueInput!): Payment
+  updateManyPayments(data: PaymentUpdateManyMutationInput!, where: PaymentWhereInput): BatchPayload!
+  upsertPayment(where: PaymentWhereUniqueInput!, create: PaymentCreateInput!, update: PaymentUpdateInput!): Payment!
+  deletePayment(where: PaymentWhereUniqueInput!): Payment
+  deleteManyPayments(where: PaymentWhereInput): BatchPayload!
+  createPaymentCustomer(data: PaymentCustomerCreateInput!): PaymentCustomer!
+  updatePaymentCustomer(data: PaymentCustomerUpdateInput!, where: PaymentCustomerWhereUniqueInput!): PaymentCustomer
+  updateManyPaymentCustomers(data: PaymentCustomerUpdateManyMutationInput!, where: PaymentCustomerWhereInput): BatchPayload!
+  upsertPaymentCustomer(where: PaymentCustomerWhereUniqueInput!, create: PaymentCustomerCreateInput!, update: PaymentCustomerUpdateInput!): PaymentCustomer!
+  deletePaymentCustomer(where: PaymentCustomerWhereUniqueInput!): PaymentCustomer
+  deleteManyPaymentCustomers(where: PaymentCustomerWhereInput): BatchPayload!
   createPropertiesOptions(data: PropertiesOptionsCreateInput!): PropertiesOptions!
   updatePropertiesOptions(data: PropertiesOptionsUpdateInput!, where: PropertiesOptionsWhereUniqueInput!): PropertiesOptions
   updateManyPropertiesOptionses(data: PropertiesOptionsUpdateManyMutationInput!, where: PropertiesOptionsWhereInput): BatchPayload!
@@ -4134,6 +4154,436 @@ type PageInfo {
   endCursor: String
 }
 
+type Payment {
+  id: ID!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  amount: Float!
+  requisition: Requisition!
+  status: Int!
+  currency: String!
+  channel: String
+  customer: PaymentCustomer
+  info: String!
+}
+
+type PaymentConnection {
+  pageInfo: PageInfo!
+  edges: [PaymentEdge]!
+  aggregate: AggregatePayment!
+}
+
+input PaymentCreateInput {
+  id: ID
+  email: String!
+  amount: Float!
+  requisition: RequisitionCreateOneInput!
+  status: Int!
+  currency: String!
+  channel: String
+  customer: PaymentCustomerCreateOneInput
+  info: String!
+}
+
+type PaymentCustomer {
+  id: ID!
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+type PaymentCustomerConnection {
+  pageInfo: PageInfo!
+  edges: [PaymentCustomerEdge]!
+  aggregate: AggregatePaymentCustomer!
+}
+
+input PaymentCustomerCreateInput {
+  id: ID
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input PaymentCustomerCreateOneInput {
+  create: PaymentCustomerCreateInput
+  connect: PaymentCustomerWhereUniqueInput
+}
+
+type PaymentCustomerEdge {
+  node: PaymentCustomer!
+  cursor: String!
+}
+
+enum PaymentCustomerOrderByInput {
+  id_ASC
+  id_DESC
+  paystackId_ASC
+  paystackId_DESC
+  customerCode_ASC
+  customerCode_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  email_ASC
+  email_DESC
+}
+
+type PaymentCustomerPreviousValues {
+  id: ID!
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+type PaymentCustomerSubscriptionPayload {
+  mutation: MutationType!
+  node: PaymentCustomer
+  updatedFields: [String!]
+  previousValues: PaymentCustomerPreviousValues
+}
+
+input PaymentCustomerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PaymentCustomerWhereInput
+  AND: [PaymentCustomerSubscriptionWhereInput!]
+  OR: [PaymentCustomerSubscriptionWhereInput!]
+  NOT: [PaymentCustomerSubscriptionWhereInput!]
+}
+
+input PaymentCustomerUpdateDataInput {
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input PaymentCustomerUpdateInput {
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input PaymentCustomerUpdateManyMutationInput {
+  paystackId: String
+  customerCode: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input PaymentCustomerUpdateOneInput {
+  create: PaymentCustomerCreateInput
+  update: PaymentCustomerUpdateDataInput
+  upsert: PaymentCustomerUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PaymentCustomerWhereUniqueInput
+}
+
+input PaymentCustomerUpsertNestedInput {
+  update: PaymentCustomerUpdateDataInput!
+  create: PaymentCustomerCreateInput!
+}
+
+input PaymentCustomerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  paystackId: String
+  paystackId_not: String
+  paystackId_in: [String!]
+  paystackId_not_in: [String!]
+  paystackId_lt: String
+  paystackId_lte: String
+  paystackId_gt: String
+  paystackId_gte: String
+  paystackId_contains: String
+  paystackId_not_contains: String
+  paystackId_starts_with: String
+  paystackId_not_starts_with: String
+  paystackId_ends_with: String
+  paystackId_not_ends_with: String
+  customerCode: String
+  customerCode_not: String
+  customerCode_in: [String!]
+  customerCode_not_in: [String!]
+  customerCode_lt: String
+  customerCode_lte: String
+  customerCode_gt: String
+  customerCode_gte: String
+  customerCode_contains: String
+  customerCode_not_contains: String
+  customerCode_starts_with: String
+  customerCode_not_starts_with: String
+  customerCode_ends_with: String
+  customerCode_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  AND: [PaymentCustomerWhereInput!]
+  OR: [PaymentCustomerWhereInput!]
+  NOT: [PaymentCustomerWhereInput!]
+}
+
+input PaymentCustomerWhereUniqueInput {
+  id: ID
+}
+
+type PaymentEdge {
+  node: Payment!
+  cursor: String!
+}
+
+enum PaymentOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  amount_ASC
+  amount_DESC
+  status_ASC
+  status_DESC
+  currency_ASC
+  currency_DESC
+  channel_ASC
+  channel_DESC
+  info_ASC
+  info_DESC
+}
+
+type PaymentPreviousValues {
+  id: ID!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  amount: Float!
+  status: Int!
+  currency: String!
+  channel: String
+  info: String!
+}
+
+type PaymentSubscriptionPayload {
+  mutation: MutationType!
+  node: Payment
+  updatedFields: [String!]
+  previousValues: PaymentPreviousValues
+}
+
+input PaymentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PaymentWhereInput
+  AND: [PaymentSubscriptionWhereInput!]
+  OR: [PaymentSubscriptionWhereInput!]
+  NOT: [PaymentSubscriptionWhereInput!]
+}
+
+input PaymentUpdateInput {
+  email: String
+  amount: Float
+  requisition: RequisitionUpdateOneRequiredInput
+  status: Int
+  currency: String
+  channel: String
+  customer: PaymentCustomerUpdateOneInput
+  info: String
+}
+
+input PaymentUpdateManyMutationInput {
+  email: String
+  amount: Float
+  status: Int
+  currency: String
+  channel: String
+  info: String
+}
+
+input PaymentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  requisition: RequisitionWhereInput
+  status: Int
+  status_not: Int
+  status_in: [Int!]
+  status_not_in: [Int!]
+  status_lt: Int
+  status_lte: Int
+  status_gt: Int
+  status_gte: Int
+  currency: String
+  currency_not: String
+  currency_in: [String!]
+  currency_not_in: [String!]
+  currency_lt: String
+  currency_lte: String
+  currency_gt: String
+  currency_gte: String
+  currency_contains: String
+  currency_not_contains: String
+  currency_starts_with: String
+  currency_not_starts_with: String
+  currency_ends_with: String
+  currency_not_ends_with: String
+  channel: String
+  channel_not: String
+  channel_in: [String!]
+  channel_not_in: [String!]
+  channel_lt: String
+  channel_lte: String
+  channel_gt: String
+  channel_gte: String
+  channel_contains: String
+  channel_not_contains: String
+  channel_starts_with: String
+  channel_not_starts_with: String
+  channel_ends_with: String
+  channel_not_ends_with: String
+  customer: PaymentCustomerWhereInput
+  info: String
+  info_not: String
+  info_in: [String!]
+  info_not_in: [String!]
+  info_lt: String
+  info_lte: String
+  info_gt: String
+  info_gte: String
+  info_contains: String
+  info_not_contains: String
+  info_starts_with: String
+  info_not_starts_with: String
+  info_ends_with: String
+  info_not_ends_with: String
+  AND: [PaymentWhereInput!]
+  OR: [PaymentWhereInput!]
+  NOT: [PaymentWhereInput!]
+}
+
+input PaymentWhereUniqueInput {
+  id: ID
+}
+
 type PropertiesOptions {
   id: ID!
   slug: String
@@ -4451,6 +4901,12 @@ type Query {
   otp(where: OtpWhereUniqueInput!): Otp
   otps(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Otp]!
   otpsConnection(where: OtpWhereInput, orderBy: OtpOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OtpConnection!
+  payment(where: PaymentWhereUniqueInput!): Payment
+  payments(where: PaymentWhereInput, orderBy: PaymentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Payment]!
+  paymentsConnection(where: PaymentWhereInput, orderBy: PaymentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PaymentConnection!
+  paymentCustomer(where: PaymentCustomerWhereUniqueInput!): PaymentCustomer
+  paymentCustomers(where: PaymentCustomerWhereInput, orderBy: PaymentCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PaymentCustomer]!
+  paymentCustomersConnection(where: PaymentCustomerWhereInput, orderBy: PaymentCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PaymentCustomerConnection!
   propertiesOptions(where: PropertiesOptionsWhereUniqueInput!): PropertiesOptions
   propertiesOptionses(where: PropertiesOptionsWhereInput, orderBy: PropertiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PropertiesOptions]!
   propertiesOptionsesConnection(where: PropertiesOptionsWhereInput, orderBy: PropertiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PropertiesOptionsConnection!
@@ -6775,6 +7231,8 @@ type Subscription {
   organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
   organizationType(where: OrganizationTypeSubscriptionWhereInput): OrganizationTypeSubscriptionPayload
   otp(where: OtpSubscriptionWhereInput): OtpSubscriptionPayload
+  payment(where: PaymentSubscriptionWhereInput): PaymentSubscriptionPayload
+  paymentCustomer(where: PaymentCustomerSubscriptionWhereInput): PaymentCustomerSubscriptionPayload
   propertiesOptions(where: PropertiesOptionsSubscriptionWhereInput): PropertiesOptionsSubscriptionPayload
   rating(where: RatingSubscriptionWhereInput): RatingSubscriptionPayload
   requisition(where: RequisitionSubscriptionWhereInput): RequisitionSubscriptionPayload

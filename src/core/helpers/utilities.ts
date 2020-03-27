@@ -23,6 +23,7 @@ export const safeRandomBytes = (length: number): any => {
  * @param length;
  * @param type;
  */
+
 export const getRandomString = (_length: number = 15, type: string = 'alphanumeric'): string => {
     let chars;
     let string = '';
@@ -72,6 +73,7 @@ export const getRandomString = (_length: number = 15, type: string = 'alphanumer
  * @param length;
  * @param type;
  */
+
 export const getUniqueRandom = async (table: string, field: string, length: number = 15, type: string = 'alphanumeric'): Promise<any> => {
     // Get random string
     const randomString = getRandomString(length, type);

@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 /* eslint-disable import/first */
 import dotenv from 'dotenv';
 
@@ -14,9 +10,11 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import compression from 'compression';
-import graphServer from './graphql';
-// Middlewares
-import handleErrors from './core/middlewares/handleErrors';
+
+import indexRouter from './api/routes/index';
+import webhooksRouter from './api/routes/webhooks/index';
+
+import handleErrors from '../core/middlewares/handleErrors';
 
 const app = express();
 
@@ -43,6 +41,13 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
     return next();
 });
 
+// Page Routes
+app.use('/', indexRouter);
+
+// Webhooks Routes
+
+app.use('/api/webhooks', webhooksRouter);
+
 // v1 API Routes
 app.get('/health', (req: express.Request, res: express.Response): void => {
     res.sendStatus(200);
@@ -52,7 +57,7 @@ app.get('/health', (req: express.Request, res: express.Response): void => {
 app.use(handleErrors);
 
 // handle 404 errors
-app.use((req: express.Request, res: express.Response, _next: express.NextFunction): void => {
+app.use((req, res, _next): void => {
     res.status(404).send({
         status: false,
         message: 'resource not found',
@@ -72,14 +77,5 @@ app.use((err: any, req: express.Request, res: express.Response, _next: express.N
     res.render('error');
 });
 
-const options = {
-    port: process.env.SERVER_GQL_PORT || 9700,
-    endpoint: '/api',
-    subscriptions: '/subscriptions',
-    playground: '/playground'
-};
-
-graphServer.start(options, (param: any) => {
-    const { port } = param;
-    console.log(`Server started, listening on port ${port} for incoming requests.`);
-});
+module.exports = app; // only for purpose of test
+export default app;

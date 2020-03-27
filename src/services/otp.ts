@@ -1,5 +1,5 @@
-import { getRandomString, formatPhoneNumberToInternational } from '../../core/helpers/utilities';
-import { sendSms } from '../../core/sms/africastalking';
+import { getRandomString, formatPhoneNumberToInternational } from '../core/helpers/utilities';
+import { sendSms } from '../core/sms/africastalking';
 
 const generateOtp = async (graph: any) => {
     const {

@@ -80,9 +80,9 @@ const updateStockProduct = async (graph: any) => {
         const result = await prisma.updateStock({
             where: { id },
             data: {
-                products: {
-                    set: products
-                },
+                // products: {
+                //     update: products
+                // },
                 type
             }
         });

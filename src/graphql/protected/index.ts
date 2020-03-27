@@ -7,12 +7,25 @@ const permissions = {
         auths: authMiddleware,
         roles: authMiddleware,
         role: authMiddleware,
-        organizations: authMiddleware
+        organizations: authMiddleware,
+        listings: authMiddleware,
+        payments: authMiddleware,
+        stocks: authMiddleware,
+        userOrganizationRoles: authMiddleware,
+        requisitions: authMiddleware
     },
     Mutation: {
         acceptTerms: authMiddleware,
         createRole: authMiddleware,
-        createOrganizationType: authMiddleware
+        createOrganizationType: authMiddleware,
+        changeRequisitionStatus: authMiddleware,
+        submitRating: authMiddleware,
+        addListing: authMiddleware,
+        createRequisition: authMiddleware,
+        createStock: authMiddleware,
+        createDispatch: authMiddleware,
+        initializePayment: authMiddleware,
+        verifyPayment: authMiddleware
     }
 };
 

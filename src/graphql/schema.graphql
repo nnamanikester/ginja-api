@@ -3,6 +3,7 @@ type Query {
     users: [User!]!
     listings(filter: String, user: String, location: LocationsInput, skip: Int, first: Int): [Listing]
     banks: [Bank!]!
+    payments: [Payment]
     auths: [Auth!]!
     roles: [Role!]!
     listingProducts: [ListingProducts]
@@ -18,11 +19,11 @@ type Query {
     spacesOptions: [SpacesOptions]
     role(id: ID, name: String): Role!
     otp(id: ID, phoneNumber: String): Otp!
-    stocks(first: Int, skip: Int, merchant: String, warehouser: String, status: Int ):[Stock]!
+    stocks(first: Int, skip: Int, merchant: String, warehouser: String, status: Int): [Stock]!
     organizations: [Organization!]!
     organizationTypes: [OrganizationType!]!
     userOrganizationRoles: [UserOrganizationRole!]!
-    requisitions( user: String, skip: Int, first: Int): [Requisition]!
+    requisitions(user: String, skip: Int, first: Int): [Requisition]!
 }
 
 type Mutation {
@@ -39,12 +40,11 @@ type Mutation {
         bankName: String!
         bankCode: String!
     ): AuthPayload!
-    changeRequisitionStatus(id:String! status:Int!):Success!
-    submitRating(listingId:String!, ratingId:String!, rate: Int!, userId: String!): Success!
+    changeRequisitionStatus(id: String!, status: Int!): Success!
+    submitRating(listingId: String!, ratingId: String!, rate: Int!, userId: String!): Success!
     addListing(
         user: String!
         name: String!
-        slug: String!
         description: String!
         price: Float!
         discount: Int
@@ -78,18 +78,12 @@ type Mutation {
         user: String!
         listing: String!
         space: Int!
-        ): Success!
+    ): Success!
 
-    createStock(
-        type: Int!
-        products:[StockProductInput!]!
-        requisition: String!
-        ): Success!
-    createDispatch(
-        id: String!
-        dispatch: StockDispatchInput!
-        ): Success!
-
+    createStock(type: Int!, products: [StockProductInput!]!, requisition: String!): Success!
+    createDispatch(id: String!, dispatch: StockDispatchInput!): Success!
+    initializePayment(requisitionId: String!, amount: Float!, email: String!, currency: String): PaymentResponse!
+    verifyPayment(transactionRef: String!): PaymentResponse!
     generateOtp(phoneNumber: String!): Otp!
     validateOtp(otp: String!, phoneNumber: String!): Success!
     login(pin: String!, phoneNumber: String!): AuthPayload!
@@ -100,15 +94,15 @@ type Mutation {
 }
 
 input TableFilterStringInput {
- ne: String
- eq: String
- le: String
- ge: String
- lt: String
- contains: String
- notContains: String
- between: [String]
- beginsWith: String
+    ne: String
+    eq: String
+    le: String
+    ge: String
+    lt: String
+    contains: String
+    notContains: String
+    between: [String]
+    beginsWith: String
 }
 
 type SpacesOptions {
@@ -158,7 +152,6 @@ input SelectOption {
     id: String!
 }
 
-
 type WallFinishesOptions {
     id: ID!
     slug: String!
@@ -185,14 +178,13 @@ type ListingDimensionsResponse {
     area: Float
 }
 
-
-input WarehouserIdentification {  
+input WarehouserIdentification {
     idNumber: String!
     expiryDate: String!
     idType: String!
 }
 
-type WarehouserIdentificationResult {  
+type WarehouserIdentificationResult {
     idNumber: String!
     expiryDate: String!
     idType: String!
@@ -219,10 +211,10 @@ type Listing {
     proofOfOwnership: String!
     identification: WarehouserIdentificationResult!
     spacing: [SpacesOptions]!
-    property:[PropertiesOptions]!
-    floor:[FloorsOptions]!
-    wallFinish:[WallFinishesOptions]!
-    roofing:[RoofingMaterialOptions]!
+    property: [PropertiesOptions]!
+    floor: [FloorsOptions]!
+    wallFinish: [WallFinishesOptions]!
+    roofing: [RoofingMaterialOptions]!
     isSecure: SelectOptions!
     pest: SelectOptions!
     windows: Int!
@@ -253,17 +245,17 @@ type Requisition {
 }
 
 type Stock {
-	id: ID!
-	type: Int!
-	products: [StockProduct!]!
-	status: Int!
-	dispatch: StockDispatch!
+    id: ID!
+    type: Int!
+    products: [StockProduct!]!
+    status: Int!
+    dispatch: StockDispatch!
     requisition: Requisition!
 }
 
 type StockDispatch {
-	id: ID!
-    pickupAgentName:String
+    id: ID!
+    pickupAgentName: String
     pickupAgentPhone: String
     pickupAgentIdentification: String
     pickupAgentIdNumber: String
@@ -273,7 +265,7 @@ type StockDispatch {
 }
 
 input StockDispatchInput {
-    pickupAgentName:String
+    pickupAgentName: String
     pickupAgentPhone: String
     pickupAgentIdentification: String
     pickupAgentIdNumber: String
@@ -284,12 +276,12 @@ input StockDispatchInput {
 
 type DateRange {
     id: ID!
-    min: String    
+    min: String
     max: String!
 }
 
 input DateRangeInput {
-    min: String    
+    min: String
     max: String!
 }
 
@@ -323,7 +315,7 @@ input RequisitionDurationInput {
 }
 
 type RequisitionCost {
-    id: ID! 
+    id: ID!
     baseCost: Float!
     vat: Float!
     discount: Float
@@ -368,13 +360,13 @@ type ListingRequirements {
 }
 
 type SelectOptions {
-    id:ID!
+    id: ID!
     slug: String!
     name: String!
 }
 
 type RoofingMaterialOptions {
-    id:ID!
+    id: ID!
     slug: String!
     name: String!
     default: Boolean
@@ -390,7 +382,7 @@ type FloorsOptions {
 }
 
 type AmenitiesOptions {
-    id:ID!
+    id: ID!
     slug: String!
     name: String!
     default: Boolean
@@ -398,21 +390,21 @@ type AmenitiesOptions {
 }
 
 type ValueAddedServices {
-    id:ID!
+    id: ID!
     slug: String!
     default: Boolean
     name: String!
     userId: String
 }
 
-type IdentificationsOptions { 
+type IdentificationsOptions {
     slug: String!
     name: String!
     default: Boolean
     userId: String
 }
 
-type ListingsFrequencies {  
+type ListingsFrequencies {
     id: ID!
     slug: String!
     name: String!
@@ -518,6 +510,37 @@ type Bank {
     accountName: String!
     bankName: String!
     bankCode: String!
+}
+
+type PaymentResponse {
+    status: Boolean
+    amount: Float
+    transactionRef: String
+    accessCode: String
+    authorizationUrl: String
+}
+
+type Payment {
+    id: ID!
+    email: String!
+    createdAt: String!
+    updatedAt: String
+    amount: Float!
+    requisition: Requisition!
+    status: Int!
+    currency: String!
+    channel: String
+    customer: PaymentCustomer
+    info: String!
+}
+
+type PaymentCustomer {
+    id: ID!
+    paystackId: String
+    customerCode: String
+    firstName: String
+    lastName: String
+    email: String
 }
 
 type AuthPayload {

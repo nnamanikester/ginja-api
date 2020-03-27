@@ -1,4 +1,4 @@
-import { createStock, updateStockProduct, createDispatch, stocks } from '../controllers/stock';
+import { createStock, updateStockProduct, createDispatch, stocks } from '../../controllers/stock';
 
 const stockQueries = {
     stocks: (root: any, args: any, context: any, info: any) => stocks(root, args, context)

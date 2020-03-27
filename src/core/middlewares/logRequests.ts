@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import logger from '../../core/utils/logger';
+import logger from '../utils/logger';
 
 export default async (request: Request, _response: Response, next: NextFunction): Promise<any> => {
     next();

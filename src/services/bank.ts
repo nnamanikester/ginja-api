@@ -1,5 +1,4 @@
 import Payment from '../integrations/Payment';
-import { response } from 'express';
 
 const payment = new Payment();
 

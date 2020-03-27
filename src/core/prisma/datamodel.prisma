@@ -6,7 +6,71 @@ type User {
     phoneNumber: String!
     dob: String!
     terms: Boolean
-    type: String!
+    type: OrganizationType!
+    wallet: Wallet!
+    referral: Referral!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+}
+
+type Referral {
+    id: ID!  @id @unique
+    status: Int!
+    refCode: Int!
+    userId: String!
+    referrals: [Referrals]
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt  
+}
+
+type Crowns {
+    id: ID!  @id @unique
+    requiredReferrals: Int!
+    noOfDays: Int!
+    noOfDays: Int!
+    bonus: Int!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt  
+}
+
+type Referrals {
+    id: ID!  @id @unique
+    crowns: Int!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt  
+}
+
+type wallet {
+    id: ID!  @id @unique
+    availableBalance: Float!
+    status: Int!
+    ledgerBalance: Float!
+    userId: String!
+    currency: String!
+    transactions: [Transactions]
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+}
+
+type Transactions {
+    id: ID!  @id @unique
+    status: Int!
+    type: Int!
+    amount: Float!
+    fees: Int!
+    sender: TransactionUser
+    recipient: TransactionUser
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+}
+
+type TransactionUser {
+    id: ID!  @id @unique
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    wallet: Wallet!
 }
 
 type SpacesOptions {
@@ -255,6 +319,29 @@ type Auth {
     pin: String!
     userId: String!
     user: User!
+}
+
+type Payment {
+    id: ID!  @id @unique
+    email: String! 
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+    amount: Float! 
+    requisition: Requisition!
+    status: Int!
+    currency: String!
+    channel: String
+    customer: PaymentCustomer @relation(name: "PaymentCustomer_customer")
+    info: String!
+}
+
+type PaymentCustomer {
+    id: ID!  @id @unique
+    paystackId: String
+    customerCode: String
+    firstName: String
+    lastName: String
+    email: String
 }
 
 type Otp {

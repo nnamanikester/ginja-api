@@ -1,4 +1,4 @@
-import { validateOtp, generateOtp } from '../controllers/otp';
+import { validateOtp, generateOtp } from '../../controllers/otp';
 
 const otpQueries = {
     otp: (root: any, args: any, context: any, info: any) => {

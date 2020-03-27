@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { createOrganizationType } from '../controllers/organization';
+import { createOrganizationType } from '../../controllers/organization';
 
 const organizationQueries = {
     organizations: (root: any, args: any, context: any, info: any) => {
