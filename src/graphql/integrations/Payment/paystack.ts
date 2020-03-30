@@ -25,4 +25,11 @@ export default class Paystack {
             throw error;
         }
     };
+
+    public verifyTransaction = async (params: any): Promise<any> => {
+        const response = await this.paystack.verifyTransaction({
+            reference: params.reference
+        });
+        return response;
+    };
 }

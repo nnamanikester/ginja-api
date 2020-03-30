@@ -5,6 +5,12 @@ const createUser = async (graph: any) => {
     const { prisma } = context;
     const { dob, phoneNumber, email, lastName, firstName, type } = args;
     try {
+        // check if user with args already exists
+        const users = await prisma.users({ where: { OR: [{ email }, { phoneNumber }] } });
+
+        if (users.length > 0) {
+            throw new Error(`User Already Exists`);
+        }
         return await prisma.createUser({
             firstName,
             phoneNumber,

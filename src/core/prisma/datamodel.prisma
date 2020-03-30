@@ -343,3 +343,22 @@ type StockProduct {
     totalQuantity: Int!
     productImage: String!
 }
+
+type Wallet {
+    id: ID!  @id @unique
+    userId: String! @unique
+    owner: User!
+    availableBalance: Int! 
+    ledgerBalance: Int! 
+    transactions:[Transaction]!
+    bank: Bank!
+}
+
+type Transaction {
+    id:ID!  @id @unique
+    type: String!
+    to: User! @relation(name:"MerchantUser")
+    user: User! @relation(name:"WarehouserUser")
+    amount: Int!
+    description: String @default(value: "")
+}

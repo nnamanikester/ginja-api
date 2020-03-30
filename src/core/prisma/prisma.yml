@@ -1,6 +1,5 @@
 # The HTTP endpoint for your Prisma API
-#endpoint: ''
-endpoint: http://localhost:4466
+endpoint: https://eu1.prisma.sh/somtozech/ginja-db/dev
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
@@ -9,5 +8,11 @@ datamodel: datamodel.prisma
 generate:
     - generator: typescript-client
       output: ./generated
+
 seed:
-  run: ts-node ./data/seed.ts
+    run: ts-node ./data/seed.ts
+
+# A "post-deployment" hook that regenerates the Prisma client.
+hooks:
+    post-deploy:
+        # - graphql get-schema -p prisma

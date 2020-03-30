@@ -2,6 +2,7 @@ import { UserModel } from '../../interfaces/auth';
 import * as authService from '../../services/auth';
 import * as bankService from '../../services/bank';
 import * as organizationService from '../../services/organization';
+import { createWallet } from '../../services/wallet';
 import * as userService from '../../services/user';
 import * as roleService from '../../services/role';
 import * as hashUtility from '../../../core/utils/bcrypt';
@@ -9,17 +10,18 @@ import * as jwtUtility from '../../../core/utils/jwt';
 
 const signUp = async (parent: any, args: UserModel, context: any): Promise<any> => {
     try {
-        // Create Bank Object
-        const { id: bank } = await bankService.createBank({ parent, args, context });
-
-        const pin = await hashUtility.hash(args.pin);
-
         // Create user
         const user = await userService.createUser({ parent, args, context });
 
-        // Create user
+        const pin = await hashUtility.hash(args.pin);
+
+        // Create Bank Object
+        const { id: bank } = await bankService.createBank({ parent, args, context });
+
         const { id: organization } = await organizationService.createOrganization({ parent, args, context }, { bank });
 
+        // Create Wallet for user
+        await createWallet({ parent, args, context }, { bank, user: user.id });
         // get owner role
         const { id: role } = await roleService.getRoleByParam({ parent, args, context }, { name: 'owner' });
 
@@ -39,7 +41,8 @@ const signUp = async (parent: any, args: UserModel, context: any): Promise<any> 
             user
         };
     } catch (error) {
-        throw new Error('User with email address and mobile number exits.');
+        throw error;
+        // throw new Error('User with email address and mobile number exits.');
     }
 };
 

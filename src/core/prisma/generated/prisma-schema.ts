@@ -134,6 +134,10 @@ type AggregateSuccess {
   count: Int!
 }
 
+type AggregateTransaction {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -143,6 +147,10 @@ type AggregateUserOrganizationRole {
 }
 
 type AggregateValueAddedServices {
+  count: Int!
+}
+
+type AggregateWallet {
   count: Int!
 }
 
@@ -3619,6 +3627,12 @@ type Mutation {
   upsertSuccess(where: SuccessWhereUniqueInput!, create: SuccessCreateInput!, update: SuccessUpdateInput!): Success!
   deleteSuccess(where: SuccessWhereUniqueInput!): Success
   deleteManySuccesses(where: SuccessWhereInput): BatchPayload!
+  createTransaction(data: TransactionCreateInput!): Transaction!
+  updateTransaction(data: TransactionUpdateInput!, where: TransactionWhereUniqueInput!): Transaction
+  updateManyTransactions(data: TransactionUpdateManyMutationInput!, where: TransactionWhereInput): BatchPayload!
+  upsertTransaction(where: TransactionWhereUniqueInput!, create: TransactionCreateInput!, update: TransactionUpdateInput!): Transaction!
+  deleteTransaction(where: TransactionWhereUniqueInput!): Transaction
+  deleteManyTransactions(where: TransactionWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -3642,6 +3656,12 @@ type Mutation {
   upsertWallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!, create: WallFinishesOptionsCreateInput!, update: WallFinishesOptionsUpdateInput!): WallFinishesOptions!
   deleteWallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!): WallFinishesOptions
   deleteManyWallFinishesOptionses(where: WallFinishesOptionsWhereInput): BatchPayload!
+  createWallet(data: WalletCreateInput!): Wallet!
+  updateWallet(data: WalletUpdateInput!, where: WalletWhereUniqueInput!): Wallet
+  updateManyWallets(data: WalletUpdateManyMutationInput!, where: WalletWhereInput): BatchPayload!
+  upsertWallet(where: WalletWhereUniqueInput!, create: WalletCreateInput!, update: WalletUpdateInput!): Wallet!
+  deleteWallet(where: WalletWhereUniqueInput!): Wallet
+  deleteManyWallets(where: WalletWhereInput): BatchPayload!
   createWarehouserIdentification(data: WarehouserIdentificationCreateInput!): WarehouserIdentification!
   updateWarehouserIdentification(data: WarehouserIdentificationUpdateInput!, where: WarehouserIdentificationWhereUniqueInput!): WarehouserIdentification
   updateManyWarehouserIdentifications(data: WarehouserIdentificationUpdateManyMutationInput!, where: WarehouserIdentificationWhereInput): BatchPayload!
@@ -4493,6 +4513,9 @@ type Query {
   success(where: SuccessWhereUniqueInput!): Success
   successes(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Success]!
   successesConnection(where: SuccessWhereInput, orderBy: SuccessOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SuccessConnection!
+  transaction(where: TransactionWhereUniqueInput!): Transaction
+  transactions(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Transaction]!
+  transactionsConnection(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TransactionConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -4505,6 +4528,9 @@ type Query {
   wallFinishesOptions(where: WallFinishesOptionsWhereUniqueInput!): WallFinishesOptions
   wallFinishesOptionses(where: WallFinishesOptionsWhereInput, orderBy: WallFinishesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WallFinishesOptions]!
   wallFinishesOptionsesConnection(where: WallFinishesOptionsWhereInput, orderBy: WallFinishesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WallFinishesOptionsConnection!
+  wallet(where: WalletWhereUniqueInput!): Wallet
+  wallets(where: WalletWhereInput, orderBy: WalletOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Wallet]!
+  walletsConnection(where: WalletWhereInput, orderBy: WalletOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WalletConnection!
   warehouserIdentification(where: WarehouserIdentificationWhereUniqueInput!): WarehouserIdentification
   warehouserIdentifications(where: WarehouserIdentificationWhereInput, orderBy: WarehouserIdentificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [WarehouserIdentification]!
   warehouserIdentificationsConnection(where: WarehouserIdentificationWhereInput, orderBy: WarehouserIdentificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WarehouserIdentificationConnection!
@@ -6789,10 +6815,12 @@ type Subscription {
   stockDispatch(where: StockDispatchSubscriptionWhereInput): StockDispatchSubscriptionPayload
   stockProduct(where: StockProductSubscriptionWhereInput): StockProductSubscriptionPayload
   success(where: SuccessSubscriptionWhereInput): SuccessSubscriptionPayload
+  transaction(where: TransactionSubscriptionWhereInput): TransactionSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   userOrganizationRole(where: UserOrganizationRoleSubscriptionWhereInput): UserOrganizationRoleSubscriptionPayload
   valueAddedServices(where: ValueAddedServicesSubscriptionWhereInput): ValueAddedServicesSubscriptionPayload
   wallFinishesOptions(where: WallFinishesOptionsSubscriptionWhereInput): WallFinishesOptionsSubscriptionPayload
+  wallet(where: WalletSubscriptionWhereInput): WalletSubscriptionPayload
   warehouserIdentification(where: WarehouserIdentificationSubscriptionWhereInput): WarehouserIdentificationSubscriptionPayload
 }
 
@@ -6878,6 +6906,250 @@ input SuccessWhereInput {
 }
 
 input SuccessWhereUniqueInput {
+  id: ID
+}
+
+type Transaction {
+  id: ID!
+  type: String!
+  to: User!
+  user: User!
+  amount: Int!
+  description: String
+}
+
+type TransactionConnection {
+  pageInfo: PageInfo!
+  edges: [TransactionEdge]!
+  aggregate: AggregateTransaction!
+}
+
+input TransactionCreateInput {
+  id: ID
+  type: String!
+  to: UserCreateOneInput!
+  user: UserCreateOneInput!
+  amount: Int!
+  description: String
+}
+
+input TransactionCreateManyInput {
+  create: [TransactionCreateInput!]
+  connect: [TransactionWhereUniqueInput!]
+}
+
+type TransactionEdge {
+  node: Transaction!
+  cursor: String!
+}
+
+enum TransactionOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  amount_ASC
+  amount_DESC
+  description_ASC
+  description_DESC
+}
+
+type TransactionPreviousValues {
+  id: ID!
+  type: String!
+  amount: Int!
+  description: String
+}
+
+input TransactionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [TransactionScalarWhereInput!]
+  OR: [TransactionScalarWhereInput!]
+  NOT: [TransactionScalarWhereInput!]
+}
+
+type TransactionSubscriptionPayload {
+  mutation: MutationType!
+  node: Transaction
+  updatedFields: [String!]
+  previousValues: TransactionPreviousValues
+}
+
+input TransactionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TransactionWhereInput
+  AND: [TransactionSubscriptionWhereInput!]
+  OR: [TransactionSubscriptionWhereInput!]
+  NOT: [TransactionSubscriptionWhereInput!]
+}
+
+input TransactionUpdateDataInput {
+  type: String
+  to: UserUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  amount: Int
+  description: String
+}
+
+input TransactionUpdateInput {
+  type: String
+  to: UserUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  amount: Int
+  description: String
+}
+
+input TransactionUpdateManyDataInput {
+  type: String
+  amount: Int
+  description: String
+}
+
+input TransactionUpdateManyInput {
+  create: [TransactionCreateInput!]
+  update: [TransactionUpdateWithWhereUniqueNestedInput!]
+  upsert: [TransactionUpsertWithWhereUniqueNestedInput!]
+  delete: [TransactionWhereUniqueInput!]
+  connect: [TransactionWhereUniqueInput!]
+  set: [TransactionWhereUniqueInput!]
+  disconnect: [TransactionWhereUniqueInput!]
+  deleteMany: [TransactionScalarWhereInput!]
+  updateMany: [TransactionUpdateManyWithWhereNestedInput!]
+}
+
+input TransactionUpdateManyMutationInput {
+  type: String
+  amount: Int
+  description: String
+}
+
+input TransactionUpdateManyWithWhereNestedInput {
+  where: TransactionScalarWhereInput!
+  data: TransactionUpdateManyDataInput!
+}
+
+input TransactionUpdateWithWhereUniqueNestedInput {
+  where: TransactionWhereUniqueInput!
+  data: TransactionUpdateDataInput!
+}
+
+input TransactionUpsertWithWhereUniqueNestedInput {
+  where: TransactionWhereUniqueInput!
+  update: TransactionUpdateDataInput!
+  create: TransactionCreateInput!
+}
+
+input TransactionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: String
+  type_not: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_lt: String
+  type_lte: String
+  type_gt: String
+  type_gte: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  to: UserWhereInput
+  user: UserWhereInput
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [TransactionWhereInput!]
+  OR: [TransactionWhereInput!]
+  NOT: [TransactionWhereInput!]
+}
+
+input TransactionWhereUniqueInput {
   id: ID
 }
 
@@ -7461,6 +7733,148 @@ input ValueAddedServicesWhereInput {
 
 input ValueAddedServicesWhereUniqueInput {
   id: ID
+}
+
+type Wallet {
+  id: ID!
+  userId: String!
+  owner: User!
+  availableBalance: Int!
+  ledgerBalance: Int!
+  transactions(where: TransactionWhereInput, orderBy: TransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Transaction!]
+  bank: Bank!
+}
+
+type WalletConnection {
+  pageInfo: PageInfo!
+  edges: [WalletEdge]!
+  aggregate: AggregateWallet!
+}
+
+input WalletCreateInput {
+  id: ID
+  userId: String!
+  owner: UserCreateOneInput!
+  availableBalance: Int!
+  ledgerBalance: Int!
+  transactions: TransactionCreateManyInput
+  bank: BankCreateOneInput!
+}
+
+type WalletEdge {
+  node: Wallet!
+  cursor: String!
+}
+
+enum WalletOrderByInput {
+  id_ASC
+  id_DESC
+  userId_ASC
+  userId_DESC
+  availableBalance_ASC
+  availableBalance_DESC
+  ledgerBalance_ASC
+  ledgerBalance_DESC
+}
+
+type WalletPreviousValues {
+  id: ID!
+  userId: String!
+  availableBalance: Int!
+  ledgerBalance: Int!
+}
+
+type WalletSubscriptionPayload {
+  mutation: MutationType!
+  node: Wallet
+  updatedFields: [String!]
+  previousValues: WalletPreviousValues
+}
+
+input WalletSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: WalletWhereInput
+  AND: [WalletSubscriptionWhereInput!]
+  OR: [WalletSubscriptionWhereInput!]
+  NOT: [WalletSubscriptionWhereInput!]
+}
+
+input WalletUpdateInput {
+  userId: String
+  owner: UserUpdateOneRequiredInput
+  availableBalance: Int
+  ledgerBalance: Int
+  transactions: TransactionUpdateManyInput
+  bank: BankUpdateOneRequiredInput
+}
+
+input WalletUpdateManyMutationInput {
+  userId: String
+  availableBalance: Int
+  ledgerBalance: Int
+}
+
+input WalletWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  owner: UserWhereInput
+  availableBalance: Int
+  availableBalance_not: Int
+  availableBalance_in: [Int!]
+  availableBalance_not_in: [Int!]
+  availableBalance_lt: Int
+  availableBalance_lte: Int
+  availableBalance_gt: Int
+  availableBalance_gte: Int
+  ledgerBalance: Int
+  ledgerBalance_not: Int
+  ledgerBalance_in: [Int!]
+  ledgerBalance_not_in: [Int!]
+  ledgerBalance_lt: Int
+  ledgerBalance_lte: Int
+  ledgerBalance_gt: Int
+  ledgerBalance_gte: Int
+  transactions_every: TransactionWhereInput
+  transactions_some: TransactionWhereInput
+  transactions_none: TransactionWhereInput
+  bank: BankWhereInput
+  AND: [WalletWhereInput!]
+  OR: [WalletWhereInput!]
+  NOT: [WalletWhereInput!]
+}
+
+input WalletWhereUniqueInput {
+  id: ID
+  userId: String
 }
 
 type WallFinishesOptions {
