@@ -1,5 +1,8 @@
 # The HTTP endpoint for your Prisma API
-endpoint: https://eu1.prisma.sh/somtozech/ginja-db/dev
+endpoint: ${env:PRISMA_ENDPOINT}
+
+# Here, the secret is loaded as an environment variable from .env.
+secret: ${env:PRISMA_SECRET}
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
@@ -15,4 +18,4 @@ seed:
 # A "post-deployment" hook that regenerates the Prisma client.
 hooks:
     post-deploy:
-        # - graphql get-schema -p prisma
+        - graphql get-schema -p prisma

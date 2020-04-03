@@ -1,4 +1,4 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer, PubSub } from 'graphql-yoga';
 
 import resolvers from './resolvers';
 import permissions from './protected';
@@ -11,6 +11,8 @@ const logResult = async (resolve: (arg0: any, arg1: any, arg2: any, arg3: any) =
     return result;
 };
 
+const pubsub = new PubSub();
+
 const graphServer = new GraphQLServer({
     typeDefs: './src/graphql/schema.graphql',
     resolvers,
@@ -18,7 +20,8 @@ const graphServer = new GraphQLServer({
     context: (request: any) => {
         return {
             ...request,
-            prisma
+            prisma,
+            pubsub
         };
     }
 });

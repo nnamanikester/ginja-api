@@ -14,6 +14,10 @@ type AggregateBank {
   count: Int!
 }
 
+type AggregateChat {
+  count: Int!
+}
+
 type AggregateCountries {
   count: Int!
 }
@@ -63,6 +67,10 @@ type AggregateListingsFrequencies {
 }
 
 type AggregateLocations {
+  count: Int!
+}
+
+type AggregateMessage {
   count: Int!
 }
 
@@ -797,6 +805,130 @@ input BankWhereUniqueInput {
 
 type BatchPayload {
   count: Long!
+}
+
+type Chat {
+  id: ID!
+  merchantId: String!
+  warehouserId: String!
+  messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+}
+
+type ChatConnection {
+  pageInfo: PageInfo!
+  edges: [ChatEdge]!
+  aggregate: AggregateChat!
+}
+
+input ChatCreateInput {
+  id: ID
+  merchantId: String!
+  warehouserId: String!
+  messages: MessageCreateManyInput
+}
+
+type ChatEdge {
+  node: Chat!
+  cursor: String!
+}
+
+enum ChatOrderByInput {
+  id_ASC
+  id_DESC
+  merchantId_ASC
+  merchantId_DESC
+  warehouserId_ASC
+  warehouserId_DESC
+}
+
+type ChatPreviousValues {
+  id: ID!
+  merchantId: String!
+  warehouserId: String!
+}
+
+type ChatSubscriptionPayload {
+  mutation: MutationType!
+  node: Chat
+  updatedFields: [String!]
+  previousValues: ChatPreviousValues
+}
+
+input ChatSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ChatWhereInput
+  AND: [ChatSubscriptionWhereInput!]
+  OR: [ChatSubscriptionWhereInput!]
+  NOT: [ChatSubscriptionWhereInput!]
+}
+
+input ChatUpdateInput {
+  merchantId: String
+  warehouserId: String
+  messages: MessageUpdateManyInput
+}
+
+input ChatUpdateManyMutationInput {
+  merchantId: String
+  warehouserId: String
+}
+
+input ChatWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  merchantId: String
+  merchantId_not: String
+  merchantId_in: [String!]
+  merchantId_not_in: [String!]
+  merchantId_lt: String
+  merchantId_lte: String
+  merchantId_gt: String
+  merchantId_gte: String
+  merchantId_contains: String
+  merchantId_not_contains: String
+  merchantId_starts_with: String
+  merchantId_not_starts_with: String
+  merchantId_ends_with: String
+  merchantId_not_ends_with: String
+  warehouserId: String
+  warehouserId_not: String
+  warehouserId_in: [String!]
+  warehouserId_not_in: [String!]
+  warehouserId_lt: String
+  warehouserId_lte: String
+  warehouserId_gt: String
+  warehouserId_gte: String
+  warehouserId_contains: String
+  warehouserId_not_contains: String
+  warehouserId_starts_with: String
+  warehouserId_not_starts_with: String
+  warehouserId_ends_with: String
+  warehouserId_not_ends_with: String
+  messages_every: MessageWhereInput
+  messages_some: MessageWhereInput
+  messages_none: MessageWhereInput
+  AND: [ChatWhereInput!]
+  OR: [ChatWhereInput!]
+  NOT: [ChatWhereInput!]
+}
+
+input ChatWhereUniqueInput {
+  id: ID
 }
 
 type Countries {
@@ -3428,6 +3560,245 @@ input LocationsWhereUniqueInput {
 
 scalar Long
 
+type Message {
+  id: ID!
+  chatId: String!
+  from: User!
+  to: User!
+  text: String!
+  createdAt: DateTime!
+}
+
+type MessageConnection {
+  pageInfo: PageInfo!
+  edges: [MessageEdge]!
+  aggregate: AggregateMessage!
+}
+
+input MessageCreateInput {
+  id: ID
+  chatId: String!
+  from: UserCreateOneInput!
+  to: UserCreateOneInput!
+  text: String
+}
+
+input MessageCreateManyInput {
+  create: [MessageCreateInput!]
+  connect: [MessageWhereUniqueInput!]
+}
+
+type MessageEdge {
+  node: Message!
+  cursor: String!
+}
+
+enum MessageOrderByInput {
+  id_ASC
+  id_DESC
+  chatId_ASC
+  chatId_DESC
+  text_ASC
+  text_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type MessagePreviousValues {
+  id: ID!
+  chatId: String!
+  text: String!
+  createdAt: DateTime!
+}
+
+input MessageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  chatId: String
+  chatId_not: String
+  chatId_in: [String!]
+  chatId_not_in: [String!]
+  chatId_lt: String
+  chatId_lte: String
+  chatId_gt: String
+  chatId_gte: String
+  chatId_contains: String
+  chatId_not_contains: String
+  chatId_starts_with: String
+  chatId_not_starts_with: String
+  chatId_ends_with: String
+  chatId_not_ends_with: String
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [MessageScalarWhereInput!]
+  OR: [MessageScalarWhereInput!]
+  NOT: [MessageScalarWhereInput!]
+}
+
+type MessageSubscriptionPayload {
+  mutation: MutationType!
+  node: Message
+  updatedFields: [String!]
+  previousValues: MessagePreviousValues
+}
+
+input MessageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MessageWhereInput
+  AND: [MessageSubscriptionWhereInput!]
+  OR: [MessageSubscriptionWhereInput!]
+  NOT: [MessageSubscriptionWhereInput!]
+}
+
+input MessageUpdateDataInput {
+  chatId: String
+  from: UserUpdateOneRequiredInput
+  to: UserUpdateOneRequiredInput
+  text: String
+}
+
+input MessageUpdateInput {
+  chatId: String
+  from: UserUpdateOneRequiredInput
+  to: UserUpdateOneRequiredInput
+  text: String
+}
+
+input MessageUpdateManyDataInput {
+  chatId: String
+  text: String
+}
+
+input MessageUpdateManyInput {
+  create: [MessageCreateInput!]
+  update: [MessageUpdateWithWhereUniqueNestedInput!]
+  upsert: [MessageUpsertWithWhereUniqueNestedInput!]
+  delete: [MessageWhereUniqueInput!]
+  connect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  deleteMany: [MessageScalarWhereInput!]
+  updateMany: [MessageUpdateManyWithWhereNestedInput!]
+}
+
+input MessageUpdateManyMutationInput {
+  chatId: String
+  text: String
+}
+
+input MessageUpdateManyWithWhereNestedInput {
+  where: MessageScalarWhereInput!
+  data: MessageUpdateManyDataInput!
+}
+
+input MessageUpdateWithWhereUniqueNestedInput {
+  where: MessageWhereUniqueInput!
+  data: MessageUpdateDataInput!
+}
+
+input MessageUpsertWithWhereUniqueNestedInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateDataInput!
+  create: MessageCreateInput!
+}
+
+input MessageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  chatId: String
+  chatId_not: String
+  chatId_in: [String!]
+  chatId_not_in: [String!]
+  chatId_lt: String
+  chatId_lte: String
+  chatId_gt: String
+  chatId_gte: String
+  chatId_contains: String
+  chatId_not_contains: String
+  chatId_starts_with: String
+  chatId_not_starts_with: String
+  chatId_ends_with: String
+  chatId_not_ends_with: String
+  from: UserWhereInput
+  to: UserWhereInput
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [MessageWhereInput!]
+  OR: [MessageWhereInput!]
+  NOT: [MessageWhereInput!]
+}
+
+input MessageWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
   createAmenitiesOptions(data: AmenitiesOptionsCreateInput!): AmenitiesOptions!
   updateAmenitiesOptions(data: AmenitiesOptionsUpdateInput!, where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
@@ -3447,6 +3818,12 @@ type Mutation {
   upsertBank(where: BankWhereUniqueInput!, create: BankCreateInput!, update: BankUpdateInput!): Bank!
   deleteBank(where: BankWhereUniqueInput!): Bank
   deleteManyBanks(where: BankWhereInput): BatchPayload!
+  createChat(data: ChatCreateInput!): Chat!
+  updateChat(data: ChatUpdateInput!, where: ChatWhereUniqueInput!): Chat
+  updateManyChats(data: ChatUpdateManyMutationInput!, where: ChatWhereInput): BatchPayload!
+  upsertChat(where: ChatWhereUniqueInput!, create: ChatCreateInput!, update: ChatUpdateInput!): Chat!
+  deleteChat(where: ChatWhereUniqueInput!): Chat
+  deleteManyChats(where: ChatWhereInput): BatchPayload!
   createCountries(data: CountriesCreateInput!): Countries!
   updateCountries(data: CountriesUpdateInput!, where: CountriesWhereUniqueInput!): Countries
   updateManyCountrieses(data: CountriesUpdateManyMutationInput!, where: CountriesWhereInput): BatchPayload!
@@ -3525,6 +3902,12 @@ type Mutation {
   upsertLocations(where: LocationsWhereUniqueInput!, create: LocationsCreateInput!, update: LocationsUpdateInput!): Locations!
   deleteLocations(where: LocationsWhereUniqueInput!): Locations
   deleteManyLocationses(where: LocationsWhereInput): BatchPayload!
+  createMessage(data: MessageCreateInput!): Message!
+  updateMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message
+  updateManyMessages(data: MessageUpdateManyMutationInput!, where: MessageWhereInput): BatchPayload!
+  upsertMessage(where: MessageWhereUniqueInput!, create: MessageCreateInput!, update: MessageUpdateInput!): Message!
+  deleteMessage(where: MessageWhereUniqueInput!): Message
+  deleteManyMessages(where: MessageWhereInput): BatchPayload!
   createOrganization(data: OrganizationCreateInput!): Organization!
   updateOrganization(data: OrganizationUpdateInput!, where: OrganizationWhereUniqueInput!): Organization
   updateManyOrganizations(data: OrganizationUpdateManyMutationInput!, where: OrganizationWhereInput): BatchPayload!
@@ -4423,6 +4806,9 @@ type Query {
   bank(where: BankWhereUniqueInput!): Bank
   banks(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bank]!
   banksConnection(where: BankWhereInput, orderBy: BankOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BankConnection!
+  chat(where: ChatWhereUniqueInput!): Chat
+  chats(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chat]!
+  chatsConnection(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ChatConnection!
   countries(where: CountriesWhereUniqueInput!): Countries
   countrieses(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Countries]!
   countriesesConnection(where: CountriesWhereInput, orderBy: CountriesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountriesConnection!
@@ -4462,6 +4848,9 @@ type Query {
   locations(where: LocationsWhereUniqueInput!): Locations
   locationses(where: LocationsWhereInput, orderBy: LocationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Locations]!
   locationsesConnection(where: LocationsWhereInput, orderBy: LocationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationsConnection!
+  message(where: MessageWhereUniqueInput!): Message
+  messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message]!
+  messagesConnection(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MessageConnection!
   organization(where: OrganizationWhereUniqueInput!): Organization
   organizations(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Organization]!
   organizationsConnection(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationConnection!
@@ -6785,6 +7174,7 @@ type Subscription {
   amenitiesOptions(where: AmenitiesOptionsSubscriptionWhereInput): AmenitiesOptionsSubscriptionPayload
   auth(where: AuthSubscriptionWhereInput): AuthSubscriptionPayload
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload
+  chat(where: ChatSubscriptionWhereInput): ChatSubscriptionPayload
   countries(where: CountriesSubscriptionWhereInput): CountriesSubscriptionPayload
   dateRange(where: DateRangeSubscriptionWhereInput): DateRangeSubscriptionPayload
   floorsOptions(where: FloorsOptionsSubscriptionWhereInput): FloorsOptionsSubscriptionPayload
@@ -6798,6 +7188,7 @@ type Subscription {
   listingRequirements(where: ListingRequirementsSubscriptionWhereInput): ListingRequirementsSubscriptionPayload
   listingsFrequencies(where: ListingsFrequenciesSubscriptionWhereInput): ListingsFrequenciesSubscriptionPayload
   locations(where: LocationsSubscriptionWhereInput): LocationsSubscriptionPayload
+  message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
   organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
   organizationType(where: OrganizationTypeSubscriptionWhereInput): OrganizationTypeSubscriptionPayload
   otp(where: OtpSubscriptionWhereInput): OtpSubscriptionPayload

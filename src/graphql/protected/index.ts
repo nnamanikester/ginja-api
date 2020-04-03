@@ -7,13 +7,16 @@ const permissions = {
         auths: authMiddleware,
         roles: authMiddleware,
         role: authMiddleware,
-        organizations: authMiddleware
+        organizations: authMiddleware,
+        chats: authMiddleware,
+        chatMessages: authMiddleware
     },
     Mutation: {
         acceptTerms: authMiddleware,
         createRole: authMiddleware,
         createOrganizationType: authMiddleware,
-        makePaymentToWarehouser: authMiddleware
+        makePaymentToWarehouser: authMiddleware,
+        addMessage: authMiddleware
     }
 };
 

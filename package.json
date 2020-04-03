@@ -20,7 +20,7 @@
         "watch-ts": "tsc -w",
         "pretest": "NODE_ENV=test npm run migrate:undo:all && NODE_ENV=test npm run migrate",
         "test": "NODE_ENV=test jest --setupFiles dotenv/config",
-        "deploy": "prisma deploy --project ./src/core/prisma/prisma.yml"
+        "deploy": "prisma deploy"
     },
     "dependencies": {
         "@babel/cli": "^7.5.5",

@@ -362,3 +362,19 @@ type Transaction {
     amount: Int!
     description: String @default(value: "")
 }
+
+type Chat {
+    id:ID! @id @unique
+    merchantId: String!
+    warehouserId: String!
+    messages:[Message]!
+}
+
+type Message {
+    id: ID! @id @unique
+    chatId: String!
+    from: User! @relation(name:"Sender")
+    to: User!  @relation(name:"Recipient")
+    text: String! @default(value: "")
+    createdAt: DateTime! @createdAt
+}

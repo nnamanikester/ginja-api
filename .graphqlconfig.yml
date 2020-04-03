@@ -1,0 +1,11 @@
+projects:
+    app:
+        schemaPath: src/graphql/schema.graphql
+
+        extensions:
+            endpoints:
+                default: http://localhost:4466
+    prisma:
+        schemaPath: src/core/prisma/generated/prisma.graphql
+        extensions:
+            prisma: src/core/prisma/prisma.yml

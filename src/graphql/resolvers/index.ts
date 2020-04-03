@@ -10,6 +10,7 @@ import { otpTypes, otpMutations } from './otp';
 import { miscTypes, miscQueries } from './misc';
 import { ratingMutations } from './rating';
 import { walletMutations, walletQueries, walletTypes } from './wallet';
+import { chatMutations, chatQueries, chatSubscriptions, chatTypes } from './chats';
 
 const resolvers = {
     Query: {
@@ -23,7 +24,8 @@ const resolvers = {
         ...miscQueries,
         ...requisitionQueries,
         ...stockQueries,
-        ...walletQueries
+        ...walletQueries,
+        ...chatQueries
     },
     Mutation: {
         ...authMutations,
@@ -36,7 +38,11 @@ const resolvers = {
         ...ratingMutations,
         ...requisitionMutations,
         ...stockMutations,
-        ...walletMutations
+        ...walletMutations,
+        ...chatMutations
+    },
+    Subscription: {
+        ...chatSubscriptions
     },
     ...authTypes,
     ...bankTypes,

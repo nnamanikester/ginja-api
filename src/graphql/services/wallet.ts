@@ -4,7 +4,7 @@
 import Payment from '../integrations/Payment';
 import { createTransaction } from './transaction';
 import { changeStatus, requisitions } from './requisition';
-import { Int } from 'src/core/prisma/generated';
+import { createChat } from './chats';
 
 const payment = new Payment();
 
@@ -19,6 +19,7 @@ const createWallet = async (graph: any, params: any) => {
         return await prisma.createWallet({
             ledgerBalance: 0,
             availableBalance: 0,
+            userId: user,
             owner: {
                 connect: {
                     id: user
@@ -50,10 +51,10 @@ const fundWallet = async (graph: any, params: any): Promise<any> => {
         return { success: false };
     }
 
-    const filter = { owner: { id: userId } };
+    const filter = { userId };
 
     // update user wallet
-    const user = await prisma.wallet({ where: { ...filter } });
+    const user = await prisma.wallet({ ...filter });
     const updateData = {
         ledgerBalance: user.ledgerBalance + data.amount,
         availableBalance: user.availableBalance + data.amount
@@ -91,7 +92,7 @@ const makePayment = async (graph: any) => {
         // calculate total Payable Amount
         const totalAmount = baseCost + (discount / 100) * baseCost - (vat / 100) * baseCost;
         // convert totalAmount to Kobo
-        const amountInKobo: Int = totalAmount * 100;
+        const amountInKobo = totalAmount * 100;
 
         // check balance of merchant that is making payment;
         const merchant = await prisma.wallet({
@@ -120,7 +121,10 @@ const makePayment = async (graph: any) => {
         // deduct amount from merchants wallet
         await prisma.updateWallet({
             where: { userId: user.id },
-            data: { ledgerBalance: merchant.ledgerBalance - amountInKobo }
+            data: {
+                ledgerBalance: merchant.ledgerBalance - amountInKobo,
+                availableBalance: merchant.availableBalance - amountInKobo
+            }
         });
 
         const transactionArgs = {
@@ -136,6 +140,9 @@ const makePayment = async (graph: any) => {
 
         // update Requisition status
         await changeStatus({ args: { status: 4, id: requisition.id }, context: graph.context });
+
+        // create new chat for warehouser and merchant
+        await createChat({ args: { merchantId: user.id, warehouserId: warehouser.id }, context: graph.context });
 
         return { success: true };
     } catch (error) {

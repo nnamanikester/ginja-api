@@ -1,3 +1,5 @@
+# import * from "../core/prisma/generated/prisma.graphql"
+
 type Query {
     info: String
     users: [User!]!
@@ -23,6 +25,8 @@ type Query {
     organizationTypes: [OrganizationType!]!
     userOrganizationRoles: [UserOrganizationRole!]!
     requisitions(user: String, skip: Int, first: Int): [Requisition]!
+    chats: [Chat]!
+    chatMessages(chatId: String!): [Message]!
 }
 
 type Mutation {
@@ -91,6 +95,11 @@ type Mutation {
     createOrganizationType(name: String!): OrganizationType!
     resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
     makePaymentToWarehouser(requisitionId: String!): PaymentStatus
+    addMessage(chatId: String!, text: String!): Message!
+}
+
+type Subscription {
+    message: Message!
 }
 
 input TableFilterStringInput {
