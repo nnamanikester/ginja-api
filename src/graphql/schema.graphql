@@ -27,6 +27,13 @@ type Query {
     requisitions(user: String, skip: Int, first: Int): [Requisition]!
     chats: [Chat]!
     chatMessages(chatId: String!): [Message]!
+    initializePayment: Payment!
+}
+
+type Payment {
+    authorization_url: String!
+    access_code: String!
+    reference: String!
 }
 
 type Mutation {
@@ -96,6 +103,7 @@ type Mutation {
     resolveAccountNumber(accountNumber: String!, bankCode: String!): AccountResolve
     makePaymentToWarehouser(requisitionId: String!): PaymentStatus
     addMessage(chatId: String!, text: String!): Message!
+    fundWallet(reference: String!): Success!
 }
 
 type Subscription {

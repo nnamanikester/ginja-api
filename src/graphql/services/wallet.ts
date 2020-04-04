@@ -37,7 +37,7 @@ const createWallet = async (graph: any, params: any) => {
 };
 
 // Add Money to Wallet
-const fundWallet = async (graph: any, params: any): Promise<any> => {
+const fundWallet = async (graph: any): Promise<any> => {
     // verify if payment was successful
     const {
         args: { reference },
@@ -47,11 +47,15 @@ const fundWallet = async (graph: any, params: any): Promise<any> => {
         reference
     });
 
+    console.log('Fund Wallet Running');
+
     if (status !== true) {
         return { success: false };
     }
 
     const filter = { userId };
+
+    console.log(filter);
 
     // update user wallet
     const user = await prisma.wallet({ ...filter });
@@ -59,17 +63,20 @@ const fundWallet = async (graph: any, params: any): Promise<any> => {
         ledgerBalance: user.ledgerBalance + data.amount,
         availableBalance: user.availableBalance + data.amount
     };
+
     await prisma.updateWallet({ where: { ...filter }, data: { ...updateData } });
 
-    // create a transaction
-    await createTransaction({
-        from: user.id,
-        to: user.id,
-        amount: data.amount,
-        type: 'payment'
-    });
+    //TODO create transactions
+    // // create a transaction
+    // await createTransaction({
+    //     from: user.id,
+    //     to: user.id,
+    //     amount: data.amount,
+    //     type: 'payment',
+    //     description: ''
+    // });
 
-    return { success: true };
+    return { id: reference, success: true };
 };
 
 // TODO:
@@ -86,11 +93,15 @@ const makePayment = async (graph: any) => {
         const {
             user,
             listing: { user: warehouser },
-            cost: { baseCost, vat, discount }
+            cost: { baseCost, discount }
         } = requisition;
 
         // calculate total Payable Amount
-        const totalAmount = baseCost + (discount / 100) * baseCost - (vat / 100) * baseCost;
+
+        const totalAmount = baseCost - (discount / 100) * baseCost + (7.5 / 100) * baseCost;
+
+        //calculate amount payable to warehouser
+        const payableAmountInKobo = (baseCost - (discount / 100) * baseCost) * 100;
         // convert totalAmount to Kobo
         const amountInKobo = totalAmount * 100;
 
@@ -111,7 +122,7 @@ const makePayment = async (graph: any) => {
         const owner = await prisma.wallet({ ...filter });
         owner.availableBalance = owner.availableBalance ? owner.availableBalance : 0;
 
-        const updatedBalance = owner.availableBalance + amountInKobo;
+        const updatedBalance = owner.availableBalance + payableAmountInKobo;
 
         await prisma.updateWallet({
             where: { ...filter },
@@ -139,7 +150,7 @@ const makePayment = async (graph: any) => {
         await createTransaction({ args: transactionArgs, context: graph.context });
 
         // update Requisition status
-        await changeStatus({ args: { status: 4, id: requisition.id }, context: graph.context });
+        await changeStatus({ args: { status: 5, id: requisition.id }, context: graph.context });
 
         // create new chat for warehouser and merchant
         await createChat({ args: { merchantId: user.id, warehouserId: warehouser.id }, context: graph.context });
@@ -150,4 +161,4 @@ const makePayment = async (graph: any) => {
     }
 };
 
-export { createWallet, makePayment, fundWallet as addMoneyToWallet, withdrawFromWallet };
+export { createWallet, makePayment, fundWallet, withdrawFromWallet };

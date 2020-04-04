@@ -1,11 +1,11 @@
-import { makePaymentToWarehouser } from '../controllers/wallet';
+import { makePaymentToWarehouser, fundWallet } from '../controllers/wallet';
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 const walletQueries = {};
 
 const walletMutations = {
-    makePaymentToWarehouser: (root: any, args: any, context: any, info: any): Promise<any> =>
-        makePaymentToWarehouser(root, args, context, info)
+    makePaymentToWarehouser,
+    fundWallet
 };
 
 const walletTypes = {
