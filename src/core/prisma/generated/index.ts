@@ -16,6 +16,8 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  adminRole: (where?: AdminRoleWhereInput) => Promise<boolean>;
+  adminUser: (where?: AdminUserWhereInput) => Promise<boolean>;
   amenitiesOptions: (where?: AmenitiesOptionsWhereInput) => Promise<boolean>;
   auth: (where?: AuthWhereInput) => Promise<boolean>;
   bank: (where?: BankWhereInput) => Promise<boolean>;
@@ -99,6 +101,44 @@ export interface Prisma {
    * Queries
    */
 
+  adminRole: (where: AdminRoleWhereUniqueInput) => AdminRoleNullablePromise;
+  adminRoles: (args?: {
+    where?: AdminRoleWhereInput;
+    orderBy?: AdminRoleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<AdminRole>;
+  adminRolesConnection: (args?: {
+    where?: AdminRoleWhereInput;
+    orderBy?: AdminRoleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => AdminRoleConnectionPromise;
+  adminUser: (where: AdminUserWhereUniqueInput) => AdminUserNullablePromise;
+  adminUsers: (args?: {
+    where?: AdminUserWhereInput;
+    orderBy?: AdminUserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<AdminUser>;
+  adminUsersConnection: (args?: {
+    where?: AdminUserWhereInput;
+    orderBy?: AdminUserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => AdminUserConnectionPromise;
   amenitiesOptions: (
     where: AmenitiesOptionsWhereUniqueInput
   ) => AmenitiesOptionsNullablePromise;
@@ -955,6 +995,38 @@ export interface Prisma {
    * Mutations
    */
 
+  createAdminRole: (data: AdminRoleCreateInput) => AdminRolePromise;
+  updateAdminRole: (args: {
+    data: AdminRoleUpdateInput;
+    where: AdminRoleWhereUniqueInput;
+  }) => AdminRolePromise;
+  updateManyAdminRoles: (args: {
+    data: AdminRoleUpdateManyMutationInput;
+    where?: AdminRoleWhereInput;
+  }) => BatchPayloadPromise;
+  upsertAdminRole: (args: {
+    where: AdminRoleWhereUniqueInput;
+    create: AdminRoleCreateInput;
+    update: AdminRoleUpdateInput;
+  }) => AdminRolePromise;
+  deleteAdminRole: (where: AdminRoleWhereUniqueInput) => AdminRolePromise;
+  deleteManyAdminRoles: (where?: AdminRoleWhereInput) => BatchPayloadPromise;
+  createAdminUser: (data: AdminUserCreateInput) => AdminUserPromise;
+  updateAdminUser: (args: {
+    data: AdminUserUpdateInput;
+    where: AdminUserWhereUniqueInput;
+  }) => AdminUserPromise;
+  updateManyAdminUsers: (args: {
+    data: AdminUserUpdateManyMutationInput;
+    where?: AdminUserWhereInput;
+  }) => BatchPayloadPromise;
+  upsertAdminUser: (args: {
+    where: AdminUserWhereUniqueInput;
+    create: AdminUserCreateInput;
+    update: AdminUserUpdateInput;
+  }) => AdminUserPromise;
+  deleteAdminUser: (where: AdminUserWhereUniqueInput) => AdminUserPromise;
+  deleteManyAdminUsers: (where?: AdminUserWhereInput) => BatchPayloadPromise;
   createAmenitiesOptions: (
     data: AmenitiesOptionsCreateInput
   ) => AmenitiesOptionsPromise;
@@ -1764,6 +1836,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  adminRole: (
+    where?: AdminRoleSubscriptionWhereInput
+  ) => AdminRoleSubscriptionPayloadSubscription;
+  adminUser: (
+    where?: AdminUserSubscriptionWhereInput
+  ) => AdminUserSubscriptionPayloadSubscription;
   amenitiesOptions: (
     where?: AmenitiesOptionsSubscriptionWhereInput
   ) => AmenitiesOptionsSubscriptionPayloadSubscription;
@@ -1899,6 +1977,36 @@ export interface ClientConstructor<T> {
 /**
  * Types
  */
+
+export type AdminRoleOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type AdminUserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "firstName_ASC"
+  | "firstName_DESC"
+  | "lastName_ASC"
+  | "lastName_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "roleId_ASC"
+  | "roleId_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type AmenitiesOptionsOrderByInput =
   | "id_ASC"
@@ -2373,6 +2481,214 @@ export type WarehouserIdentificationOrderByInput =
   | "idType_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type AdminRoleWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface AdminRoleWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<AdminRoleWhereInput[] | AdminRoleWhereInput>;
+  OR?: Maybe<AdminRoleWhereInput[] | AdminRoleWhereInput>;
+  NOT?: Maybe<AdminRoleWhereInput[] | AdminRoleWhereInput>;
+}
+
+export type AdminUserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface AdminUserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  firstName?: Maybe<String>;
+  firstName_not?: Maybe<String>;
+  firstName_in?: Maybe<String[] | String>;
+  firstName_not_in?: Maybe<String[] | String>;
+  firstName_lt?: Maybe<String>;
+  firstName_lte?: Maybe<String>;
+  firstName_gt?: Maybe<String>;
+  firstName_gte?: Maybe<String>;
+  firstName_contains?: Maybe<String>;
+  firstName_not_contains?: Maybe<String>;
+  firstName_starts_with?: Maybe<String>;
+  firstName_not_starts_with?: Maybe<String>;
+  firstName_ends_with?: Maybe<String>;
+  firstName_not_ends_with?: Maybe<String>;
+  lastName?: Maybe<String>;
+  lastName_not?: Maybe<String>;
+  lastName_in?: Maybe<String[] | String>;
+  lastName_not_in?: Maybe<String[] | String>;
+  lastName_lt?: Maybe<String>;
+  lastName_lte?: Maybe<String>;
+  lastName_gt?: Maybe<String>;
+  lastName_gte?: Maybe<String>;
+  lastName_contains?: Maybe<String>;
+  lastName_not_contains?: Maybe<String>;
+  lastName_starts_with?: Maybe<String>;
+  lastName_not_starts_with?: Maybe<String>;
+  lastName_ends_with?: Maybe<String>;
+  lastName_not_ends_with?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  roleId?: Maybe<Int>;
+  roleId_not?: Maybe<Int>;
+  roleId_in?: Maybe<Int[] | Int>;
+  roleId_not_in?: Maybe<Int[] | Int>;
+  roleId_lt?: Maybe<Int>;
+  roleId_lte?: Maybe<Int>;
+  roleId_gt?: Maybe<Int>;
+  roleId_gte?: Maybe<Int>;
+  role?: Maybe<RoleWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
+  OR?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
+  NOT?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
+}
+
+export interface RoleWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+  OR?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+  NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+}
 
 export type AmenitiesOptionsWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -4676,40 +4992,6 @@ export type RoleWhereUniqueInput = AtLeastOne<{
   name?: Maybe<String>;
 }>;
 
-export interface RoleWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<RoleWhereInput[] | RoleWhereInput>;
-  OR?: Maybe<RoleWhereInput[] | RoleWhereInput>;
-  NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
-}
-
 export type RoofingMaterialOptionsWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -5242,6 +5524,75 @@ export interface WalletWhereInput {
 export type WarehouserIdentificationWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface AdminRoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface AdminRoleUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface AdminRoleUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface AdminUserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  lastName: String;
+  phoneNumber: String;
+  email: String;
+  password: String;
+  roleId: Int;
+  role: RoleCreateOneInput;
+}
+
+export interface RoleCreateOneInput {
+  create?: Maybe<RoleCreateInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
+export interface RoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}
+
+export interface AdminUserUpdateInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  roleId?: Maybe<Int>;
+  role?: Maybe<RoleUpdateOneRequiredInput>;
+}
+
+export interface RoleUpdateOneRequiredInput {
+  create?: Maybe<RoleCreateInput>;
+  update?: Maybe<RoleUpdateDataInput>;
+  upsert?: Maybe<RoleUpsertNestedInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
+export interface RoleUpdateDataInput {
+  name?: Maybe<String>;
+}
+
+export interface RoleUpsertNestedInput {
+  update: RoleUpdateDataInput;
+  create: RoleCreateInput;
+}
+
+export interface AdminUserUpdateManyMutationInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  roleId?: Maybe<Int>;
+}
 
 export interface AmenitiesOptionsCreateInput {
   id?: Maybe<ID_Input>;
@@ -7674,11 +8025,6 @@ export interface RequisitionDurationUpdateManyMutationInput {
   slug?: Maybe<String>;
 }
 
-export interface RoleCreateInput {
-  id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-}
-
 export interface RoleUpdateInput {
   name?: Maybe<String>;
 }
@@ -8135,11 +8481,6 @@ export interface UserOrganizationRoleCreateInput {
   organization: OrganizationCreateOneInput;
 }
 
-export interface RoleCreateOneInput {
-  create?: Maybe<RoleCreateInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
 export interface OrganizationCreateOneInput {
   create?: Maybe<OrganizationCreateInput>;
   connect?: Maybe<OrganizationWhereUniqueInput>;
@@ -8149,22 +8490,6 @@ export interface UserOrganizationRoleUpdateInput {
   user?: Maybe<UserUpdateOneRequiredInput>;
   role?: Maybe<RoleUpdateOneRequiredInput>;
   organization?: Maybe<OrganizationUpdateOneRequiredInput>;
-}
-
-export interface RoleUpdateOneRequiredInput {
-  create?: Maybe<RoleCreateInput>;
-  update?: Maybe<RoleUpdateDataInput>;
-  upsert?: Maybe<RoleUpsertNestedInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
-export interface RoleUpdateDataInput {
-  name?: Maybe<String>;
-}
-
-export interface RoleUpsertNestedInput {
-  update: RoleUpdateDataInput;
-  create: RoleCreateInput;
 }
 
 export interface OrganizationUpdateOneRequiredInput {
@@ -8366,6 +8691,40 @@ export interface WarehouserIdentificationUpdateManyMutationInput {
   idNumber?: Maybe<String>;
   expiryDate?: Maybe<String>;
   idType?: Maybe<String>;
+}
+
+export interface AdminRoleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AdminRoleWhereInput>;
+  AND?: Maybe<
+    AdminRoleSubscriptionWhereInput[] | AdminRoleSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    AdminRoleSubscriptionWhereInput[] | AdminRoleSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    AdminRoleSubscriptionWhereInput[] | AdminRoleSubscriptionWhereInput
+  >;
+}
+
+export interface AdminUserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AdminUserWhereInput>;
+  AND?: Maybe<
+    AdminUserSubscriptionWhereInput[] | AdminUserSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    AdminUserSubscriptionWhereInput[] | AdminUserSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    AdminUserSubscriptionWhereInput[] | AdminUserSubscriptionWhereInput
+  >;
 }
 
 export interface AmenitiesOptionsSubscriptionWhereInput {
@@ -9056,6 +9415,252 @@ export interface NodeNode {
   id: ID_Output;
 }
 
+export interface AdminRole {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface AdminRolePromise extends Promise<AdminRole>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AdminRoleSubscription
+  extends Promise<AsyncIterator<AdminRole>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AdminRoleNullablePromise
+  extends Promise<AdminRole | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AdminRoleConnection {
+  pageInfo: PageInfo;
+  edges: AdminRoleEdge[];
+}
+
+export interface AdminRoleConnectionPromise
+  extends Promise<AdminRoleConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<AdminRoleEdge>>() => T;
+  aggregate: <T = AggregateAdminRolePromise>() => T;
+}
+
+export interface AdminRoleConnectionSubscription
+  extends Promise<AsyncIterator<AdminRoleConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AdminRoleEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAdminRoleSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AdminRoleEdge {
+  node: AdminRole;
+  cursor: String;
+}
+
+export interface AdminRoleEdgePromise
+  extends Promise<AdminRoleEdge>,
+    Fragmentable {
+  node: <T = AdminRolePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AdminRoleEdgeSubscription
+  extends Promise<AsyncIterator<AdminRoleEdge>>,
+    Fragmentable {
+  node: <T = AdminRoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateAdminRole {
+  count: Int;
+}
+
+export interface AggregateAdminRolePromise
+  extends Promise<AggregateAdminRole>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAdminRoleSubscription
+  extends Promise<AsyncIterator<AggregateAdminRole>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AdminUser {
+  id: ID_Output;
+  firstName: String;
+  lastName: String;
+  phoneNumber: String;
+  email: String;
+  password: String;
+  roleId: Int;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface AdminUserPromise extends Promise<AdminUser>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  roleId: () => Promise<Int>;
+  role: <T = RolePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AdminUserSubscription
+  extends Promise<AsyncIterator<AdminUser>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  roleId: () => Promise<AsyncIterator<Int>>;
+  role: <T = RoleSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AdminUserNullablePromise
+  extends Promise<AdminUser | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  roleId: () => Promise<Int>;
+  role: <T = RolePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface Role {
+  id: ID_Output;
+  name?: String;
+}
+
+export interface RolePromise extends Promise<Role>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface RoleSubscription
+  extends Promise<AsyncIterator<Role>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface RoleNullablePromise
+  extends Promise<Role | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface AdminUserConnection {
+  pageInfo: PageInfo;
+  edges: AdminUserEdge[];
+}
+
+export interface AdminUserConnectionPromise
+  extends Promise<AdminUserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<AdminUserEdge>>() => T;
+  aggregate: <T = AggregateAdminUserPromise>() => T;
+}
+
+export interface AdminUserConnectionSubscription
+  extends Promise<AsyncIterator<AdminUserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AdminUserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAdminUserSubscription>() => T;
+}
+
+export interface AdminUserEdge {
+  node: AdminUser;
+  cursor: String;
+}
+
+export interface AdminUserEdgePromise
+  extends Promise<AdminUserEdge>,
+    Fragmentable {
+  node: <T = AdminUserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AdminUserEdgeSubscription
+  extends Promise<AsyncIterator<AdminUserEdge>>,
+    Fragmentable {
+  node: <T = AdminUserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateAdminUser {
+  count: Int;
+}
+
+export interface AggregateAdminUserPromise
+  extends Promise<AggregateAdminUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAdminUserSubscription
+  extends Promise<AsyncIterator<AggregateAdminUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface AmenitiesOptions {
   id: ID_Output;
   slug?: String;
@@ -9113,29 +9718,6 @@ export interface AmenitiesOptionsConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<AmenitiesOptionsEdgeSubscription>>>() => T;
   aggregate: <T = AggregateAmenitiesOptionsSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AmenitiesOptionsEdge {
@@ -12132,30 +12714,6 @@ export interface AggregateRequisitionDurationSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface Role {
-  id: ID_Output;
-  name?: String;
-}
-
-export interface RolePromise extends Promise<Role>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface RoleSubscription
-  extends Promise<AsyncIterator<Role>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface RoleNullablePromise
-  extends Promise<Role | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
 export interface RoleConnection {
   pageInfo: PageInfo;
   edges: RoleEdge[];
@@ -13418,6 +13976,121 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AdminRoleSubscriptionPayload {
+  mutation: MutationType;
+  node: AdminRole;
+  updatedFields: String[];
+  previousValues: AdminRolePreviousValues;
+}
+
+export interface AdminRoleSubscriptionPayloadPromise
+  extends Promise<AdminRoleSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AdminRolePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AdminRolePreviousValuesPromise>() => T;
+}
+
+export interface AdminRoleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AdminRoleSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AdminRoleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AdminRolePreviousValuesSubscription>() => T;
+}
+
+export interface AdminRolePreviousValues {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface AdminRolePreviousValuesPromise
+  extends Promise<AdminRolePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AdminRolePreviousValuesSubscription
+  extends Promise<AsyncIterator<AdminRolePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AdminUserSubscriptionPayload {
+  mutation: MutationType;
+  node: AdminUser;
+  updatedFields: String[];
+  previousValues: AdminUserPreviousValues;
+}
+
+export interface AdminUserSubscriptionPayloadPromise
+  extends Promise<AdminUserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AdminUserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AdminUserPreviousValuesPromise>() => T;
+}
+
+export interface AdminUserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AdminUserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AdminUserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AdminUserPreviousValuesSubscription>() => T;
+}
+
+export interface AdminUserPreviousValues {
+  id: ID_Output;
+  firstName: String;
+  lastName: String;
+  phoneNumber: String;
+  email: String;
+  password: String;
+  roleId: Int;
+  createdAt: DateTimeOutput;
+  updatedAt?: DateTimeOutput;
+}
+
+export interface AdminUserPreviousValuesPromise
+  extends Promise<AdminUserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  roleId: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AdminUserPreviousValuesSubscription
+  extends Promise<AsyncIterator<AdminUserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  roleId: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface AmenitiesOptionsSubscriptionPayload {
@@ -15621,16 +16294,6 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -15639,6 +16302,16 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
@@ -15818,6 +16491,14 @@ export const models: Model[] = [
   },
   {
     name: "Message",
+    embedded: false
+  },
+  {
+    name: "AdminRole",
+    embedded: false
+  },
+  {
+    name: "AdminUser",
     embedded: false
   }
 ];

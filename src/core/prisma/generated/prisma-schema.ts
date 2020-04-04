@@ -2,7 +2,361 @@
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-export const typeDefs = /* GraphQL */ `type AggregateAmenitiesOptions {
+export const typeDefs = /* GraphQL */ `type AdminRole {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type AdminRoleConnection {
+  pageInfo: PageInfo!
+  edges: [AdminRoleEdge]!
+  aggregate: AggregateAdminRole!
+}
+
+input AdminRoleCreateInput {
+  id: ID
+  name: String!
+}
+
+type AdminRoleEdge {
+  node: AdminRole!
+  cursor: String!
+}
+
+enum AdminRoleOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AdminRolePreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type AdminRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: AdminRole
+  updatedFields: [String!]
+  previousValues: AdminRolePreviousValues
+}
+
+input AdminRoleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AdminRoleWhereInput
+  AND: [AdminRoleSubscriptionWhereInput!]
+  OR: [AdminRoleSubscriptionWhereInput!]
+  NOT: [AdminRoleSubscriptionWhereInput!]
+}
+
+input AdminRoleUpdateInput {
+  name: String
+}
+
+input AdminRoleUpdateManyMutationInput {
+  name: String
+}
+
+input AdminRoleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [AdminRoleWhereInput!]
+  OR: [AdminRoleWhereInput!]
+  NOT: [AdminRoleWhereInput!]
+}
+
+input AdminRoleWhereUniqueInput {
+  id: ID
+}
+
+type AdminUser {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+  email: String!
+  password: String!
+  roleId: Int!
+  role: Role!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type AdminUserConnection {
+  pageInfo: PageInfo!
+  edges: [AdminUserEdge]!
+  aggregate: AggregateAdminUser!
+}
+
+input AdminUserCreateInput {
+  id: ID
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+  email: String!
+  password: String!
+  roleId: Int!
+  role: RoleCreateOneInput!
+}
+
+type AdminUserEdge {
+  node: AdminUser!
+  cursor: String!
+}
+
+enum AdminUserOrderByInput {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  roleId_ASC
+  roleId_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AdminUserPreviousValues {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+  email: String!
+  password: String!
+  roleId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type AdminUserSubscriptionPayload {
+  mutation: MutationType!
+  node: AdminUser
+  updatedFields: [String!]
+  previousValues: AdminUserPreviousValues
+}
+
+input AdminUserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AdminUserWhereInput
+  AND: [AdminUserSubscriptionWhereInput!]
+  OR: [AdminUserSubscriptionWhereInput!]
+  NOT: [AdminUserSubscriptionWhereInput!]
+}
+
+input AdminUserUpdateInput {
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  email: String
+  password: String
+  roleId: Int
+  role: RoleUpdateOneRequiredInput
+}
+
+input AdminUserUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  email: String
+  password: String
+  roleId: Int
+}
+
+input AdminUserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  roleId: Int
+  roleId_not: Int
+  roleId_in: [Int!]
+  roleId_not_in: [Int!]
+  roleId_lt: Int
+  roleId_lte: Int
+  roleId_gt: Int
+  roleId_gte: Int
+  role: RoleWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [AdminUserWhereInput!]
+  OR: [AdminUserWhereInput!]
+  NOT: [AdminUserWhereInput!]
+}
+
+input AdminUserWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+type AggregateAdminRole {
+  count: Int!
+}
+
+type AggregateAdminUser {
+  count: Int!
+}
+
+type AggregateAmenitiesOptions {
   count: Int!
 }
 
@@ -3824,6 +4178,18 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
+  createAdminRole(data: AdminRoleCreateInput!): AdminRole!
+  updateAdminRole(data: AdminRoleUpdateInput!, where: AdminRoleWhereUniqueInput!): AdminRole
+  updateManyAdminRoles(data: AdminRoleUpdateManyMutationInput!, where: AdminRoleWhereInput): BatchPayload!
+  upsertAdminRole(where: AdminRoleWhereUniqueInput!, create: AdminRoleCreateInput!, update: AdminRoleUpdateInput!): AdminRole!
+  deleteAdminRole(where: AdminRoleWhereUniqueInput!): AdminRole
+  deleteManyAdminRoles(where: AdminRoleWhereInput): BatchPayload!
+  createAdminUser(data: AdminUserCreateInput!): AdminUser!
+  updateAdminUser(data: AdminUserUpdateInput!, where: AdminUserWhereUniqueInput!): AdminUser
+  updateManyAdminUsers(data: AdminUserUpdateManyMutationInput!, where: AdminUserWhereInput): BatchPayload!
+  upsertAdminUser(where: AdminUserWhereUniqueInput!, create: AdminUserCreateInput!, update: AdminUserUpdateInput!): AdminUser!
+  deleteAdminUser(where: AdminUserWhereUniqueInput!): AdminUser
+  deleteManyAdminUsers(where: AdminUserWhereInput): BatchPayload!
   createAmenitiesOptions(data: AmenitiesOptionsCreateInput!): AmenitiesOptions!
   updateAmenitiesOptions(data: AmenitiesOptionsUpdateInput!, where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
   updateManyAmenitiesOptionses(data: AmenitiesOptionsUpdateManyMutationInput!, where: AmenitiesOptionsWhereInput): BatchPayload!
@@ -4821,6 +5187,12 @@ input PropertiesOptionsWhereUniqueInput {
 }
 
 type Query {
+  adminRole(where: AdminRoleWhereUniqueInput!): AdminRole
+  adminRoles(where: AdminRoleWhereInput, orderBy: AdminRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AdminRole]!
+  adminRolesConnection(where: AdminRoleWhereInput, orderBy: AdminRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AdminRoleConnection!
+  adminUser(where: AdminUserWhereUniqueInput!): AdminUser
+  adminUsers(where: AdminUserWhereInput, orderBy: AdminUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AdminUser]!
+  adminUsersConnection(where: AdminUserWhereInput, orderBy: AdminUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AdminUserConnection!
   amenitiesOptions(where: AmenitiesOptionsWhereUniqueInput!): AmenitiesOptions
   amenitiesOptionses(where: AmenitiesOptionsWhereInput, orderBy: AmenitiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AmenitiesOptions]!
   amenitiesOptionsesConnection(where: AmenitiesOptionsWhereInput, orderBy: AmenitiesOptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AmenitiesOptionsConnection!
@@ -7195,6 +7567,8 @@ input StockWhereUniqueInput {
 }
 
 type Subscription {
+  adminRole(where: AdminRoleSubscriptionWhereInput): AdminRoleSubscriptionPayload
+  adminUser(where: AdminUserSubscriptionWhereInput): AdminUserSubscriptionPayload
   amenitiesOptions(where: AmenitiesOptionsSubscriptionWhereInput): AmenitiesOptionsSubscriptionPayload
   auth(where: AuthSubscriptionWhereInput): AuthSubscriptionPayload
   bank(where: BankSubscriptionWhereInput): BankSubscriptionPayload

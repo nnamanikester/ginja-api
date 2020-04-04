@@ -475,7 +475,6 @@ const setup = async () => {
     } catch (err) {
         console.log('Listing Requirements not seeded! Error:', err.message);
     }
-    
     return 'done';
 };
 

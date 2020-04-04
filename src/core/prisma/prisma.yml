@@ -1,5 +1,6 @@
 # The HTTP endpoint for your Prisma API
 endpoint: ${env:PRISMA_ENDPOINT}
+# endpoint: https://eu1.prisma.sh/ginjabox/dev
 
 # Here, the secret is loaded as an environment variable from .env.
 secret: ${env:PRISMA_SECRET}
