@@ -16,7 +16,8 @@ const permissions = {
         createRole: authMiddleware,
         createOrganizationType: authMiddleware,
         makePaymentToWarehouser: authMiddleware,
-        addMessage: authMiddleware
+        addMessage: authMiddleware,
+        fundWallet: authMiddleware
     }
 };
 
