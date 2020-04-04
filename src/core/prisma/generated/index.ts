@@ -1956,7 +1956,9 @@ export type ChatOrderByInput =
   | "merchantId_ASC"
   | "merchantId_DESC"
   | "warehouserId_ASC"
-  | "warehouserId_DESC";
+  | "warehouserId_DESC"
+  | "requisitionId_ASC"
+  | "requisitionId_DESC";
 
 export type CountriesOrderByInput =
   | "id_ASC"
@@ -2759,7 +2761,6 @@ export interface MessageWhereInput {
   chatId_ends_with?: Maybe<String>;
   chatId_not_ends_with?: Maybe<String>;
   from?: Maybe<UserWhereInput>;
-  to?: Maybe<UserWhereInput>;
   text?: Maybe<String>;
   text_not?: Maybe<String>;
   text_in?: Maybe<String[] | String>;
@@ -2830,6 +2831,22 @@ export interface ChatWhereInput {
   warehouserId_not_starts_with?: Maybe<String>;
   warehouserId_ends_with?: Maybe<String>;
   warehouserId_not_ends_with?: Maybe<String>;
+  merchant?: Maybe<UserWhereInput>;
+  warehouser?: Maybe<UserWhereInput>;
+  requisitionId?: Maybe<String>;
+  requisitionId_not?: Maybe<String>;
+  requisitionId_in?: Maybe<String[] | String>;
+  requisitionId_not_in?: Maybe<String[] | String>;
+  requisitionId_lt?: Maybe<String>;
+  requisitionId_lte?: Maybe<String>;
+  requisitionId_gt?: Maybe<String>;
+  requisitionId_gte?: Maybe<String>;
+  requisitionId_contains?: Maybe<String>;
+  requisitionId_not_contains?: Maybe<String>;
+  requisitionId_starts_with?: Maybe<String>;
+  requisitionId_not_starts_with?: Maybe<String>;
+  requisitionId_ends_with?: Maybe<String>;
+  requisitionId_not_ends_with?: Maybe<String>;
   messages_every?: Maybe<MessageWhereInput>;
   messages_some?: Maybe<MessageWhereInput>;
   messages_none?: Maybe<MessageWhereInput>;
@@ -5336,6 +5353,9 @@ export interface ChatCreateInput {
   id?: Maybe<ID_Input>;
   merchantId: String;
   warehouserId: String;
+  merchant: UserCreateOneInput;
+  warehouser: UserCreateOneInput;
+  requisitionId: String;
   messages?: Maybe<MessageCreateManyInput>;
 }
 
@@ -5348,13 +5368,15 @@ export interface MessageCreateInput {
   id?: Maybe<ID_Input>;
   chatId: String;
   from: UserCreateOneInput;
-  to: UserCreateOneInput;
   text?: Maybe<String>;
 }
 
 export interface ChatUpdateInput {
   merchantId?: Maybe<String>;
   warehouserId?: Maybe<String>;
+  merchant?: Maybe<UserUpdateOneRequiredInput>;
+  warehouser?: Maybe<UserUpdateOneRequiredInput>;
+  requisitionId?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyInput>;
 }
 
@@ -5387,7 +5409,6 @@ export interface MessageUpdateWithWhereUniqueNestedInput {
 export interface MessageUpdateDataInput {
   chatId?: Maybe<String>;
   from?: Maybe<UserUpdateOneRequiredInput>;
-  to?: Maybe<UserUpdateOneRequiredInput>;
   text?: Maybe<String>;
 }
 
@@ -5466,6 +5487,7 @@ export interface MessageUpdateManyDataInput {
 export interface ChatUpdateManyMutationInput {
   merchantId?: Maybe<String>;
   warehouserId?: Maybe<String>;
+  requisitionId?: Maybe<String>;
 }
 
 export interface CountriesCreateInput {
@@ -7350,7 +7372,6 @@ export interface LocationsUpdateManyMutationInput {
 export interface MessageUpdateInput {
   chatId?: Maybe<String>;
   from?: Maybe<UserUpdateOneRequiredInput>;
-  to?: Maybe<UserUpdateOneRequiredInput>;
   text?: Maybe<String>;
 }
 
@@ -9395,12 +9416,16 @@ export interface Chat {
   id: ID_Output;
   merchantId: String;
   warehouserId: String;
+  requisitionId: String;
 }
 
 export interface ChatPromise extends Promise<Chat>, Fragmentable {
   id: () => Promise<ID_Output>;
   merchantId: () => Promise<String>;
   warehouserId: () => Promise<String>;
+  merchant: <T = UserPromise>() => T;
+  warehouser: <T = UserPromise>() => T;
+  requisitionId: () => Promise<String>;
   messages: <T = FragmentableArray<Message>>(args?: {
     where?: MessageWhereInput;
     orderBy?: MessageOrderByInput;
@@ -9418,6 +9443,9 @@ export interface ChatSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   merchantId: () => Promise<AsyncIterator<String>>;
   warehouserId: () => Promise<AsyncIterator<String>>;
+  merchant: <T = UserSubscription>() => T;
+  warehouser: <T = UserSubscription>() => T;
+  requisitionId: () => Promise<AsyncIterator<String>>;
   messages: <T = Promise<AsyncIterator<MessageSubscription>>>(args?: {
     where?: MessageWhereInput;
     orderBy?: MessageOrderByInput;
@@ -9435,6 +9463,9 @@ export interface ChatNullablePromise
   id: () => Promise<ID_Output>;
   merchantId: () => Promise<String>;
   warehouserId: () => Promise<String>;
+  merchant: <T = UserPromise>() => T;
+  warehouser: <T = UserPromise>() => T;
+  requisitionId: () => Promise<String>;
   messages: <T = FragmentableArray<Message>>(args?: {
     where?: MessageWhereInput;
     orderBy?: MessageOrderByInput;
@@ -9457,7 +9488,6 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
   id: () => Promise<ID_Output>;
   chatId: () => Promise<String>;
   from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
   text: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
 }
@@ -9468,7 +9498,6 @@ export interface MessageSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   chatId: () => Promise<AsyncIterator<String>>;
   from: <T = UserSubscription>() => T;
-  to: <T = UserSubscription>() => T;
   text: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -9479,7 +9508,6 @@ export interface MessageNullablePromise
   id: () => Promise<ID_Output>;
   chatId: () => Promise<String>;
   from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
   text: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
 }
@@ -13586,6 +13614,7 @@ export interface ChatPreviousValues {
   id: ID_Output;
   merchantId: String;
   warehouserId: String;
+  requisitionId: String;
 }
 
 export interface ChatPreviousValuesPromise
@@ -13594,6 +13623,7 @@ export interface ChatPreviousValuesPromise
   id: () => Promise<ID_Output>;
   merchantId: () => Promise<String>;
   warehouserId: () => Promise<String>;
+  requisitionId: () => Promise<String>;
 }
 
 export interface ChatPreviousValuesSubscription
@@ -13602,6 +13632,7 @@ export interface ChatPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   merchantId: () => Promise<AsyncIterator<String>>;
   warehouserId: () => Promise<AsyncIterator<String>>;
+  requisitionId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CountriesSubscriptionPayload {
@@ -15798,7 +15829,7 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/somtozech/ginja-db/dev`,
-  secret: `myprismasecret`
+  endpoint: `${process.env["PRISMA_ENDPOINT"]}`,
+  secret: `${process.env["PRISMA_SECRET"]}`
 });
 export const prisma = new Prisma();

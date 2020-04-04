@@ -367,14 +367,16 @@ type Chat {
     id:ID! @id @unique
     merchantId: String!
     warehouserId: String!
+    merchant: User! @relation(name: "ChatMerchant")
+    warehouser: User! @relation(name: "ChatWarehouser")
+    requisitionId: String!
     messages:[Message]!
 }
 
 type Message {
     id: ID! @id @unique
     chatId: String!
-    from: User! @relation(name:"Sender")
-    to: User!  @relation(name:"Recipient")
+    from: User!
     text: String! @default(value: "")
     createdAt: DateTime! @createdAt
 }

@@ -153,7 +153,10 @@ const makePayment = async (graph: any) => {
         await changeStatus({ args: { status: 5, id: requisition.id }, context: graph.context });
 
         // create new chat for warehouser and merchant
-        await createChat({ args: { merchantId: user.id, warehouserId: warehouser.id }, context: graph.context });
+        await createChat({
+            args: { merchantId: user.id, warehouserId: warehouser.id, requisitionId: requisition.id },
+            context: graph.context
+        });
 
         return { success: true };
     } catch (error) {

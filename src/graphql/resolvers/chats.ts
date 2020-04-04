@@ -15,18 +15,22 @@ const chatTypes = {
         id: (parent: any) => parent.id,
         merchantId: (parent: any) => parent.merchantId,
         warehouserId: (parent: any) => parent.warehouserId,
+        merchant: (parent: any, args: any, context: any) => {
+            return context.prisma.user({ id: parent.merchantId });
+        },
+        warehouser: (parent: any, args: any, context: any) => {
+            return context.prisma.user({ id: parent.warehouserId });
+        },
         messages: (parent: any, args: any, context: any) => {
             return context.prisma.messages({ where: { id: parent.id } });
-        }
+        },
+        requisitionId: (parent: any) => parent.id
     },
     Message: {
         id: (parent: any) => parent.id,
         chatId: (parent: any) => parent.chatId,
         from: (parent: any, args: any, context: any) => {
             return context.prisma.message({ id: parent.id }).from();
-        },
-        to: (parent: any, args: any, context: any) => {
-            return context.prisma.message({ id: parent.id }).to();
         },
         text: (parent: any) => parent.text,
         createdAt: (parent: any) => parent.createdAt

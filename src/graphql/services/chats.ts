@@ -3,7 +3,7 @@
 const createChat = async (graph: any) => {
     const {
         context: { prisma },
-        args: { merchantId, warehouserId }
+        args: { merchantId, warehouserId, requisitionId }
     } = graph;
 
     // check if chat already exists;
@@ -12,7 +12,18 @@ const createChat = async (graph: any) => {
 
     const chat = await prisma.createChat({
         merchantId,
-        warehouserId
+        warehouserId,
+        merchant: {
+            connect: {
+                id: merchantId
+            }
+        },
+        warehouser: {
+            connect: {
+                id: warehouserId
+            }
+        },
+        requisitionId
     });
 
     return chat;
@@ -43,15 +54,8 @@ const createMessage = async (graph: any) => {
         args: { chatId, text }
     } = graph;
 
-    console.log(userId);
-
     const newMessage = await prisma.createMessage({
         chatId,
-        to: {
-            connect: {
-                id: chatId
-            }
-        },
         from: {
             connect: {
                 id: userId
@@ -60,18 +64,11 @@ const createMessage = async (graph: any) => {
         text
     });
 
-    const messages = await prisma.messages({
-        where: {
-            id: newMessage.id
-        }
-    });
+    const user = await prisma.message({ id: newMessage.id }).from();
+    const message = { ...newMessage, from: user };
 
-    console.log('---------------------------------');
-    console.log(messages);
-    console.log('---------------------------------');
-
-    pubsub.publish('NEW_MESSAGE', { message: messages[0] });
-    return messages[0];
+    pubsub.publish('NEW_MESSAGE', { message });
+    return message;
 };
 
 export { getAllChats, createChat, getChatMessages, createMessage };

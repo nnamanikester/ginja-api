@@ -811,6 +811,9 @@ type Chat {
   id: ID!
   merchantId: String!
   warehouserId: String!
+  merchant: User!
+  warehouser: User!
+  requisitionId: String!
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
 }
 
@@ -824,6 +827,9 @@ input ChatCreateInput {
   id: ID
   merchantId: String!
   warehouserId: String!
+  merchant: UserCreateOneInput!
+  warehouser: UserCreateOneInput!
+  requisitionId: String!
   messages: MessageCreateManyInput
 }
 
@@ -839,12 +845,15 @@ enum ChatOrderByInput {
   merchantId_DESC
   warehouserId_ASC
   warehouserId_DESC
+  requisitionId_ASC
+  requisitionId_DESC
 }
 
 type ChatPreviousValues {
   id: ID!
   merchantId: String!
   warehouserId: String!
+  requisitionId: String!
 }
 
 type ChatSubscriptionPayload {
@@ -868,12 +877,16 @@ input ChatSubscriptionWhereInput {
 input ChatUpdateInput {
   merchantId: String
   warehouserId: String
+  merchant: UserUpdateOneRequiredInput
+  warehouser: UserUpdateOneRequiredInput
+  requisitionId: String
   messages: MessageUpdateManyInput
 }
 
 input ChatUpdateManyMutationInput {
   merchantId: String
   warehouserId: String
+  requisitionId: String
 }
 
 input ChatWhereInput {
@@ -919,6 +932,22 @@ input ChatWhereInput {
   warehouserId_not_starts_with: String
   warehouserId_ends_with: String
   warehouserId_not_ends_with: String
+  merchant: UserWhereInput
+  warehouser: UserWhereInput
+  requisitionId: String
+  requisitionId_not: String
+  requisitionId_in: [String!]
+  requisitionId_not_in: [String!]
+  requisitionId_lt: String
+  requisitionId_lte: String
+  requisitionId_gt: String
+  requisitionId_gte: String
+  requisitionId_contains: String
+  requisitionId_not_contains: String
+  requisitionId_starts_with: String
+  requisitionId_not_starts_with: String
+  requisitionId_ends_with: String
+  requisitionId_not_ends_with: String
   messages_every: MessageWhereInput
   messages_some: MessageWhereInput
   messages_none: MessageWhereInput
@@ -3564,7 +3593,6 @@ type Message {
   id: ID!
   chatId: String!
   from: User!
-  to: User!
   text: String!
   createdAt: DateTime!
 }
@@ -3579,7 +3607,6 @@ input MessageCreateInput {
   id: ID
   chatId: String!
   from: UserCreateOneInput!
-  to: UserCreateOneInput!
   text: String
 }
 
@@ -3688,14 +3715,12 @@ input MessageSubscriptionWhereInput {
 input MessageUpdateDataInput {
   chatId: String
   from: UserUpdateOneRequiredInput
-  to: UserUpdateOneRequiredInput
   text: String
 }
 
 input MessageUpdateInput {
   chatId: String
   from: UserUpdateOneRequiredInput
-  to: UserUpdateOneRequiredInput
   text: String
 }
 
@@ -3767,7 +3792,6 @@ input MessageWhereInput {
   chatId_ends_with: String
   chatId_not_ends_with: String
   from: UserWhereInput
-  to: UserWhereInput
   text: String
   text_not: String
   text_in: [String!]
