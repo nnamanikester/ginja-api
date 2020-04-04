@@ -16,6 +16,8 @@ This section will guide you through the setup process required to get up and run
 
 -   TypeScript (`npm install -g typescript` || `yarn global add typescript`)
 
+-   Graphql Cli (`npm install -g graphql-cli@next` || `yarn global add graphql-cli@next`) 
+
 ### Get Started
 
 1. Clone the project from your account repository
