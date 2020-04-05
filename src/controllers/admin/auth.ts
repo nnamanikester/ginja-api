@@ -9,23 +9,26 @@ const authController: any = async (req: Request, res: Response, next: NextFuncti
             }
         });
         if (!staff) {
-            return res.status(404).json({
+            return res.json({
                 success: false,
                 error: true,
-                message: `There's no staff with the email  ${req.body.email}`
+                message: `There's no staff with the email ${req.body.email}`,
+                data: null
             });
         }
         if (staff.password === req.body.password) {
             return res.json({
                 success: true,
                 error: false,
-                message: 'Authentication Successful!'
+                message: 'Authentication Successful!',
+                data: staff
             });
         }
-        return res.status(400).json({
+        return res.json({
             success: false,
             error: true,
-            message: 'Wrong Password!'
+            message: 'Wrong Password!',
+            data: null
         });
     } catch (error) {
         return next(error);
