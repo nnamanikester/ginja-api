@@ -6,6 +6,6 @@ projects:
             endpoints:
                 default: http://localhost:4466
     prisma:
-        schemaPath: src/core/prisma/generated/prisma.graphql
+        schemaPath: src/core/prisma/generated/prisma-schema.ts
         extensions:
             prisma: src/core/prisma/prisma.yml
