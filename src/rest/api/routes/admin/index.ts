@@ -10,6 +10,8 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', adminController);
+
+// POST REQUESTS
 router.post('/authenticate', authController);
 
 export default router;

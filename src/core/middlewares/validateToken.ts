@@ -30,7 +30,6 @@ const verifyToken = async (resolve: any, parent: any, args: any, context: any, i
         } else {
             throw new NotAuthenticatedError('Not authenticated');
         }
-
     } catch (err) {
         // Catch and Propagate Token Error
         if (err instanceof TokenExpiredError) {

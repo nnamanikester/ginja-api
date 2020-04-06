@@ -131,6 +131,7 @@ type AdminUser {
   email: String!
   password: String!
   role: Role!
+  roleId: Int!
   createdAt: DateTime!
   updatedAt: DateTime
 }
@@ -149,6 +150,7 @@ input AdminUserCreateInput {
   email: String!
   password: String!
   role: RoleCreateOneInput!
+  roleId: Int!
 }
 
 type AdminUserEdge {
@@ -169,6 +171,8 @@ enum AdminUserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  roleId_ASC
+  roleId_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -182,6 +186,7 @@ type AdminUserPreviousValues {
   phoneNumber: String!
   email: String!
   password: String!
+  roleId: Int!
   createdAt: DateTime!
   updatedAt: DateTime
 }
@@ -211,6 +216,7 @@ input AdminUserUpdateInput {
   email: String
   password: String
   role: RoleUpdateOneRequiredInput
+  roleId: Int
 }
 
 input AdminUserUpdateManyMutationInput {
@@ -219,6 +225,7 @@ input AdminUserUpdateManyMutationInput {
   phoneNumber: String
   email: String
   password: String
+  roleId: Int
 }
 
 input AdminUserWhereInput {
@@ -307,6 +314,14 @@ input AdminUserWhereInput {
   password_ends_with: String
   password_not_ends_with: String
   role: RoleWhereInput
+  roleId: Int
+  roleId_not: Int
+  roleId_in: [Int!]
+  roleId_not_in: [Int!]
+  roleId_lt: Int
+  roleId_lte: Int
+  roleId_gt: Int
+  roleId_gte: Int
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

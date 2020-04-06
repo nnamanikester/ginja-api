@@ -2001,6 +2001,8 @@ export type AdminUserOrderByInput =
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
+  | "roleId_ASC"
+  | "roleId_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -2625,6 +2627,14 @@ export interface AdminUserWhereInput {
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
   role?: Maybe<RoleWhereInput>;
+  roleId?: Maybe<Int>;
+  roleId_not?: Maybe<Int>;
+  roleId_in?: Maybe<Int[] | Int>;
+  roleId_not_in?: Maybe<Int[] | Int>;
+  roleId_lt?: Maybe<Int>;
+  roleId_lte?: Maybe<Int>;
+  roleId_gt?: Maybe<Int>;
+  roleId_gte?: Maybe<Int>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -5536,6 +5546,7 @@ export interface AdminUserCreateInput {
   email: String;
   password: String;
   role: RoleCreateOneInput;
+  roleId: Int;
 }
 
 export interface RoleCreateOneInput {
@@ -5555,6 +5566,7 @@ export interface AdminUserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<RoleUpdateOneRequiredInput>;
+  roleId?: Maybe<Int>;
 }
 
 export interface RoleUpdateOneRequiredInput {
@@ -5579,6 +5591,7 @@ export interface AdminUserUpdateManyMutationInput {
   phoneNumber?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  roleId?: Maybe<Int>;
 }
 
 export interface AmenitiesOptionsCreateInput {
@@ -9520,6 +9533,7 @@ export interface AdminUser {
   phoneNumber: String;
   email: String;
   password: String;
+  roleId: Int;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
 }
@@ -9532,6 +9546,7 @@ export interface AdminUserPromise extends Promise<AdminUser>, Fragmentable {
   email: () => Promise<String>;
   password: () => Promise<String>;
   role: <T = RolePromise>() => T;
+  roleId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -9546,6 +9561,7 @@ export interface AdminUserSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   role: <T = RoleSubscription>() => T;
+  roleId: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -9560,6 +9576,7 @@ export interface AdminUserNullablePromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   role: <T = RolePromise>() => T;
+  roleId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -14043,6 +14060,7 @@ export interface AdminUserPreviousValues {
   phoneNumber: String;
   email: String;
   password: String;
+  roleId: Int;
   createdAt: DateTimeOutput;
   updatedAt?: DateTimeOutput;
 }
@@ -14056,6 +14074,7 @@ export interface AdminUserPreviousValuesPromise
   phoneNumber: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  roleId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -14069,6 +14088,7 @@ export interface AdminUserPreviousValuesSubscription
   phoneNumber: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  roleId: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }

@@ -396,6 +396,7 @@ type AdminUser {
   email: String! @unique
   password: String!
   role: Role!
+  roleId: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime @updatedAt
 }

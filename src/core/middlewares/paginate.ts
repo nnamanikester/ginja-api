@@ -1,10 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-const handle = (defaultLimit: number = 10, maxLimit: number = 50): any => (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): any => {
+const handle = (defaultLimit: number = 10, maxLimit: number = 50): any => (req: Request, res: Response, next: NextFunction): any => {
     res.locals.paginate = {};
 
     let page = 1;
