@@ -35,7 +35,11 @@ const loginAuthService = async (res: any, data: any): Promise<any> => {
                 success: true,
                 error: false,
                 message: 'Authentication Successful!',
-                data: token
+                data: {
+                    email: user.email,
+                    token,
+                    roleId: user.roleId
+                }
             };
         }
         return res.status(400).json({

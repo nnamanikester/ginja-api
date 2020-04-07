@@ -1,6 +1,9 @@
 import express from 'express';
+
+// Controllers
 import adminController from '../../../../controllers/admin/index';
 import loginAuthController from '../../../../controllers/admin/loginAuth';
+// import firstTimeLaunchController from '../../../../controllers/admin/firstTimeLaunch';
 
 // Middlewares
 import loginAuth from '../../../../core/middlewares/admin/loginAuth';
@@ -20,6 +23,7 @@ const router = express.Router();
 router.get('/', adminController);
 
 // POST REQUESTS
+// router.post('/', loginAuth, firstTimeLaunchController);
 router.post('/authenticate', loginAuth, loginAuthController);
 
 // UPDATE REQUESTS
