@@ -2626,7 +2626,7 @@ export interface AdminUserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  role?: Maybe<RoleWhereInput>;
+  role?: Maybe<AdminRoleWhereInput>;
   roleId?: Maybe<Int>;
   roleId_not?: Maybe<Int>;
   roleId_in?: Maybe<Int[] | Int>;
@@ -2654,40 +2654,6 @@ export interface AdminUserWhereInput {
   AND?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
   OR?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
   NOT?: Maybe<AdminUserWhereInput[] | AdminUserWhereInput>;
-}
-
-export interface RoleWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<RoleWhereInput[] | RoleWhereInput>;
-  OR?: Maybe<RoleWhereInput[] | RoleWhereInput>;
-  NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
 }
 
 export type AmenitiesOptionsWhereUniqueInput = AtLeastOne<{
@@ -4992,6 +4958,40 @@ export type RoleWhereUniqueInput = AtLeastOne<{
   name?: Maybe<String>;
 }>;
 
+export interface RoleWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+  OR?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+  NOT?: Maybe<RoleWhereInput[] | RoleWhereInput>;
+}
+
 export type RoofingMaterialOptionsWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -5545,18 +5545,13 @@ export interface AdminUserCreateInput {
   phoneNumber: String;
   email: String;
   password: String;
-  role: RoleCreateOneInput;
+  role: AdminRoleCreateOneInput;
   roleId: Int;
 }
 
-export interface RoleCreateOneInput {
-  create?: Maybe<RoleCreateInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
-}
-
-export interface RoleCreateInput {
-  id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
+export interface AdminRoleCreateOneInput {
+  create?: Maybe<AdminRoleCreateInput>;
+  connect?: Maybe<AdminRoleWhereUniqueInput>;
 }
 
 export interface AdminUserUpdateInput {
@@ -5565,24 +5560,24 @@ export interface AdminUserUpdateInput {
   phoneNumber?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<RoleUpdateOneRequiredInput>;
+  role?: Maybe<AdminRoleUpdateOneRequiredInput>;
   roleId?: Maybe<Int>;
 }
 
-export interface RoleUpdateOneRequiredInput {
-  create?: Maybe<RoleCreateInput>;
-  update?: Maybe<RoleUpdateDataInput>;
-  upsert?: Maybe<RoleUpsertNestedInput>;
-  connect?: Maybe<RoleWhereUniqueInput>;
+export interface AdminRoleUpdateOneRequiredInput {
+  create?: Maybe<AdminRoleCreateInput>;
+  update?: Maybe<AdminRoleUpdateDataInput>;
+  upsert?: Maybe<AdminRoleUpsertNestedInput>;
+  connect?: Maybe<AdminRoleWhereUniqueInput>;
 }
 
-export interface RoleUpdateDataInput {
+export interface AdminRoleUpdateDataInput {
   name?: Maybe<String>;
 }
 
-export interface RoleUpsertNestedInput {
-  update: RoleUpdateDataInput;
-  create: RoleCreateInput;
+export interface AdminRoleUpsertNestedInput {
+  update: AdminRoleUpdateDataInput;
+  create: AdminRoleCreateInput;
 }
 
 export interface AdminUserUpdateManyMutationInput {
@@ -8025,6 +8020,11 @@ export interface RequisitionDurationUpdateManyMutationInput {
   slug?: Maybe<String>;
 }
 
+export interface RoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}
+
 export interface RoleUpdateInput {
   name?: Maybe<String>;
 }
@@ -8481,6 +8481,11 @@ export interface UserOrganizationRoleCreateInput {
   organization: OrganizationCreateOneInput;
 }
 
+export interface RoleCreateOneInput {
+  create?: Maybe<RoleCreateInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
 export interface OrganizationCreateOneInput {
   create?: Maybe<OrganizationCreateInput>;
   connect?: Maybe<OrganizationWhereUniqueInput>;
@@ -8490,6 +8495,22 @@ export interface UserOrganizationRoleUpdateInput {
   user?: Maybe<UserUpdateOneRequiredInput>;
   role?: Maybe<RoleUpdateOneRequiredInput>;
   organization?: Maybe<OrganizationUpdateOneRequiredInput>;
+}
+
+export interface RoleUpdateOneRequiredInput {
+  create?: Maybe<RoleCreateInput>;
+  update?: Maybe<RoleUpdateDataInput>;
+  upsert?: Maybe<RoleUpsertNestedInput>;
+  connect?: Maybe<RoleWhereUniqueInput>;
+}
+
+export interface RoleUpdateDataInput {
+  name?: Maybe<String>;
+}
+
+export interface RoleUpsertNestedInput {
+  update: RoleUpdateDataInput;
+  create: RoleCreateInput;
 }
 
 export interface OrganizationUpdateOneRequiredInput {
@@ -9545,7 +9566,7 @@ export interface AdminUserPromise extends Promise<AdminUser>, Fragmentable {
   phoneNumber: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: <T = RolePromise>() => T;
+  role: <T = AdminRolePromise>() => T;
   roleId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -9560,7 +9581,7 @@ export interface AdminUserSubscription
   phoneNumber: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  role: <T = RoleSubscription>() => T;
+  role: <T = AdminRoleSubscription>() => T;
   roleId: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -9575,34 +9596,10 @@ export interface AdminUserNullablePromise
   phoneNumber: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: <T = RolePromise>() => T;
+  role: <T = AdminRolePromise>() => T;
   roleId: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface Role {
-  id: ID_Output;
-  name?: String;
-}
-
-export interface RolePromise extends Promise<Role>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface RoleSubscription
-  extends Promise<AsyncIterator<Role>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface RoleNullablePromise
-  extends Promise<Role | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
 }
 
 export interface AdminUserConnection {
@@ -12712,6 +12709,30 @@ export interface AggregateRequisitionDurationSubscription
   extends Promise<AsyncIterator<AggregateRequisitionDuration>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Role {
+  id: ID_Output;
+  name?: String;
+}
+
+export interface RolePromise extends Promise<Role>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface RoleSubscription
+  extends Promise<AsyncIterator<Role>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface RoleNullablePromise
+  extends Promise<Role | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
 }
 
 export interface RoleConnection {

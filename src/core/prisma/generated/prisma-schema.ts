@@ -20,6 +20,11 @@ input AdminRoleCreateInput {
   name: String!
 }
 
+input AdminRoleCreateOneInput {
+  create: AdminRoleCreateInput
+  connect: AdminRoleWhereUniqueInput
+}
+
 type AdminRoleEdge {
   node: AdminRole!
   cursor: String!
@@ -61,12 +66,28 @@ input AdminRoleSubscriptionWhereInput {
   NOT: [AdminRoleSubscriptionWhereInput!]
 }
 
+input AdminRoleUpdateDataInput {
+  name: String
+}
+
 input AdminRoleUpdateInput {
   name: String
 }
 
 input AdminRoleUpdateManyMutationInput {
   name: String
+}
+
+input AdminRoleUpdateOneRequiredInput {
+  create: AdminRoleCreateInput
+  update: AdminRoleUpdateDataInput
+  upsert: AdminRoleUpsertNestedInput
+  connect: AdminRoleWhereUniqueInput
+}
+
+input AdminRoleUpsertNestedInput {
+  update: AdminRoleUpdateDataInput!
+  create: AdminRoleCreateInput!
 }
 
 input AdminRoleWhereInput {
@@ -130,7 +151,7 @@ type AdminUser {
   phoneNumber: String!
   email: String!
   password: String!
-  role: Role!
+  role: AdminRole!
   roleId: Int!
   createdAt: DateTime!
   updatedAt: DateTime
@@ -149,7 +170,7 @@ input AdminUserCreateInput {
   phoneNumber: String!
   email: String!
   password: String!
-  role: RoleCreateOneInput!
+  role: AdminRoleCreateOneInput!
   roleId: Int!
 }
 
@@ -215,7 +236,7 @@ input AdminUserUpdateInput {
   phoneNumber: String
   email: String
   password: String
-  role: RoleUpdateOneRequiredInput
+  role: AdminRoleUpdateOneRequiredInput
   roleId: Int
 }
 
@@ -313,7 +334,7 @@ input AdminUserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  role: RoleWhereInput
+  role: AdminRoleWhereInput
   roleId: Int
   roleId_not: Int
   roleId_in: [Int!]

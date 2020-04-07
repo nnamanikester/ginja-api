@@ -11,9 +11,9 @@ const auth = (req: Request, res: Response, next: NextFunction): any => {
             message: 'Access denied! No token provided.'
         });
     try {
-        const data = jwt.verify(token, process.env.JWT_SECRETE);
+        const decode = jwt.verify(token, process.env.JWT_SECRETE);
         res.locals.prisma = prisma;
-        req.user = data;
+        req.user = decode;
         return next();
     } catch (err) {
         res.status(400).json({

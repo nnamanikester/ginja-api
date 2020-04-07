@@ -395,7 +395,7 @@ type AdminUser {
   phoneNumber: String!
   email: String! @unique
   password: String!
-  role: Role!
+  role: AdminRole!
   roleId: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime @updatedAt
